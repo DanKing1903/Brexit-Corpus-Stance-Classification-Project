@@ -7,4 +7,4 @@ Welcome to my dissertation project repository. This project will investigate sta
 ## Directories:
 **notebooks**: Here I will store Jupyter Notebooks I use to explore ideas and develop my code
 
-**utils** Here I will store .py files written for my project
+**utils**: Here I will store .py files written for my project
