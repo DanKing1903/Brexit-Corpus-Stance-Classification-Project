@@ -3,7 +3,7 @@
 ### Daniel King
 
 Welcome to my dissertation project repository. This project will investigate stance classification using The Brexit Blog Corpus (**BBC**).
-
+[source](https://snd.gu.se/en/catalogue/study/snd1037)
 ## Directories:
 **notebooks**: Here I will store Jupyter Notebooks I use to explore ideas and develop my code
 
