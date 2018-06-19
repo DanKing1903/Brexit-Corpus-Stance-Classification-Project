@@ -1,0 +1,336 @@
+SND_studie,SND_dataset,SND_version,Utterance ID No,Utterance,Stance category,second stance category,third,fourth,fifth,Utterance word length
+1037,1,1.0,14,"Granted, his party may commit regicide in the process, but the pressure on Cameron to postpone a referendum would be immense.",agreement/disagreement,contrariety,hypotheticality,prediction,uncertainty,21
+1037,1,1.0,18,And I very much doubt they are willing to center the Holyrood election on the issue.,agreement/disagreement,uncertainty,,,,16
+1037,1,1.0,20,"In principle I agree with what he is striving for, but the in practice it is not so simple.",agreement/disagreement,contrariety,,,,19
+1037,1,1.0,26,"It does not take into effect the benefits of Scotland having its on voice in the world, attracting investment, business and people.",agreement/disagreement,,,,,22
+1037,1,1.0,27,I would argue differently in that the tournament is busted and that it was never a sustainable programme.,agreement/disagreement,,,,,18
+1037,1,1.0,31,"Different political contexts, I know, but the core principle of the Eurozone - that the bondholders must be paid every cent due to them - will be defended to the hilt and regardless of the human consequences.",agreement/disagreement,contrariety,prediction,,,37
+1037,1,1.0,33,"No, Labour lost themselves; their message wasn't clear enough, their campaign was lazy and sluggish and ultimately, they are no longer the party many want them to be.",agreement/disagreement,,,,,28
+1037,1,1.0,40,Where I part company with Andrew is that I don't think we will ever reach the point where a referendum can be held without the risk of defeat.,agreement/disagreement,prediction,uncertainty,,,28
+1037,1,1.0,46,I don't know why you call this scapegoating.,agreement/disagreement,,,,,8
+1037,1,1.0,49,"Right, but my concern is not just the attitude of those inside the jury but outside as well.",agreement/disagreement,contrariety,,,,18
+1037,1,1.0,51,"There are simply no legal provisions governing the expulsion of a state from the single currency, and thus no clear mechanism by which this could be achieved even if Athens fails to satisfy its creditors.",certainty,contrariety,,,,35
+1037,1,1.0,55,"10+ years if aimed for, will simply not happen.",certainty,prediction,,,,9
+1037,1,1.0,61,Such a thing isn't possible.,certainty,,,,,5
+1037,1,1.0,63,"But you no doubt have a far better reason for believing there are 75,000 trots and anarchists in the SNP.",certainty,,,,,20
+1037,1,1.0,69,as for brexit …….. its simply not going to happen.,certainty,prediction,,,,10
+1037,1,1.0,73,"Yes, it clearly is the Beast that is being depicted — and theologians might well dispute whether this was a depiction of a moral flaw in human beings or Beelzebub himself.",certainty,source of knowledge,,,,31
+1037,1,1.0,84,"Some of them, as they make their decision, will doubtless recall the words of the poet Konstantinos Cavafy:",certainty,prediction,,,,18
+1037,1,1.0,86,They really are added value to our stay.,certainty,,,,,8
+1037,1,1.0,91,Make no mistake about it - there was nothing inevitable about support for independence continuing to swell after the referendum.,certainty,prediction,,,,20
+1037,1,1.0,98,But the reticence about taking on the advocacy role for Turkish membership has been evident across the political spectrum in Germany as politicians fear being ambushed by the visceral emotions stirred up by Turkey.,certainty,source of knowledge,,,,34
+1037,1,1.0,105,I can't see our Greek brothers and sisters taking this lying down.,certainty,,,,,12
+1037,1,1.0,106,"But this crisis has made crystal clear that there is no room, zero, for any kind of Left politics within the contemporary EU.",certainty,,,,,23
+1037,1,1.0,109,"In truth, both of these should be seen as kite-flying exercises.",certainty,necessity,,,,11
+1037,1,1.0,116,Only a general election can express the sovereign will of the nation and the May 7th vote made that will very clear indeed.,certainty,,,,,23
+1037,1,1.0,121,Of course no one seriously thinks that the other opposition parties from the Liberal-Dems to Plaid the Irish parties to the SNP want to stop apprenticeships.,certainty,source of knowledge,,,,26
+1037,1,1.0,124,Years of stagnation will see us on the valley floor just as surely as another closely-lost referendum.,certainty,prediction,,,,17
+1037,1,1.0,132,"The fact is that social mobility on any large or even medium scale is, and has always been a myth.",certainty,contrariety,,,,20
+1037,1,1.0,138,"Not this week or next year or even the year after that, but it will come about.",contrariety,prediction,,,,17
+1037,1,1.0,140,"When the Irish Parliamentary Party was eventually displaced in 1918, it was by the even more radical Sinn Fein.",contrariety,,,,,19
+1037,1,1.0,144,I hope the British establishment does not respond as it did in ireland.,contrariety,volition,,,,13
+1037,1,1.0,157,"However, stock market corrections are just that stock market corrections and should be viewed as BUY OPPORTUNITIES and not the start of bear markets as I have often reminded the readers of my articles over the past 6 years -",contrariety,necessity,,,,40
+1037,1,1.0,160,The difference between them and the SNP is that they are not an independence at any price party and so are not seeking to pretend that everything will be easy and seamless.,contrariety,,,,,32
+1037,1,1.0,165,"If trivial, the party ends up with a working majority, just a smaller one than it might have had.",contrariety,hypotheticality,,,,19
+1037,1,1.0,168,"Until recently, she could have been treated at Stafford Hospital, nearby, but because of government NHS plans, that hospital has been recently downgraded and doesn’t deal with acute cases- and now Royal Stoke has to cope with Stafford patients, too",contrariety,,,,,40
+1037,1,1.0,174,"Fairbanks was not threatened by fire, but heavy smoke from more than a dozen nearby fires reduced visibility to about eight blocks and residents woke up to layers of smoke ash reminiscent of a winter's first snowfall, officials said.",contrariety,source of knowledge,,,,39
+1037,1,1.0,177,"If you like Green policies more than SNP policies, vote Green on the list.",contrariety,hypotheticality,,,,14
+1037,1,1.0,180,"This was a seat where everyone who was anti-Tory needed to get together to unseat Mundell, and here were the Greens actively acting against that objective.",contrariety,necessity,,,,26
+1037,1,1.0,181,"I think the difference is that you are talking about the likelihood of various events, whereas I am talking about the power of one vote.",contrariety,uncertainty,,,,25
+1037,1,1.0,190,"You can hold a vote, but it wont be legally binding without Westminster backing.",contrariety,,,,,14
+1037,1,1.0,191,Life is rough in some of the SNP heartlands but I didn't think things had degenerated to that extent!,contrariety,uncertainty,,,,19
+1037,1,1.0,192,"Having heavily lost the referendum, their vote soared to over 49% in the ensuing election.",contrariety,,,,,15
+1037,1,1.0,198,"As we've seen over the past few weeks, the turmoil in Greece caused stocks and the Euro to fall sharply, with not only Greek banks being shut but also some in Southern Italy for fear of contagion.",contrariety,source of knowledge,,,,37
+1037,1,1.0,207,"‘They’ll trade alright, but any post brexit EU trade agreement will have a stiff price attached as Norway will testify.",contrariety,prediction,,,,20
+1037,1,1.0,208,"Rather than establishing minimums that national governments can choose to build on, the European Commission encourages regulations to be treated as maximum standards.",contrariety,,,,,23
+1037,1,1.0,210,"With the Ukraine crisis putting a torch to Euro-Russian relations, Chinese investment in Europe has soared to $18 billion in 2014, while bilateral trade exceeded $615 billion - and a new EU-China investment treaty is now being negotiated.",contrariety,,,,,38
+1037,1,1.0,211,MACD and Williams’ are pointing downward movement while Stich value is oversold and RSI is showing for an upward trend.,contrariety,source of knowledge,,,,20
+1037,1,1.0,212,"NZDUSD and AUDUSD increased as well, but the bearish are fighting back in these pairs.",contrariety,,,,,15
+1037,1,1.0,213,"Even Nigel Farage, the ‘Saviour of British Sovereignty’, whilst knowing this, insists that going the ‘Article 50′ route is ‘the polite thing to do’ even though he is hardly known for being polite to the EU in their Parliament.",contrariety,source of knowledge,,,,39
+1037,1,1.0,225,"The risk is from some lobbies and elite elements, and they will react to the perspective of losing power to common citizens, not to the aggressiveness of some kleroterians!",contrariety,prediction,,,,29
+1037,1,1.0,228,"They have had a great picnic and very rich picking, and they are now paying for their fun.",contrariety,,,,,18
+1037,1,1.0,229,"After conquering Poland Hitler again proposed to the Allies and to the world to make peace on the basis of restoring to Germany only that which was taken from her by the treaty of Versailles, with the exception of Alsace.",contrariety,,,,,40
+1037,1,1.0,236,The other thing that needs to be borne in mind is that the electorate tends to behave in a much more volatile way in referendums than in regular elections.,contrariety,necessity,,,,29
+1037,1,1.0,244,"Independence is not a prerequisite for identity, either culturally or legally.",contrariety,,,,,11
+1037,1,1.0,245,I was born in England but have Scottish blood.,contrariety,,,,,9
+1037,1,1.0,248,"I'm Scottish, but I was a child of the Royal Navy.",contrariety,,,,,11
+1037,1,1.0,249,"He is always referred to as British, yet was born in Namibia, spent all his life in Namibia, and speaks with a Namibian 'English' accent.",contrariety,,,,,25
+1037,1,1.0,251,The Soviet Union endured for 69 years; the European Union has so far lasted for 64 years.,contrariety,,,,,17
+1037,1,1.0,253,"Indeed, not only are new institutional circuit breakers, such as the European Financial Stability Facility, in place; existing bodies have also been made more flexible and thus more effective.",contrariety,,,,,29
+1037,1,1.0,254,"It was not just maverick Greek Finance Minister Yanis Varoufakis who protested - his analysis is supported by leading academics Paul Krugman, Joseph Stiglitz and historically by Maynard Keynes.",contrariety,,,,,29
+1037,1,1.0,261,Plenty of whingeing about poverty and austerity etc - but no attempt to directly tackle it with the powers available to them.,contrariety,,,,,22
+1037,1,1.0,272,"In principle I agree with what he is striving for, but the in practice it is not so simple.",contrariety,agreement/disagreement,,,,19
+1037,1,1.0,282,It leaves not just Brussels but national capitals vulnerable to the new politics.,contrariety,,,,,13
+1037,1,1.0,287,"Although Greece’s departure would prove the euro is not irrevocable, nobody would know what rule-breaking would lead to expulsion.",contrariety,,,,,19
+1037,1,1.0,288,"On July 1st Mr Tsipras said a No vote would strengthen Greece's negotiating hand, not push it out of the euro.",contrariety,source of knowledge,,,,21
+1037,1,1.0,290,"European lenders' claims on Greece, which once topped euro 300 billion, now stand at just euro 54 billion, according to Deutsche Bank.",contrariety,,,,,22
+1037,1,1.0,292,"The hyper-expensive ones would have to go back to the drawing board, but the cheaper technologies would have an incentive to get their costs down to realistic levels.",contrariety,,,,,28
+1037,1,1.0,293,"At present the British public is split, though it is fair to say that the majority accept the reality of man-made global warming and the need to do something about it.",contrariety,necessity,source of knowledge,,,31
+1037,1,1.0,300,It needs to go from zero pounds and people to millions of pounds and thousands of people across the country.,contrariety,necessity,,,,20
+1037,1,1.0,302,All sorts of things are 'good for party unity' in the short-term and awful for everyone in the long-term.,contrariety,prediction,,,,19
+1037,1,1.0,317,"Generally speaking the farther back you go the less informative that evidence becomes, but in 12 of the last 16 years we've produced a smaller share of revenue than we spent, proportionally speaking.",contrariety,,,,,33
+1037,1,1.0,320,I would have been a Scot but a new Canadian as well.,contrariety,,,,,12
+1037,1,1.0,331,But it was not as big as it would have been in 2011.,contrariety,,,,,13
+1037,1,1.0,337,"Indeed, more of his works are in print today than of any other Christian author, alive or deceased.",contrariety,,,,,18
+1037,1,1.0,344,"Much to my surprise, they all said: No.",contrariety,,,,,8
+1037,1,1.0,345,"A more important, albeit less obvious problem is that major European powers have different visions about Europe's role and future.",contrariety,,,,,20
+1037,1,1.0,354,"It was hastily resubmitted and voted through at the second time of asking, but not without a serious split between Labour MEPs and their sister parties in Germany, Italy and elsewhere.",contrariety,,,,,31
+1037,1,1.0,358,"The result: Global GDP has been, and continues to be overstated as a certain percentage of growth remains debt financed and not purely organically driven.",contrariety,source of knowledge,,,,25
+1037,1,1.0,359,"That depressed a weak economy and drove up unemployment, making growth and increased revenues impossible.",contrariety,,,,,15
+1037,1,1.0,363,"Seizing power won’t work, the trick is to create alternative sources of power, to decommison i’power’ so to speak.",contrariety,,,,,19
+1037,1,1.0,369,"We can only hope such nastiness doesn’t permeate the public consensus, but it’s a plan we’ve already witnessed succeed in the UK as prelude to building the myth of austerity’s necessity – attacking benefits claimants and immigrants.",contrariety,source of knowledge,volition,,,37
+1037,1,1.0,375,"I expect we'll see yet another EU fudge and somehow Greece will survive, although it is not clear for how long.",contrariety,prediction,uncertainty,,,21
+1037,1,1.0,380,"I’m also thinking that this referendum is not so much about In vs Out, as it is about what relationship we have with EU, i.e.",contrariety,,,,,25
+1037,1,1.0,383,With the sole exception of haiving Ordnance Survey maps it really is inferior to my phone in every single respect.,contrariety,certainty,,,,20
+1037,1,1.0,391,"During the cold war it had a bipartisan foreign policy, on which Democrats and Republicans largely agreed; but after the cold war ended the partnership broke up.",contrariety,,,,,27
+1037,1,1.0,400,"It’s facing very unenviable and numerous problems, yet in many cases they seem so resolvable.",contrariety,,,,,15
+1037,1,1.0,413,There's no point in igniting a false hope - only to extinguish it forever.,contrariety,necessity,,,,14
+1037,1,1.0,423,"If you submitted one of your blogs as an undergraduate essay, you'd be lucky to limp through with a pass, so strong is the mismatch between the confidence of your tone and the baselessness of your analysis.",contrariety,hypotheticality,,,,37
+1037,1,1.0,434,"As regards currency, there is a difference between 'using pounds' and having a currency union - a world of a difference.",contrariety,,,,,21
+1037,1,1.0,442,"The Climate Change Levy is an attack on renewable energy sources which already have much opposition from Conservatives with vested interest in fossil fuels, making New Labour their natural opposition – yet they abstained.",contrariety,,,,,34
+1037,1,1.0,445,"To liberals it’s the individual that counts, not theological abstractions like the general good.",contrariety,,,,,14
+1037,1,1.0,449,"Maybe it was utopian, but no follower tried seriously.",contrariety,uncertainty,,,,9
+1037,1,1.0,452,"The difference being that, in opposition, the opposing party can say anything they like to disagree with the ruling party…because they are in absolutely no position to do anything about it…even if they wanted to…which they don’t.",contrariety,,,,,37
+1037,1,1.0,460,"They are aware of the benefits the EU membership provides, however, in their view the bureaucracy and over-regulation has gotten out of hand.",contrariety,,,,,23
+1037,1,1.0,474,"And while the costs of the material itself are not yet known, there is huge potential in offering such large improvements without the need to completely reinvent the transistor manufacturing process.",contrariety,prediction,,,,31
+1037,1,1.0,476,"That way it could credibly threaten to default on its debts while remaining in the eurozone - and thus, it hoped, convince its creditors to offer the debt relief that the depressed Greek economy desperately needed to recover.",contrariety,hypotheticality,,,,38
+1037,1,1.0,478,They even paid one socialist idiot to talk about 2 month maternity leave while in Europe it is 1 to 2 years depending if you have 3rd child or twins.,contrariety,tact/rudeness,,,,30
+1037,1,1.0,485,"I wouldn’t describe what we call society as vicious, but certainly fragmented – there are many societies, and generally few of them look out for any others.",contrariety,certainty,uncertainty,,,27
+1037,1,1.0,496,"If you ever get a chance, this is something you absolutely must do.",hypotheticality,,,,,13
+1037,1,1.0,499,"If, by contrast, you kick Greece out there is still a chance of confining the damage to one country.",hypotheticality,contrariety,,,,19
+1037,1,1.0,502,"If trivial, the party ends up with a working majority, just a smaller one than it might have had.",hypotheticality,contrariety,,,,19
+1037,1,1.0,503,The eurozone will remain unsafe unless there is much deeper fiscal and social integration.,hypotheticality,,,,,14
+1037,1,1.0,505,If the Green Party really wanted to play the tactical voting game they would not have stood in so many constituency seats at Westminster nor would they at Holyrood.,hypotheticality,,,,,29
+1037,1,1.0,506,Should they not win a constituency vote I certainly don't want to risk them losing any one of them in favour of a Green MSP.,hypotheticality,certainty,volition,,,25
+1037,1,1.0,511,"If it doesn't happen to that extent, the best outcome would be swapping one SNP MSP for a Green MSP.",hypotheticality,,,,,20
+1037,1,1.0,516,Had every single voter in scotland voted for Labour they still wouldn't have won.,hypotheticality,,,,,14
+1037,1,1.0,517,"If they do it, they'll do it by the book.",hypotheticality,,,,,10
+1037,1,1.0,518,Just pop in some 'uncontroversial' amendment at westminster to make it null and void if anything less than 40% of the total electorate don't vote Yes.,hypotheticality,,,,,26
+1037,1,1.0,532,With a 24/7 working week this would fall away.,hypotheticality,,,,,9
+1037,1,1.0,538,"It's easy to jump to the conclusion that telephone polls must be more accurate, or that the truth must be somewhere in between the two extremes - in which case Yes would have a handsome lead.",hypotheticality,,,,,36
+1037,1,1.0,542,And I would do it without wifi since Berlin is bad at wifi and my phone wasn't having it either.,hypotheticality,,,,,20
+1037,1,1.0,543,"A month earlier and I would have been Singaporean, 3 months later and I would have been German.",hypotheticality,,,,,18
+1037,1,1.0,547,"And – let us assume a Divine Intervention here – if the Eurozone began to prosper, we could apply for membership.",hypotheticality,volition,,,,21
+1037,1,1.0,556,"Of course in an ideal world, we would give people the skills to support themselves with enough money that would elevate the need for benefits, creating the ‘higher wage, lower tax, lower welfare’ society George Osborne longs for.",hypotheticality,,,,,38
+1037,1,1.0,563,"Relations with the devious Mr Tsipras are shattered: with him in charge, they will struggle to stay in the euro.",hypotheticality,,,,,20
+1037,1,1.0,565,"Common deposit insurance, more integrated capital markets and common Eurobonds would tie things together better.",hypotheticality,,,,,15
+1037,1,1.0,577,"If you are just someone who is happy with the status quo or who wants the situation to get worse, can I suggest go somewhere else.",hypotheticality,necessity,tact/rudeness,,,26
+1037,1,1.0,588,"And if you roll over the debt, great - there's interest to collect too.",hypotheticality,tact/rudeness,,,,14
+1037,1,1.0,591,"If that doesn’t turn out to be the case, equity markets could be vulnerable.",hypotheticality,,,,,14
+1037,1,1.0,595,"If the people of Greece think they need the EURO because they have little faith in their politicians and the system, the proper course is to effect change internally.",hypotheticality,,,,,29
+1037,1,1.0,596,"The claim is, if you pay the rich Clintons and rich Bushes to come to make a ‘speech’ many rich Jews will show up and throw in more money so it is a net ‘profit’.",hypotheticality,source of knowledge,,,,35
+1037,1,1.0,600,The emergency loans offered by the Greek central bank would do the same job as loans offered by the ECB previously did before its decision to cut off liquidity to Greece.,hypotheticality,,,,,31
+1037,1,1.0,601,"Should no more emergency funding be available, the government could be forced to impose capital controls, limiting deposit withdrawals in order to stave off a total collapse of the banking system.",hypotheticality,,,,,31
+1037,1,1.0,619,Opening up the process to criticism by the media and civil society would greatly improve the efficacy of his reforms.,hypotheticality,,,,,20
+1037,1,1.0,622,"In Macmillan’s words, to admit ‘the political objectives’ of the Rome Treaty would raise ‘problems of public relations’ so ‘considerable’ that they should be kept under wraps.",hypotheticality,,,,,27
+1037,1,1.0,624,"His position is precarious, and a defeat would have badly damaged his government.",hypotheticality,,,,,13
+1037,1,1.0,626,They are simply left to live near their abusers whom the Police do not charge unless these vulnerable women agree to waive their anonymity.,hypotheticality,,,,,24
+1037,1,1.0,627,"My only operating principle here is this: if another independence referendum is to be held, it must be won.",hypotheticality,,,,,19
+1037,1,1.0,631,And the world would have scoffed heartily had they tried!,hypotheticality,,,,,10
+1037,1,1.0,644,"However, if an officer was on parade such language could not be used.",hypotheticality,,,,,13
+1037,1,1.0,649,"Had Jack McConnell introduced free prescriptions and scrapped road and bridge tolls, I very much doubt we would be having this conversation.",hypotheticality,uncertainty,,,,22
+1037,1,1.0,654,"Likewise, the Conservatives face a similar fate if it’s torn apart by the debate on EU membership.",hypotheticality,,,,,17
+1037,1,1.0,667,Count me out.,necessity,,,,,3
+1037,1,1.0,673,"Of all the soundbites we are bound to be deluged with over the next eighteen months or so, 'business as usual' will prevail.",necessity,certainty,prediction,,,23
+1037,1,1.0,674,"If you forget everything that's happened to this point and re-imagine the crisis as an economic standoff between Greece and Germany, you have to say Germany will win.",necessity,hypotheticality,,,,28
+1037,1,1.0,676,"However, stock market corrections are just that stock market corrections and should be viewed as BUY OPPORTUNITIES and not the start of bear markets as I have often reminded the readers of my articles over the past 6 years -",necessity,contrariety,,,,40
+1037,1,1.0,688,JEWISH KING JESUS IS COMING AT THE RAPTURE FOR US IN THE CLOUDS-DON'T MISS IT FOR THE WORLD.,necessity,prediction,,,,18
+1037,1,1.0,703,"Because a significent number of second-choice list MSPs for the Greens are pro-union, you would need to get into 4-5 Green MSPs for each SNP MSP before this would have a pro-indy effect.",necessity,,,,,33
+1037,1,1.0,713,And let’s not forget about climate change.,necessity,,,,,7
+1037,1,1.0,714,"Rolls Royce and Airbus, have not been quiet about their views on Brexit and its again worth noting that they seem to be either holding off on key investment decisions or have already decided to build new factories overseas.",necessity,source of knowledge,,,,39
+1037,1,1.0,723,This is why I think we need to take Naomi’s proposal on the parallel thread seriously.,necessity,,,,,16
+1037,1,1.0,724,"To control it is a difficult task, and sometimes we have to stop the process to prevent explosion.",necessity,,,,,18
+1037,1,1.0,725,"And if other kleroterians are convinced it is hopeless, well, maybe they are right, but let's try.",necessity,volition,contrariety,hypotheticality,uncertainty,17
+1037,1,1.0,726,The Jews should be excluded for we already have too many of them.,necessity,,,,,13
+1037,1,1.0,727,"Jews are Asiatic, are a menace to this country if permitted entrance, and should be excluded by this Constitution.'",necessity,,,,,19
+1037,1,1.0,734,The best way forward for Eurosceptics is to strain every nerve to convert younger voters to this view before polling day in the referendum.,necessity,,,,,24
+1037,1,1.0,736,"We need insist that in matters constitutional the people of Scotland are sovereign, and independence is a matter for them and them alone.",necessity,,,,,23
+1037,1,1.0,737,"Finally, please at least consider the option of voting for Great Britain/ the UK to leave the EU.",necessity,tact/rudeness,,,,18
+1037,1,1.0,740,"The new narrative must run with, not against, the grain of Europe's national groups.",necessity,contrariety,,,,14
+1037,1,1.0,742,"The other main demand is to restore Britain's opt-out from EU social policy, including the directives on working time and temporary agency workers.",necessity,,,,,23
+1037,1,1.0,744,"The impact of UKIP on British politics and, potentially, on the politics of the EU should not be underplayed.",necessity,,,,,19
+1037,1,1.0,753,Stop using it.,necessity,,,,,3
+1037,1,1.0,755,"With only one shot at this in over 40 years, I think it’s time we grew up and demanded what we really want and not some half-baked scraps from the begging bowl.",necessity,contrariety,,,,32
+1037,1,1.0,758,"This revolution must be carried out and lead by the working class, for only this class has the collective power to bring down the ruling class and build a socialist society.",necessity,contrariety,source of knowledge,,,31
+1037,1,1.0,773,Dropping our club is not allowed.,necessity,,,,,6
+1037,1,1.0,782,Let's look at our competitors: The Labour Party; Well they do have a leadership choice.,necessity,volition,,,,15
+1037,1,1.0,785,Let me tell a story.,necessity,,,,,5
+1037,1,1.0,786,UK support for membership of the EU has reached an all-time high and we should gain as the party most associated with a positive attitude to the EU.,necessity,,,,,28
+1037,1,1.0,790,They should begin to think about how they can ease the debt burden of Greece.,necessity,,,,,15
+1037,1,1.0,793,In theory this meant that they were required to challenge convention.,necessity,,,,,11
+1037,1,1.0,796,Rivalry between the US and China is inevitable but it needs to be kept within bounds that would preclude the use of military force.,necessity,certainty,contrariety,prediction,,24
+1037,1,1.0,798,"With even Jacques Delors, the chief architect of Maastricht, suggesting it might be best for Britain to leave the EU, Mr Cameron should dwell on a passage from her last book, Statecraft.",necessity,source of knowledge,,,,32
+1037,1,1.0,802,It is time for our political class to be honest with the people of Britain and for the people of Britain to have their say.,necessity,,,,,25
+1037,1,1.0,804,Beware those who see the defeat of the Yes campaign as entirely the fault of other people.,necessity,,,,,17
+1037,1,1.0,810,"A fiat currency with a floating exchange rate is the only truly independent choice, so the first step to independence should be to educate the voters about fiat money and sectoral balances and Modern Monetary Theory in general.",necessity,,,,,38
+1037,1,1.0,819,"The nobles will be duty-bound to comply, lest they be stripped of their titles, and so they too will join the other two estates at Holyrood.",necessity,prediction,,,,26
+1037,1,1.0,821,Without doubt SNP have to take the lead here.,necessity,certainty,,,,9
+1037,1,1.0,825,"I do think we need different voices in the City, I think that is absolutely vital if Dundee is to grow and work towards easing some of the problems the city faces.",necessity,,,,,32
+1037,1,1.0,832,I've posted on here before that what we really need is a proper centre right pro indy party or group.,necessity,source of knowledge,,,,20
+1037,1,1.0,835,The Commission as a whole needs the Parliament's consent.,necessity,,,,,9
+1037,1,1.0,839,There will be times when it is *necessary* to take actions which are very much disagreeable.,necessity,prediction,,,,16
+1037,1,1.0,849,We don’t need to belabor the point of Hillary’s genetic disposition for prevarication leading to her eventual self-implosion---on the smallest unpredictable matter.,necessity,,,,,22
+1037,1,1.0,859,"Of course, the potential of being excluded from the eurozone should focus minds.",necessity,,,,,13
+1037,1,1.0,868,"Not this week or next year or even the year after that, but it will come about.",prediction,contrariety,,,,17
+1037,1,1.0,871,"10+ years if aimed for, will simply not happen.",prediction,certainty,,,,9
+1037,1,1.0,872,When the next Scotland Act is pushed through next year we will be on the third so-called devolution settlement since 1997.,prediction,,,,,21
+1037,1,1.0,877,"Of all the soundbites we are bound to be deluged with over the next eighteen months or so, ‘business as usual’ will prevail.",prediction,certainty,necessity,,,23
+1037,1,1.0,878,This will allow unrestricted world trade.,prediction,,,,,6
+1037,1,1.0,880,"In fact, watching this process, I have come to change my mind about the timing of what I see is the endgame for Europe and European sovereign debt.",prediction,source of knowledge,,,,28
+1037,1,1.0,881,The current crisis could easily lead to the country leaving the euro and eventually the union itself.,prediction,uncertainty,,,,17
+1037,1,1.0,886,"There may be some business opportunities for Indian investors arising out of the decline in asset valuations in Europe, but caution would be the better part of valour.",prediction,contrariety,uncertainty,,,28
+1037,1,1.0,887,North of 1.5 million are going to vote SNP in the constituency vote.,prediction,,,,,13
+1037,1,1.0,892,The European Council will also have to start to deal with Cameron's demand to extricate the United Kingdom from the historic mission of 'ever closer union'.,prediction,necessity,,,,26
+1037,1,1.0,895,'Mirror' subsidies and R&D funds might be employed to keep industries on a level playing field with EU competitors.,prediction,,,,,19
+1037,1,1.0,907,In that case I'm not seeing how two or three more of them is going to make a huge amount of difference.,prediction,hypotheticality,,,,22
+1037,1,1.0,922,"‘They’ll trade alright, but any post brexit EU trade agreement will have a stiff price attached as Norway will testify.",prediction,contrariety,,,,20
+1037,1,1.0,928,"However, as I have mentioned before, the dairy product prices, Chinese economy and the expectation of further interest rate cut will have a big negative impact on NZD so on the pair.",prediction,,,,,32
+1037,1,1.0,929,It will not be possible to avoid economic arguments entirely.,prediction,certainty,,,,10
+1037,1,1.0,930,"Therefore, the West is in great danger of being taken back 1400 years to a bygone age, an altogether less enlightened age, a dark age.",prediction,,,,,25
+1037,1,1.0,944,"And a focus on Libya makes sense at first, but smugglers could soon exploit the route of least resistance by shifting their activities to other parts of the North African coast.",prediction,contrariety,uncertainty,,,31
+1037,1,1.0,948,In mainland Europe the Eurosceptic profile is increasingly youthful.,prediction,,,,,9
+1037,1,1.0,958,They will become increasingly disillusioned as time passes them by with no indyref 2.,prediction,,,,,14
+1037,1,1.0,963,Greece will be in technical default tomorrow when they can't pay the IMF the $1.6 billion.,prediction,,,,,16
+1037,1,1.0,971,"Once they get the hang of voting, they will keep voting.",prediction,,,,,11
+1037,1,1.0,973,It said that electricity would fail and lights would go out.,prediction,,,,,11
+1037,1,1.0,977,The 1975 referendum on whether to remain in the then EEC was expected to be close.,prediction,,,,,16
+1037,1,1.0,979,"The same downward spiral is all too plausible in a future crisis: the ruination of politics and the economy as demands for forgiveness from debtor nations like Italy or Portugal, say, founder on demands for austerity from Germany and Finland.",prediction,certainty,,,,40
+1037,1,1.0,986,I think all sides will recognise this and after a frank exchange of views we will reach a broad consensus on how to do that which will deal with most of the complaints which have been made.,prediction,uncertainty,,,,37
+1037,1,1.0,987,What happens then within the EU is anyone's guess but the rows will not be pretty - and may even rip at the very fabric of the EU.,prediction,contrariety,uncertainty,,,28
+1037,1,1.0,994,Make no mistake about it - there was nothing inevitable about support for independence continuing to swell after the referendum.,prediction,certainty,,,,20
+1037,1,1.0,1002,It contained the seeds of its own self-destruction.,prediction,,,,,8
+1037,1,1.0,1004,"Yeah, that's bound to promote harmony in the tory party and bode well for Cameron's pro-Europe campaign almost as much as an EU crisis.",prediction,agreement/disagreement,,,,24
+1037,1,1.0,1005,Russian aggression in Eastern Ukraine has the potential to destabilise the continent.,prediction,uncertainty,,,,12
+1037,1,1.0,1010,My personal opinion is that Greece will be forced to abandon the euro sometime in the next few years.,prediction,necessity,uncertainty,,,19
+1037,1,1.0,1018,Reports claim that the cash will only be enough to keep banks solvent until Monday.,prediction,source of knowledge,,,,15
+1037,1,1.0,1021,"This you MUST understand, when trust evaporates, credit will cease entirely.",prediction,necessity,,,,11
+1037,1,1.0,1024,Things may get worse before they get better.,prediction,uncertainty,,,,8
+1037,1,1.0,1027,"Different political contexts, I know, but the core principle of the Eurozone - that the bondholders must be paid every cent due to them - will be defended to the hilt and regardless of the human consequences.",prediction,agreement/disagreement,contrariety,,,37
+1037,1,1.0,1034,"With regards Russia, there is a strong connection anyway, with Russia being the only other major Orthodox country and the church here having a great deal of influence in government, so closer ties may well be on the cards.",prediction,uncertainty,,,,39
+1037,1,1.0,1037,"I expect we'll see yet another EU fudge and somehow Greece will survive, although it is not clear for how long.",prediction,contrariety,uncertainty,,,21
+1037,1,1.0,1040,"This does nothing for the accountability of those governments, as it becomes difficult to over throw them.",prediction,,,,,17
+1037,1,1.0,1044,The added complication is likely to make more of these people unlikely to vote at all.,prediction,uncertainty,,,,16
+1037,1,1.0,1045,As I was bouncing my grandson about yesterday I told his mum that he's got about a one in two to one in three chance of living to be a hundred years old.,prediction,,,,,33
+1037,1,1.0,1048,"On balance, therefore, Greece’s monetary conditions should be easing.",prediction,source of knowledge,uncertainty,,,9
+1037,1,1.0,1058,The good times of crude oil hedges in the 80s and 90s are all coming to an end.,prediction,,,,,18
+1037,1,1.0,1061,"Until the independence movement realises this, we will fail.",prediction,,,,,9
+1037,1,1.0,1067,You will never get to 100% either way because some people's identities are bound up in the question and they won't let go of that.,prediction,,,,,25
+1037,1,1.0,1075,"Some write-off of debt will surely have to happen sooner or later, and in the meantime the Greeks will just squirm and try to wheedle their way out of their straitjacket.",prediction,certainty,necessity,,,31
+1037,1,1.0,1080,The SNP runaway train is fast approaching the buffers.,prediction,,,,,9
+1037,1,1.0,1081,I think the SNP will lose its majority at the next Holyrood election.,prediction,uncertainty,,,,13
+1037,1,1.0,1088,There will be times when it is *necessary* to take actions which are very much disagreeable.,prediction,necessity,,,,16
+1037,1,1.0,1097,"Passionate independence supporters aren't going to suddenly abandon the cause, but the wider anti-establishment feeling would shift and be taken over to some extent by Labour.",prediction,contrariety,,,,26
+1037,1,1.0,1104,China will not have any kind of slow down.,prediction,,,,,9
+1037,1,1.0,1119,From what friends and relatives in Toronto and Hamilton tell me Mulcair is having a good campaign and benefits from not being Harper while the Liberals C51 support for Harper has gone down very badly.,source of knowledge,contrariety,,,,35
+1037,1,1.0,1120,Cameron knows the last one was a near-death experience and he doesn't want to go there again.,source of knowledge,,,,,17
+1037,1,1.0,1123,You may note that the sands have shifted here as the FT's economics leader writer looks to justify its long-standing support for the Euro project.,source of knowledge,uncertainty,,,,25
+1037,1,1.0,1136,I've since seen two people who previously intended to campaign for SNP supporters to vote Green on the list say that they will no longer do so.,source of knowledge,contrariety,,,,27
+1037,1,1.0,1138,Now it simply looks like they can't be trusted.,source of knowledge,,,,,9
+1037,1,1.0,1144,Many are now talking about possible elections in autumn.,source of knowledge,,,,,9
+1037,1,1.0,1147,"Prime Minister Alexis Tsipras, who's been instructed to present a feasible plan, says he's working on a solution.",source of knowledge,,,,,18
+1037,1,1.0,1156,The state of Massachusetts outlawed capital punishment in 1947 and opinion polls had suggested residents favored a life sentence for Tsarnaev.,source of knowledge,,,,,21
+1037,1,1.0,1159,"He revealed that he always ditches all of his preconceptions on election day when preparing the exit poll, because he knows from past experience that there is a significant chance of a big surprise.",source of knowledge,,,,,34
+1037,1,1.0,1160,I can see why Green supporters like it.,source of knowledge,,,,,8
+1037,1,1.0,1170,It has to be realised here that he is a deceitful propaganda con-artist who doesn’t write objectively but instead with selective truths to support an agenda.,source of knowledge,necessity,contrariety,,,26
+1037,1,1.0,1177,"However it also shows why subsidies are necessary, at least so long as we are effectively subsidising other energy sources such as fossil fuels and nuclear.",source of knowledge,,,,,26
+1037,1,1.0,1187,Democratic Senator Chuck Schumer has announced that he is breaking ranks with President Obama by opposing the Iran nuclear deal.,source of knowledge,,,,,20
+1037,1,1.0,1189,Two journalist of that site has reveal the plan of Germany's Secret Service to expand its state surveilance.,source of knowledge,,,,,18
+1037,1,1.0,1191,Records show the attorney general’s investigation began at least as early as 2010.,source of knowledge,,,,,13
+1037,1,1.0,1196,"In June 2010 Downing Street confirmed Coulson's annual salary as Â£140,000, the highest pay of any special adviser to UK Government.",source of knowledge,,,,,21
+1037,1,1.0,1198,"Despite a call to apologise for hiring Coulson by the leader of the opposition Ed Miliband, Cameron defended the appointment, saying that he had taken a conscious choice to give someone who had screwed up a second chance.",source of knowledge,contrariety,,,,38
+1037,1,1.0,1207,"Ipsos-Mori's Scottish sample report a different preference for Labour leader from respondents in the rest of Britain, narrowly plumping for Yvette Cooper over Liz Kendall by a 15% to 12% margin.",source of knowledge,,,,,31
+1037,1,1.0,1211,"New Jersey-born John Sitilides, an international relations specialist who consults with the U. S. Department of State on Greece-related issues, said many Greeks and Greek-Americans in the United States were lobbying voters.",source of knowledge,,,,,32
+1037,1,1.0,1222,"From the polls at the moment it seems that it is increasingly becoming a race between Yvette Cooper, Corbyn and to some extent Andy Burnham, although many believe that Corbyn is stealing his thunder.",source of knowledge,contrariety,prediction,,,34
+1037,1,1.0,1223,"If we remain in the EU the pound 1.5 Trillion debt, Ian Points out-will indeed grow and grow like Topsy.",source of knowledge,hypotheticality,,,,20
+1037,1,1.0,1225,It said that electricity would fail and lights would go out.,source of knowledge,,,,,11
+1037,1,1.0,1226,"As the Dutch foreign minister admitted last week, the EU was always a journey rather than a goal.",source of knowledge,contrariety,,,,18
+1037,1,1.0,1227,"As both Napoleon and Hitler discovered, when European imperialists march to the east they eventually lose in the west.",source of knowledge,,,,,19
+1037,1,1.0,1232,"Around a dozen chanting activists were stopped by police and officials as David Cameron addressed MPs just feet away in the Commons, Peter Dominiczak reports.",source of knowledge,,,,,25
+1037,1,1.0,1253,German Chancellor Angela Merkel's deputy said Athens had wrecked any hope of compromise with its euro zone partners by overwhelmingly rejecting further austerity.,source of knowledge,,,,,23
+1037,1,1.0,1257,My original point was that Scotland could not maintain current levels of expenditure with the oil price at its current level.,source of knowledge,hypotheticality,,,,21
+1037,1,1.0,1258,Surely by this logic excluding non-Scots born people from a vote which is purely a Scottish matter can hardly be deemed unfair.,source of knowledge,certainty,,,,22
+1037,1,1.0,1260,"The figures from a recent Eurobarometer poll tell it all: 80% of Austrians are against, and only 10% in favour; 70% of the French are against and 74% of the Germans.",source of knowledge,contrariety,,,,31
+1037,1,1.0,1261,But the reticence about taking on the advocacy role for Turkish membership has been evident across the political spectrum in Germany as politicians fear being ambushed by the visceral emotions stirred up by Turkey.,source of knowledge,certainty,,,,34
+1037,1,1.0,1262,"This should improve both safety and durability, he says",source of knowledge,,,,,9
+1037,1,1.0,1266,But on balance I'd say better in than out.,source of knowledge,contrariety,hypotheticality,,,9
+1037,1,1.0,1268,"By the late 1870s, Strachey recounts, the majority of Catholics thought that John Henry Newman deserved to be made a cardinal.",source of knowledge,,,,,21
+1037,1,1.0,1269,"This, I think, is the key to understanding the future for posh Catholics.",source of knowledge,uncertainty,,,,13
+1037,1,1.0,1278,"The claim is, if you pay the rich Clintons and rich Bushes to come to make a ‘speech’ many rich Jews will show up and throw in more money so it is a net ‘profit’.",source of knowledge,hypotheticality,,,,35
+1037,1,1.0,1279,"Despite constant assurances from the UK government that public services are safe in TTIP, there is growing evidence that those guarantees are worthless.",source of knowledge,contrariety,,,,23
+1037,1,1.0,1286,"In an interview, Pierre de Vos, professor of constitutional law at the University of Cape Town, discussed South Africa's judiciary.",source of knowledge,,,,,20
+1037,1,1.0,1287,"While many observers are preparing for the worst-case scenario of a Greek exit from the eurozone, there are signs that both sides are slowly moving closer together.",source of knowledge,contrariety,prediction,,,27
+1037,1,1.0,1290,It was also clear that the strength and militancy of the Left Platform was being talked out of all proportion in recent weeks.,source of knowledge,certainty,,,,23
+1037,1,1.0,1292,"Since the deal was mooted, I've read Tsipras compared to Dubcek, Collins, Mitterand.",source of knowledge,,,,,13
+1037,1,1.0,1298,On that basis anti nuclear combined with a clear commitment to maintain our defence spending and have armed forces with the capacity to meet modern needs is not a dated policy but a relevant new one.,source of knowledge,contrariety,,,,36
+1037,1,1.0,1308,"Now a few days ago, I heard Chuka Umunna, supposedly the Labour shadow minister for business on the BBC talking about the leadership election he backed out of.",source of knowledge,,,,,28
+1037,1,1.0,1311,Whittingdale’s record suggests that on other matters he strongly favours any tax regime that favours the rich.,source of knowledge,,,,,17
+1037,1,1.0,1320,"Throughout, Salmond's unique mix of pugnaciousness and jocularity is on show.",source of knowledge,,,,,11
+1037,1,1.0,1322,"Now opinion polls show the SNP on course to be the largest bloc of Scottish MPs in the Commons, with Labour reduced to a rump in single figures.",source of knowledge,,,,,28
+1037,1,1.0,1326,"It's facing very unenviable and numerous problems, yet in many cases they seem so resolvable.",source of knowledge,,,,,15
+1037,1,1.0,1327,"In the latest opinion poll, December 2011, 87,6% of the Swedish people were against the Euro.",source of knowledge,,,,,16
+1037,1,1.0,1337,"ISIS declares: We will conquer London, break your crosses, and enslave your women, by the permission of Allah, the Exalted.",source of knowledge,,,,,20
+1037,1,1.0,1344,Hope vs Fear Lol what complete garbage and shows that you have learned nothing.,source of knowledge,tact/rudeness,,,,14
+1037,1,1.0,1350,LPW says if the SNP tried to use the Scotland Act to justify a second referendum without UK consent they would most likely be challenged in court.,source of knowledge,,,,,27
+1037,1,1.0,1351,"Scottish MPs already have the power to do so, he says, regardless of political mandate.",source of knowledge,,,,,15
+1037,1,1.0,1367,"The UK’s share is said to be about 1,500.",source of knowledge,,,,,9
+1037,1,1.0,1368,After all the SNP seem to have got away with it .,source of knowledge,,,,,12
+1037,1,1.0,1369,"But behind that headline figure, I think these data results show that real commitment to the EU isn’t that strong.",source of knowledge,uncertainty,,,,20
+1037,1,1.0,1380,Bosnian Serb leader Milorad Dodik said Wednesday he would ask Russia to use its veto to prevent the adoption of a UN resolution on the Srebrenica genocide which is being drafted by Britain.,source of knowledge,,,,,33
+1037,1,1.0,1382,"Therefore, he concluded, CSDP is no longer fit for purpose, which leads frustration to arise in the EU.",source of knowledge,,,,,18
+1037,1,1.0,1383,"In his opinion, this will considerably help alleviate the problems of CSDP, as a strategy is most importantly an organising principle.",source of knowledge,,,,,21
+1037,1,1.0,1405,We won - and thank Christ we did.,tact/rudeness,,,,,8
+1037,1,1.0,1409,"Although attempts to compare Scotland and Greece are bollocks, the Greek crisis may give many pro-Europe Scots cause to question their views.",tact/rudeness,contrariety,prediction,uncertainty,,22
+1037,1,1.0,1413,"It's not David v Goliath, its David v a Mentally Deranged T-Rex.",tact/rudeness,,,,,12
+1037,1,1.0,1425,"This piece, and most of your contributions here, are simply barking.",tact/rudeness,,,,,11
+1037,1,1.0,1426,These warnings are helpful and you all write so well!,tact/rudeness,,,,,10
+1037,1,1.0,1435,"In the case of fiscal policy, deficit fetishism as bullshit involves appeals to ‘common sense’ by invoking simple analogies with households, often coupled with an element of morality - it is responsible to pay down debts.",tact/rudeness,,,,,36
+1037,1,1.0,1437,"Kettle likes to pose as a man with a wide knowledge of history and European politics, but really he's just as ignorant and parochial as every tupenny Blairite hack.",tact/rudeness,contrariety,,,,29
+1037,1,1.0,1438,"The central bankster, the Great Vampire Squids, all suggest that this time it's different.",tact/rudeness,source of knowledge,,,,14
+1037,1,1.0,1441,They even paid one socialist idiot to talk about 2 month maternity leave while in Europe it is 1 to 2 years depending if you have 3rd child or twins.,tact/rudeness,contrariety,,,,30
+1037,1,1.0,1454,"Their excuse is probably that we're nearly there, come on guys.",uncertainty,,,,,11
+1037,1,1.0,1460,We may yet see something similar.,uncertainty,prediction,,,,6
+1037,1,1.0,1461,"In addition, Greece may experience rapidly accelerating inflation and economic decline.",uncertainty,prediction,,,,11
+1037,1,1.0,1463,"There may be some business opportunities for Indian investors arising out of the decline in asset valuations in Europe, but caution would be the better part of valour.",uncertainty,contrariety,prediction,,,28
+1037,1,1.0,1464,Perhaps it's that sort of counsel of despair that has led European social democracy to the desperate state it currently finds itself in.,uncertainty,,,,,23
+1037,1,1.0,1469,"With the flexibility of independence and a beefed-up Foreign Office, sympathetic government and appropriate policies, even these pro-EU industries might see benefits from exit.",uncertainty,prediction,,,,24
+1037,1,1.0,1475,"On the one hand, as some Tory MPs will clearly cause internal division, this might suggest that Cameron will have a hard time convincing Conservative voters of a ‘Bremain’.",uncertainty,prediction,certainty,source of knowledge,,29
+1037,1,1.0,1490,"I think it might have happened before the referendum, but for Project Fear and the BBC's slavish promotion of it.",uncertainty,contrariety,,,,20
+1037,1,1.0,1500,"As a result, whatever happens in China, the world’s second biggest economy, may certainly have a snowball effect in all the world economy especially in the biggest trade partners.",uncertainty,prediction,,,,29
+1037,1,1.0,1501,"If those structures cannot be changed, then the EU is probably fated to unravel anyway.",uncertainty,hypotheticality,,,,15
+1037,1,1.0,1505,"And if other kleroterians are convinced it is hopeless, well, maybe they are right, but let’s try.",uncertainty,volition,contrariety,necessity,hypotheticality,17
+1037,1,1.0,1512,"And so, despite the brinkmanship of the past weeks, even if Europe’s leaders hammer out an accord with Greece they may simply buy more time rather than remove the risk of Grexit.",uncertainty,contrariety,hypotheticality,,,32
+1037,1,1.0,1513,"And a focus on Libya makes sense at first, but smugglers could soon exploit the route of least resistance by shifting their activities to other parts of the North African coast.",uncertainty,contrariety,prediction,,,31
+1037,1,1.0,1514,"He hopes to get results before an in-out referendum on EU membership, which may well take place in autumn 2016.",uncertainty,prediction,,,,20
+1037,1,1.0,1518,"The beast is wounded - probably mortally - but it will take an inordinately long time to die and in its prolonged death throes it will devastate whole nations' economies, living standards and dignity.",uncertainty,contrariety,prediction,,,34
+1037,1,1.0,1520,"In the past, the ruling groups of all countries, although they might recognize their common interest and therefore limit the destructiveness of war, did fight against one another, and the victor always plundered the vanquished.",uncertainty,contrariety,,,,35
+1037,1,1.0,1527,"There's no chance we'll get a majority support for independence or FFA until Scotland's finances are in a stronger place, trying in the next few years could cause us great damage in the longer term.",uncertainty,certainty,prediction,hypotheticality,,35
+1037,1,1.0,1530,"Some observers think that the ECB-which could, by removing support after a July default, let Greek banks fail in a way that makes Grexit certain-might instead keep them on life-support so as to let the politicians take the final decision.",uncertainty,source of knowledge,contrariety,,,40
+1037,1,1.0,1538,What happens then within the EU is anyone's guess but the rows will not be pretty - and may even rip at the very fabric of the EU.,uncertainty,contrariety,prediction,,,28
+1037,1,1.0,1540,"In this fall he appeared to hurt his leg and was limping for a day or so but mostly, as all cat lovers will tell you, they bounce very well.",uncertainty,contrariety,source of knowledge,,,30
+1037,1,1.0,1557,My personal opinion is that Greece will be forced to abandon the euro sometime in the next few years.,uncertainty,necessity,prediction,,,19
+1037,1,1.0,1558,Perhaps they'll succeed this time.,uncertainty,prediction,,,,5
+1037,1,1.0,1559,"Kefallonia could fetch two, maybe three 3 billion.",uncertainty,prediction,,,,8
+1037,1,1.0,1560,This could be a trigger but it may not be.,uncertainty,contrariety,,,,10
+1037,1,1.0,1564,However this move unlikely to fuel Euro beyond a day or two.,uncertainty,prediction,,,,12
+1037,1,1.0,1567,I think most people would accept that Greece’s banks do not have much money left.,uncertainty,,,,,15
+1037,1,1.0,1573,Perhaps this is credible if one thinks Britain is as mismanaged at home and ineffectual abroad as Italy.,uncertainty,hypotheticality,,,,18
+1037,1,1.0,1582,The added complication is likely to make more of these people unlikely to vote at all.,uncertainty,prediction,,,,16
+1037,1,1.0,1583,"On balance, therefore, Greece’s monetary conditions should be easing.",uncertainty,prediction,source of knowledge,,,9
+1037,1,1.0,1584,"The International Monetary Fund's legitimacy is increasingly questioned because of its outdated governance, and the G20, which emerged during the financial crisis of 2008 as a potentially powerful instrument of international cooperation, seems to have lost its way.",uncertainty,source of knowledge,,,,38
+1037,1,1.0,1590,AS far as I know the most important body in the EU that makes policy are the council of Ministers.,uncertainty,source of knowledge,,,,20
+1037,1,1.0,1599,"This could provide Washington with more flexibility and maneuverability in other parts of the globe, including Ukraine and Eastern Europe.",uncertainty,prediction,,,,20
+1037,1,1.0,1601,"It might mean than Andrew Marr got it about right on this occasion, but it doesn't mean that the BBC as a whole is getting it right.",uncertainty,contrariety,,,,27
+1037,1,1.0,1606,"In the event that one were called, that in itself could alter the polling.",uncertainty,hypotheticality,,,,14
+1037,1,1.0,1614,"A main facial clue for contempt is a lip corner tightened and raised, and I don't think I have ever seen a more lopsided lip rise.",uncertainty,,,,,26
+1037,1,1.0,1618,"I am not a specialist in Athenian financial history, but I think I can give some data.",uncertainty,contrariety,,,,17
+1037,1,1.0,1628,"Or it could strengthen the SNP within the UK, and pull us further along the gradualist route towards independence, much as devolution originally did.",uncertainty,prediction,,,,24
+1037,1,1.0,1630,I wonder if that’s entirely true.,uncertainty,,,,,6
+1037,1,1.0,1632,"Commodities, the EUSSR, China, Emerging Markets, are all suggesting a global slowdown is here and it may be a whopper, and not the kind of whopper they know about in central banks.",uncertainty,contrariety,prediction,source of knowledge,,32
+1037,1,1.0,1645,My aim is not to ‘predict’ the referendum outcome.,volition,,,,,9
+1037,1,1.0,1649,I now hope that you do not have anything whatsoever to do with the official EU No campaign.,volition,,,,,18
+1037,1,1.0,1654,"And - let us assume a Divine Intervention here - if the Eurozone began to prosper, we could apply for membership.",volition,hypotheticality,,,,21
+1037,1,1.0,1660,"I was interested to see in the course of a month how many grievances reflected existing, known complaints.",volition,,,,,18
+1037,1,1.0,1666,"I was trying to get a French student to mind my bag while I went outside and she was equally eager to see what it was, so we traded off.",volition,,,,,30
+1037,1,1.0,1667,I’m all for free speech.,volition,,,,,5
+1037,1,1.0,1670,We believe not in a left/right continuum but in a very different sort of society than the state centralism of the left or the corporate centralism of the right.,volition,contrariety,,,,29
+1037,1,1.0,1680,"*** What I object is any tendency to conflate the three models; all are anti-democratic, but they are very different, and we must avoid an erroneous and counter-productive confusion.",volition,agreement/disagreement,contrariety,necessity,,29
