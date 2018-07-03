@@ -2,7 +2,7 @@ import pandas as pd
 
 
 def get_train_test():
-    file = "../data/brexit_blog_corpus.xlsx"
+    file = "../data/raw/brexit_blog_corpus.xlsx"
     df = pd.read_excel(file, usecols="A:K")
     test = df.groupby('Stance category', group_keys=False).apply(lambda g: g.sample(n=round(0.2 * len(g)), random_state=42))
     test.sort_index(inplace=True)
@@ -15,7 +15,6 @@ def get_train_test():
 
 train, test = get_train_test()
 
-train.to_csv("../data/train_set.csv", index=False)
+train.to_csv("../data/raw/train_set.csv", index=False)
 
-test.to_csv("../data/test_set.csv", index=False)
-
+test.to_csv("../data/raw/test_set.csv", index=False)
