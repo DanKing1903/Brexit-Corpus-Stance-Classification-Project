@@ -14,8 +14,8 @@ class Model(object):
     '''
 
     def __init__(self):
-        self.trainset = pd.read_csv("../../data/raw/train_set.csv")
-        self.testset = pd.read_csv("../../data/raw/test_set.csv")
+        self.trainset = pd.read_csv("data/raw/train_set.csv")
+        self.testset = pd.read_csv("data/raw/test_set.csv")
         self.cv = CountVectorizer(ngram_range=(0, 2))
         self.model = OneVsRestClassifier(LogisticRegression())
         self.build_pipe()
