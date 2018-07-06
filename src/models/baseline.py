@@ -14,8 +14,8 @@ class Model(object):
     '''
 
     def __init__(self):
-        self.trainset = pd.read_csv("data/raw/train_set.csv")
-        self.testset = pd.read_csv("data/raw/test_set.csv")
+        #self.trainset = pd.read_csv("data/raw/train_set.csv")
+        #self.testset = pd.read_csv("data/raw/test_set.csv")
         self.cv = CountVectorizer(ngram_range=(0, 2))
         self.model = OneVsRestClassifier(LogisticRegression())
         self.build_pipe()
@@ -41,19 +41,19 @@ class Model(object):
             ('lt', LabelTransformer()),
             ('mmlb', MyMultiLabelBinarizer())])
 
-    def train(self):
-        X = self.pipe.fit_transform(self.trainset)
-        y = self.mlb.fit_transform(self.trainset)
+    def train(self, trainset):
+        X = self.pipe.fit_transform(trainset)
+        y = self.mlb.fit_transform(trainset)
         self.model.fit(X, y)
 
-    def test(self):
-        X = self.pipe.transform(self.testset)
-        self.y_test = self.mlb.transform(self.testset)
-        self.y_test_pred = self.model.predict(X)
-        self.print_scores(self.y_test, self.y_test_pred)
-        #return self.y_test_pred
+    def test(self, testset):
+        X = self.pipe.transform(testset)
+        y = self.mlb.transform(testset)
+        y_pred = self.model.predict(X)
+        #self.print_scores(y, y_pred)
+        return y, y_pred
 
-    def print_scores(self, y, y_pred):
+    """    def print_scores(self, y, y_pred):
         hamm = hamming_loss(self.y_test, self.y_test_pred)
         print('\n{:25s}{:>10.3f}\n'.format('Hamming Loss:', hamm))
 
@@ -84,7 +84,7 @@ class Model(object):
 
         accuracy = accuracy_score(y, y_pred)
         print('\n{:25s}{:10.3f}'.format('Accuracy', accuracy))
-
+    """
 
     def run_model(self):
         self.train()
