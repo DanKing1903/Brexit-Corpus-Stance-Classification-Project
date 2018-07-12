@@ -1,18 +1,20 @@
 import numpy as np
 
 from keras import optimizers
-from keras.layers import Dense, Dropout, SimpleRNN
+from keras.layers import Dense, Dropout, Embedding, LSTM
 from keras.models import Sequential
+from keras.optimizers import Adam
 
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.feature_extraction import DictVectorizer
-from sklearn.pipeline import Pipeline, FeatureUnion
+from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
 from src.models.feature_transformers import Selector, LabelTransformer, MyMultiLabelBinarizer, SentenceFeatures, HapaxLegomera
 from src.utils.class_weights import get_weights
+from src.utils.vectorizers import WordIndexer
 
 from keras import backend as K
+from keras.preprocessing.text import Tokenizer
+from keras.preprocessing import sequence
 
 from sklearn.utils import class_weight
 
@@ -61,47 +63,37 @@ class Model(object):
     def __init__(self):
         #self.trainset = pd.read_csv("data/raw/train_set.csv")
         #self.testset = pd.read_csv("data/raw/test_set.csv")
-        self.cv = CountVectorizer(ngram_range=(0, 2))
         self.build_pipe()
 
     def build_pipe(self):
-        sent_features = Pipeline(
-            [('select', Selector(key='Utterance')),
-             ('extract', SentenceFeatures()),
-             ('vectorize', DictVectorizer())])
-
-        hapax = Pipeline([
+        self.pipe = Pipeline([
             ('select', Selector(key='Utterance')),
-            ('extract', HapaxLegomera()),
-            ('vectorize', DictVectorizer())])
+            ('index', WordIndexer())])
 
-        CV = Pipeline([
-            ('select', Selector(key='Utterance')),
-            ('cv', CountVectorizer(ngram_range=(0, 2)))])
-
-        self.pipe = Pipeline([('union', FeatureUnion(transformer_list=[('features', sent_features), ('hapax', hapax), ('Ngrams', CV)])),('Scale', StandardScaler(with_mean = False))])
 
         self.mlb = Pipeline([
             ('lt', LabelTransformer()),
             ('mmlb', MyMultiLabelBinarizer())])
 
-    def build_net(self, input_dim, class_weights):
-        print("Building Multilayer Perceptron")
+    def build_net(self, input_length, class_weights):
+        print("Building LSTM Nueral Network")
         #this will be the neural net
-        model = Sequential()
+
         #input layer
-        model.add(Dense(25, activation="relu", input_dim=input_dim))
-        model.add(Dropout(0.2))
-        model.add(Dense(25, activation="relu"))
-        model.add(Dropout(0.2))
-        model.add(Dense(10, activation="sigmoid"))
+        model = Sequential()
+        model.add(Embedding(5000, 100, input_length=input_length))
+        model.add(LSTM(64))
+        model.add(Dense(256, activation='relu'))
+        model.add(Dropout(0.5))
+        model.add(Dense(10, activation='sigmoid'))
         print(model.summary())
         #stochastic gradient descent optimizer
         sgd = optimizers.SGD(lr=0.1)
+
         model.compile(
             optimizer=sgd,
-            loss=get_weighted_loss(class_weights),
-            #loss='binary_crossentropy',
+            #loss=get_weighted_loss(class_weights),
+            loss='binary_crossentropy',
             metrics=["accuracy"])
         return model
 
@@ -112,19 +104,18 @@ class Model(object):
         y = self.mlb.fit_transform(trainset)
         num_features = X.shape[1]
         weights = get_weights(y)
-        self.model = self.build_net(num_features, class_weights=weights)
-        self.model.fit(X, y, epochs=500, batch_size = 32)
+        self.model = self.build_net(input_length=num_features, class_weights=weights)
+        self.model.fit(X, y, epochs=10, batch_size=32)
 
     def test(self, testset):
         X = self.pipe.transform(testset)
         y = self.mlb.transform(testset)
         y_pred = self.model.predict(X)
-        threshold = 0.5
         for row in y_pred:
             for i, val in enumerate(row):
-                if val > threshold:
+                if val > 0.5:
                     row[i] = 1
-                elif val < threshold:
+                elif val < 0.5:
                     row[i] = 0
         print(y_pred[0])
         return y, y_pred

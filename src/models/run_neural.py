@@ -1,14 +1,24 @@
-from src.models.neural_model import Model
+from src.models import neural_model, LSTM
 from src.data.dataset import Dataset
 from src.evaluation.score import report_scores
+import numpy as np
+import random
+import sys
 
 
 
-def run_model():
+
+
+def run_model(model_type):
     print("\nPredicting Speaker Stance - Baseline Model ")
     print("Loading Data")
     data = Dataset()
-    model = Model()
+    if model_type == "mlp":
+        model = neural_model.Model()
+
+    elif model_type == "lstm":
+        model =LSTM.Model()
+
     print("Training Model")
     model.train(data.train_set())
 
@@ -21,4 +31,9 @@ def run_model():
 
 
 if __name__ == '__main__':
-    run_model()
+    seed = 42
+    random.seed(seed)
+    np.random.seed(seed)
+    model_type = sys.argv[1]
+    print(model_type)
+    run_model(model_type)

@@ -1,7 +1,7 @@
 from src.models.baseline import Model
 from src.data.dataset import Dataset
 from src.evaluation.score import report_scores
-
+import random
 
 
 def run_model():
@@ -21,4 +21,5 @@ def run_model():
 
 
 if __name__ == '__main__':
+    random.seed(42)
     run_model()
