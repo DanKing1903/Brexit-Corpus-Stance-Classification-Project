@@ -1,4 +1,4 @@
-from src.models import neural_model, LSTM
+from src.models import MLP_weighted_loss, MLP_multi_task_loss, LSTM
 from src.data.dataset import Dataset
 from src.evaluation.score import report_scores
 import numpy as np
@@ -13,8 +13,11 @@ def run_model(model_type):
     print("\nPredicting Speaker Stance - Baseline Model ")
     print("Loading Data")
     data = Dataset()
-    if model_type == "mlp":
-        model = neural_model.Model()
+    if model_type == "mlp-weighted":
+        model = MLP_weighted_loss.Model()
+
+    elif model_type == "mlp-multi":
+        model = MLP_multi_task_loss.Model()
 
     elif model_type == "lstm":
         model =LSTM.Model()
