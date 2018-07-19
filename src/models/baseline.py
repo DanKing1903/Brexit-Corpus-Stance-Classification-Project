@@ -4,7 +4,8 @@ from sklearn.feature_extraction import DictVectorizer
 from sklearn.multiclass import OneVsRestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline, FeatureUnion
-from src.models.feature_transformers import Selector, LabelTransformer, MyMultiLabelBinarizer, SentenceFeatures, HapaxLegomera
+from src.features.feature_transformers import Selector, LabelTransformer, SentenceFeatures, HapaxLegomera
+from src.features.target_transformers import MyMultiLabelBinarizer
 from sklearn.metrics import jaccard_similarity_score, hamming_loss, f1_score, accuracy_score
 
 

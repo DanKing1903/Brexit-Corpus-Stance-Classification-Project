@@ -42,41 +42,6 @@ class LabelTransformer(BaseEstimator, TransformerMixin):
         return y
 
 
-class MyMultiLabelBinarizer(TransformerMixin):
-
-    """
-    Wrap MultiLabelBinarizer so it can be used in pipeline.
-    See https://stackoverflow.com/questions/46162855/fit-transform-takes-2-positional-arguments-but-3-were-given-with-labelbinarize
-     for problem explanation.
-    """
-
-    def __init__(self, *args, **kwargs):
-
-        self.classes = [
-            'volition',
-            'prediction',
-            'tact/rudeness',
-            'necessity',
-            'hypotheticality',
-            'certainty',
-            'agreement/disagreement',
-            'contrariety',
-            'source of knowledge',
-            'uncertainty']
-
-        self.encoder = MultiLabelBinarizer(classes=self.classes, *args, **kwargs)
-
-    def fit(self, x, y=0):
-        self.encoder.fit(x)
-        return self
-
-    def transform(self, x, y=0):
-        xt = self.encoder.transform(x)
-        return xt
-
-    def inverse_transform(self, xt):
-        x = self.encoder.inverse_transform(xt)
-        return x
 
 
 class SentenceFeatures(BaseEstimator, TransformerMixin):

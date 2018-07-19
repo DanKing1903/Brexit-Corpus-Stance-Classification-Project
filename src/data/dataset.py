@@ -13,7 +13,7 @@ class Dataset(object):
     Utility class to easily load the datasets for training, development and testing.
     """
 
-    def __init__(self):
+    def __init__(self, in_notebook = False):
         """Defines the basic properties of the dataset reader.
 
         Args:
@@ -24,9 +24,13 @@ class Dataset(object):
 
         # TODO: Maybe the paths should be passed as parameters or read from a configuration file.
         # TODO: At some point may need dev set
-        
-        self._trainset_path = "data/raw/train_set.csv"
-        self._testset_path = "data/raw/test_set.csv"
+        if in_notebook is True:
+            self._trainset_path = "../data/raw/train_set.csv"
+            self._testset_path = "../data/raw/test_set.csv"
+
+        else:
+            self._trainset_path = "data/raw/train_set.csv"
+            self._testset_path = "data/raw/test_set.csv"
 
         self._trainset = None
         self._testset = None

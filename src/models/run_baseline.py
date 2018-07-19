@@ -4,10 +4,15 @@ from src.evaluation.score import report_scores
 import random
 
 
-def run_model():
+def run_model(in_notebook=False):
     print("\nPredicting Speaker Stance - Baseline Model ")
     print("Loading Data")
-    data = Dataset()
+    if in_notebook is True:
+        data = Dataset(in_notebook=True)
+
+    else:
+        data = Dataset()
+
     model = Model()
     print("Training Model")
     model.train(data.train_set())

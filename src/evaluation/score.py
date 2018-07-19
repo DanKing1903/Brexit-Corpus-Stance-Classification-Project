@@ -26,11 +26,9 @@ def report_scores(y, y_pred):
 
     f1_macro = f1_score(y, y_pred, average='macro')
     f1_micro = f1_score(y, y_pred, average='micro')
-    f1_weighted = f1_score(y, y_pred, average='weighted')
 
     score_str += '\n\n{:25s}{:10.3f}'.format('Micro-f1 score:', f1_micro)
     score_str += ('\n{:25s}{:>10.3f}'.format('Macro-f1 score:', f1_macro))
-    score_str += ('\n{:25s}{:>10.3f}'.format('Weighted-f1 score:', f1_weighted))
 
     accuracy = accuracy_score(y, y_pred)
     score_str += '\n\n{:25s}{:10.3f}'.format('Accuracy', accuracy)
