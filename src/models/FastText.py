@@ -1,17 +1,17 @@
 import numpy as np
 
 from keras import optimizers
-from keras.layers import Input, Dense, Dropout, SimpleRNN
+from keras.preprocessing import sequence
+from keras.layers import Input, Dense, Dropout, Embedding, GlobalAveragePooling1D
 from keras.models import Sequential, Model
 
 from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.feature_extraction import DictVectorizer
 from sklearn.pipeline import Pipeline, FeatureUnion
-from sklearn.preprocessing import StandardScaler
 
-from src.features.feature_transformers import Selector, SentenceFeatures, HapaxLegomera
+from src.features.feature_transformers import WordTokenizer, Selector
 from src.features.target_transformers import MyMultiLabelBinarizer, MultiTaskSplitter, LabelTransformer
 from src.utils.class_weights import get_weights
+from src.utils.metrics import Metrics
 
 from keras import backend as K
 
@@ -43,23 +43,15 @@ class My_Model(object):
         self.cv = CountVectorizer(ngram_range=(0, 2))
         self.build_pipe()
         self.is_verbose = 1 if is_verbose is True else 0
+        self.maxfeats = None
+        self.maxlen = 40
+        self.embedding_dim = 100
 
     def build_pipe(self):
-        sent_features = Pipeline(
-            [('select', Selector(key='Utterance')),
-             ('extract', SentenceFeatures()),
-             ('vectorize', DictVectorizer())])
 
-        hapax = Pipeline([
+        self.feature_pipe = Pipeline([
             ('select', Selector(key='Utterance')),
-            ('extract', HapaxLegomera()),
-            ('vectorize', DictVectorizer())])
-
-        CV = Pipeline([
-            ('select', Selector(key='Utterance')),
-            ('vectorize', CountVectorizer(ngram_range=(0, 2)))])
-
-        self.feature_pipe = Pipeline([('union', FeatureUnion(transformer_list=[('features', sent_features), ('hapax', hapax), ('Ngrams', CV)])), ('Scale', StandardScaler(with_mean=False))])
+            ('tokenise', WordTokenizer())])
 
         self.mlb = Pipeline([
             ('transform', LabelTransformer()),
@@ -69,45 +61,48 @@ class My_Model(object):
             ('mlb', self.mlb),
             ('split', MultiTaskSplitter())])
 
-    def build_net(self, input_dim):
-        print("Building Multilayer Perceptron")
+    def build_net(self,class_weights):
+        print("Building FastText Model")
         #this will be the neural net
-
+        model = Sequential()
         #input layer
-        inputs = Input(shape=(input_dim,))
-
-        x = Dense(25, activation="relu")(inputs)
-
-        output_layers = [Dense(1, activation="sigmoid")(x) for i in range(10)]
-
-        #Now lets build the model
-        model = Model(inputs=inputs, outputs=output_layers)
-
+        model.add(Embedding(self.maxfeats, self.embedding_dim, input_length=self.maxlen))
+        model.add(GlobalAveragePooling1D())
+        model.add(Dense(10, activation="sigmoid"))
         print(model.summary())
         #stochastic gradient descent optimizer
-        sgd = optimizers.SGD(lr=0.001, decay=1e-6, momentum=0.5)
+        sgd = optimizers.SGD(lr=0.001, decay = 1e-6, momentum=0.5)
+
         model.compile(
-            optimizer=sgd,
+            optimizer='adam',
             #loss=multitask_loss,
-            loss='binary_crossentropy',
+            loss = 'binary_crossentropy',
+            #loss=get_weighted_loss(class_weights),
             metrics=["accuracy"])
         return model
 
 
     def train(self, trainset):
-
+        # get word sequences
         X = self.feature_pipe.fit_transform(trainset)
-        y = self.target_pipe.fit_transform(trainset)
-        num_features = X.shape[1]
-        self.model = self.build_net(num_features)
-        self.model.fit(X, y, epochs=500, batch_size=32, verbose=self.is_verbose)
+        #pad sequences
+        X = sequence.pad_sequences(X, maxlen=self.maxlen)
+        #get targets
+        y = self.mlb.fit_transform(trainset)
+        #get vocab size from tokeniser
+        self.maxfeats = len(self.feature_pipe.named_steps['tokenise'].TK.word_index)+1
+        print("vocab size {}, sequence length {}".format(self.maxfeats, self.maxlen))
+        weights = get_weights(y)
+        self.model = self.build_net(class_weights=weights)
+        self.model.fit(X, y, epochs=150, batch_size=32, verbose=self.is_verbose)
 
     def test(self, testset):
         X = self.feature_pipe.transform(testset)
+        X = sequence.pad_sequences(X, maxlen=self.maxlen)
         y = self.mlb.transform(testset)
         print(y.shape)
-        y_pred_raw = self.model.predict(X)
-        y_pred = np.column_stack(y_pred_raw)  # join the raw outputs into format for sklearn scoring
+        y_pred = self.model.predict(X)
+        #y_pred = np.column_stack(y_pred_raw)  # join the raw outputs into format for sklearn scoring
         print(y_pred.shape)
         threshold = 0.5
         for row in y_pred:

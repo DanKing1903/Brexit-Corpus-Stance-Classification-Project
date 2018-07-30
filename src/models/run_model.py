@@ -1,4 +1,4 @@
-from src.models import baseline, MultiTaskNN, MultiLayerPercep
+from src.models import baseline, MultiTaskNN, MultiLayerPercep, FastText
 from src.data.dataset import Dataset
 from src.evaluation.score import report_scores
 import random
@@ -18,6 +18,10 @@ def run_model(model_type, in_notebook=False, is_verbose=True):
     elif model_type == 'MLP':
         print("\nPredicting Speaker Stance - Multi Layer Perceptron Model ")
         model = MultiLayerPercep.Model(is_verbose=is_verbose)
+
+    elif model_type == 'FastText':
+        print("\nPredicting Speaker Stance - FastText Model ")
+        model = FastText.My_Model(is_verbose=is_verbose)
 
 
     print("Loading Data")

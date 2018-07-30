@@ -7,6 +7,25 @@ import numpy as np
 import re
 
 
+class LabelTransformer(BaseEstimator, TransformerMixin):
+    """
+    Join 5 label columns into list, correct 2 observed label errors
+
+    """
+
+    def __init__(self):
+        return None
+
+    def fit(self, df, *_):
+        return self
+
+    def transform(self, df, *_):
+        df = df.filter(['Stance category', 'second stance category', 'third', 'fourth', 'fifth'])
+        df.replace('concession/contrarines', np.NaN, inplace=True)
+        df.replace('hypotheticallity', 'hypotheticality', inplace=True)
+        y = df.stack().groupby(level=0).apply(list)
+        return y
+
 
 class MyMultiLabelBinarizer(TransformerMixin):
 

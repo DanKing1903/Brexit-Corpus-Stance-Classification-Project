@@ -1,10 +1,25 @@
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.preprocessing import MultiLabelBinarizer
+from keras.preprocessing.text import Tokenizer
 from collections import defaultdict, Counter
 from nltk.tokenize.nist import NISTTokenizer
 import nltk
 import numpy as np
 import re
+
+
+
+class WordTokenizer(BaseEstimator, TransformerMixin):
+    def __init__(self):
+        self.TK = Tokenizer()
+
+    def fit(self, X, *_):
+        self.TK.fit_on_texts(X)
+        return self
+
+    def transform(self,X, *_):
+        return self.TK.texts_to_sequences(X)
+
 
 
 class Selector(BaseEstimator, TransformerMixin):

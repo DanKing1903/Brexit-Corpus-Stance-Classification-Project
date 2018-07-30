@@ -9,8 +9,8 @@ from sklearn.feature_extraction import DictVectorizer
 from sklearn.pipeline import Pipeline, FeatureUnion
 from sklearn.preprocessing import StandardScaler
 
-from src.features.feature_transformers import Selector, LabelTransformer, SentenceFeatures, HapaxLegomera
-from src.features.target_transformers import MyMultiLabelBinarizer
+from src.features.feature_transformers import Selector, SentenceFeatures, HapaxLegomera
+from src.features.target_transformers import MyMultiLabelBinarizer, LabelTransformer
 from src.utils.class_weights import get_weights
 
 from keras import backend as K
