@@ -5,7 +5,7 @@ from sklearn.multiclass import OneVsRestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline, FeatureUnion
 from src.features.feature_transformers import Selector, SentenceFeatures, HapaxLegomera
-from src.features.target_transformers import MyMultiLabelBinarizer, LabelTransformer
+from src.features.target_transformers import MyMultiLabelBinarizer, LabelTransformer, MultiLabelJoiner, MyLabelEncoder, MyLabelBinarizer
 from sklearn.metrics import jaccard_similarity_score, hamming_loss, f1_score, accuracy_score
 
 
@@ -18,7 +18,7 @@ class Model(object):
         #self.trainset = pd.read_csv("data/raw/train_set.csv")
         #self.testset = pd.read_csv("data/raw/test_set.csv")
         self.cv = CountVectorizer(ngram_range=(0, 2))
-        self.model = OneVsRestClassifier(LogisticRegression())
+        self.model = LogisticRegression()
         self.build_pipe()
 
     def build_pipe(self):
@@ -38,54 +38,24 @@ class Model(object):
 
         self.pipe = Pipeline([('union', FeatureUnion(transformer_list=[('features', sent_features), ('hapax', hapax), ('Ngrams', CV)]))])
 
-        self.mlb = Pipeline([
+        self.label_pipe = Pipeline([
             ('lt', LabelTransformer()),
-            ('mmlb', MyMultiLabelBinarizer())])
+            ('MLJ', MultiLabelJoiner()),
+            ('MLB', MyLabelEncoder())]
+            )
+
 
     def train(self, trainset):
         X = self.pipe.fit_transform(trainset)
-        y = self.mlb.fit_transform(trainset)
+        y = self.label_pipe.fit_transform(trainset)
         self.model.fit(X, y)
 
     def test(self, testset):
         X = self.pipe.transform(testset)
-        y = self.mlb.transform(testset)
+        y = self.label_pipe.fit_transform(testset)
         y_pred = self.model.predict(X)
         #self.print_scores(y, y_pred)
         return y, y_pred
-
-    """    def print_scores(self, y, y_pred):
-        hamm = hamming_loss(self.y_test, self.y_test_pred)
-        print('\n{:25s}{:>10.3f}\n'.format('Hamming Loss:', hamm))
-
-        classes = [
-            'volition',
-            'prediction',
-            'tact/rudeness',
-            'necessity',
-            'hypotheticality',
-            'certainty',
-            'agreement/disagreement',
-            'contrariety',
-            'source of knowledge',
-            'uncertainty']
-
-        print('f1 scores \n -----------')
-        f1 = f1_score(y, y_pred, average=None)
-        scores = zip(classes, f1)
-        for sc in sorted(scores, key=lambda s: s[1], reverse=True):
-            print('{:25s}{:>10.3f}'.format(sc[0].capitalize() + ':', sc[1]))
-
-
-        f1_macro = f1_score(y, y_pred, average='macro')
-        f1_micro = f1_score(y, y_pred, average='micro')
-
-        print('\n{:25s}{:10.3f}'.format('Micro-f1 score:', f1_micro))
-        print('{:25s}{:>10.3f}'.format('Macro-f1 score:', f1_macro))
-
-        accuracy = accuracy_score(y, y_pred)
-        print('\n{:25s}{:10.3f}'.format('Accuracy', accuracy))
-    """
 
     def run_model(self):
         self.train()

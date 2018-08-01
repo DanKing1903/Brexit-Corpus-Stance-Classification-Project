@@ -1,10 +1,11 @@
 from sklearn.base import BaseEstimator, TransformerMixin
-from sklearn.preprocessing import MultiLabelBinarizer
+from sklearn.preprocessing import MultiLabelBinarizer, LabelEncoder, LabelBinarizer
 from collections import defaultdict, Counter
 from nltk.tokenize.nist import NISTTokenizer
 import nltk
 import numpy as np
 import re
+import pickle
 
 
 class LabelTransformer(BaseEstimator, TransformerMixin):
@@ -13,7 +14,8 @@ class LabelTransformer(BaseEstimator, TransformerMixin):
 
     """
 
-    def __init__(self):
+    def __init__(self, as_sets=False):
+        self.as_sets = as_sets
         return None
 
     def fit(self, df, *_):
@@ -21,10 +23,39 @@ class LabelTransformer(BaseEstimator, TransformerMixin):
 
     def transform(self, df, *_):
         df = df.filter(['Stance category', 'second stance category', 'third', 'fourth', 'fifth'])
+        # correct errors in data:
         df.replace('concession/contrarines', np.NaN, inplace=True)
         df.replace('hypotheticallity', 'hypotheticality', inplace=True)
-        y = df.stack().groupby(level=0).apply(list)
+        if self.as_sets is True:
+            y = df.stack().groupby(level=0).apply(list).apply(frozenset)
+
+        else:
+            y = df.stack().groupby(level=0).apply(list)
         return y
+
+
+class MultiLabelJoiner(BaseEstimator, TransformerMixin):
+    """
+    concatenates labels to create a multiclass problem from a multilabel dataset
+    """
+
+    def __init__(self):
+        pass
+
+    def fit(self, X, *_):
+        return self
+
+    def transform(self, X, *_):
+        result = []
+        for labels in X:
+            labels = sorted(labels)
+            joined_label = '_'.join(labels)
+            result.append(joined_label)
+        return result
+
+
+
+
 
 
 class MyMultiLabelBinarizer(TransformerMixin):
@@ -51,7 +82,7 @@ class MyMultiLabelBinarizer(TransformerMixin):
 
         self.encoder = MultiLabelBinarizer(classes=self.classes, *args, **kwargs)
 
-    def fit(self, y,*_):
+    def fit(self, y, *_):
         self.encoder.fit(y)
         return self
 
@@ -60,9 +91,35 @@ class MyMultiLabelBinarizer(TransformerMixin):
         return yt
 
     def inverse_transform(self, yt):
-        y = self.encoder.inverse_transform(y)
-        return x
+        y = self.encoder.inverse_transform(yt)
+        return y
 
+class MyLabelEncoder(BaseEstimator, TransformerMixin):
+    def __init__(self):
+        self.encoder = LabelEncoder()
+
+    def fit(self, y, *_):
+        with open('data/interim/label_encoding_classes', 'rb') as infile:
+            labels = pickle.load(infile)
+        self.encoder.fit(labels)
+        return self
+
+    def transform(self, y, *_):
+        yt = self.encoder.transform(y)
+        return yt
+
+
+class MyLabelBinarizer(BaseEstimator, TransformerMixin):
+    def __init__(self):
+        self.encoder = LabelBinarizer()
+
+    def fit(self, y, *_):
+        self.encoder.fit(y)
+        return self
+
+    def transform(self, y, *_):
+        yt = self.encoder.transform(y)
+        return yt
 
 
 class MultiTaskSplitter(BaseEstimator, TransformerMixin):

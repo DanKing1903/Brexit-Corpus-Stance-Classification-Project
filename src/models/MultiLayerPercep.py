@@ -102,9 +102,9 @@ class Model(object):
         #stochastic gradient descent optimizer
         sgd = optimizers.SGD(lr=0.1)
         model.compile(
-            optimizer=sgd,
-            loss=get_weighted_loss(class_weights),
-            #loss='binary_crossentropy',
+            optimizer='adam',
+            #loss=get_weighted_loss(class_weights),
+            loss='binary_crossentropy',
             metrics=["accuracy"])
         return model
 

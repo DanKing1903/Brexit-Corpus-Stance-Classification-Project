@@ -74,6 +74,11 @@ target/
 
 # Jupyter NB Checkpoints
 .ipynb_checkpoints/
+notebooks/
 
 # Mac OS-specific storage files
 .DS_Store
+
+# External Data Files
+data/interim
+data/external

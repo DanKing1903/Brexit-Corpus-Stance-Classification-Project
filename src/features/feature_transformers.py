@@ -17,10 +17,8 @@ class WordTokenizer(BaseEstimator, TransformerMixin):
         self.TK.fit_on_texts(X)
         return self
 
-    def transform(self,X, *_):
+    def transform(self, X, *_):
         return self.TK.texts_to_sequences(X)
-
-
 
 class Selector(BaseEstimator, TransformerMixin):
     """
@@ -35,26 +33,6 @@ class Selector(BaseEstimator, TransformerMixin):
 
     def transform(self, df):
         return df[self.key]
-
-
-class LabelTransformer(BaseEstimator, TransformerMixin):
-    """
-    Join 5 label columns into list, correct 2 observed label errors
-
-    """
-
-    def __init__(self):
-        return None
-
-    def fit(self, df, *_):
-        return self
-
-    def transform(self, df, *_):
-        df = df.filter(['Stance category', 'second stance category', 'third', 'fourth', 'fifth'])
-        df.replace('concession/contrarines', np.NaN, inplace=True)
-        df.replace('hypotheticallity', 'hypotheticality', inplace=True)
-        y = df.stack().groupby(level=0).apply(list)
-        return y
 
 
 

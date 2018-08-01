@@ -87,7 +87,7 @@ class My_Model(object):
         #stochastic gradient descent optimizer
         sgd = optimizers.SGD(lr=0.001, decay=1e-6, momentum=0.5)
         model.compile(
-            optimizer=sgd,
+            optimizer='adam',
             #loss=multitask_loss,
             loss='binary_crossentropy',
             metrics=["accuracy"])
