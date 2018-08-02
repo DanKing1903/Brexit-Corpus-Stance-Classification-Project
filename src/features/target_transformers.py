@@ -97,11 +97,13 @@ class MyMultiLabelBinarizer(TransformerMixin):
 class MyLabelEncoder(BaseEstimator, TransformerMixin):
     def __init__(self):
         self.encoder = LabelEncoder()
+        self.classes = []
 
     def fit(self, y, *_):
         with open('data/interim/label_encoding_classes', 'rb') as infile:
             labels = pickle.load(infile)
         self.encoder.fit(labels)
+        self.classes = self.encoder.classes_
         return self
 
     def transform(self, y, *_):

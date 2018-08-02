@@ -1,6 +1,7 @@
-from src.models import baseline, MultiTaskNN, MultiLayerPercep, FastText, FastTextMultiTask, multiclassbaseline
+from src.models import baseline, MultiTaskNN, MultiLayerPercep, FastText, FastTextMultiTask, multiclassbaseline, FastTextMultiClass
 from src.data.dataset import Dataset
-from src.evaluation.score import report_scores, report_multiclass_scores
+from src.data.dataset import Dataset
+from src.evaluation.score import report_scores, report_multiclass_scores, report_mean_scores, report_mean_multiclass_scores
 import random
 import sys
 import argparse
@@ -11,7 +12,7 @@ def run_model(model_type, in_notebook=False, is_verbose=True):
         print("\nPredicting Speaker Stance - Multi Label Logistic Regression Baseline Model ")
         model = baseline.Model()
 
-    if model_type == 'MultiClassLR':
+    elif model_type == 'MultiClassLR':
         print("\nPredicting Speaker Stance - Multi Class Logistic Regression Baseline Model ")
         model = multiclassbaseline.Model()
 
@@ -27,12 +28,16 @@ def run_model(model_type, in_notebook=False, is_verbose=True):
         print("\nPredicting Speaker Stance - FastText Model ")
         model = FastText.My_Model(is_verbose=is_verbose)
 
+    elif model_type == 'MultiClassFastText':
+        print("\nPredicting Speaker Stance - FastText Model ")
+        model = FastTextMultiClass.My_Model(is_verbose=is_verbose)
+
     elif model_type == 'FastTextMT':
         print("\nPredicting Speaker Stance - FastText Multi Task Model ")
         model = FastTextMultiTask.My_Model(is_verbose=is_verbose)
 
     else:
-        raise ValueError('Unknown Model Type')
+        raise ValueError('Unknown Model Type: {} not supported option'.format(model_type))
 
     print("Loading Data")
 
@@ -63,17 +68,17 @@ if __name__ == '__main__':
 
     if args.repeats:
         seeds = [42, 19, 1993]
-        y = None
-        multi_y_pred = []
+        y_accum = []
         for i in range(3):
             random.seed(seeds[i])
-            print('repeat {}'.format(i+1))
+            print('repeat {}'.format(i + 1))
             y, y_pred = run_model(args.model_type)
-            multi_y_pred.append(y_pred)
+            y_accum.append([y, y_pred])
 
-        print(report_scores(y, multi_y_pred, repeats=True))
-
-
+        if args.model_type == 'MultiClassLR' or args.model_type == 'MultiClassFastText':
+            print(report_mean_multiclass_scores(y_accum))
+        else:
+            print(report_scores(y_accum))
 
 
 
@@ -82,7 +87,7 @@ if __name__ == '__main__':
         y, y_pred = run_model(args.model_type)
         print("\nResults on Test Data")
 
-        if args.model_type == 'MultiClassLR':
+        if args.model_type == 'MultiClassLR' or args.model_type == 'MultiClassFastText':
             print(report_multiclass_scores(y, y_pred))
         else:
             print(report_scores(y, y_pred))

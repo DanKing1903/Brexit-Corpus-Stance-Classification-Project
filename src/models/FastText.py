@@ -37,7 +37,7 @@ class My_Model(object):
     Multi label classifier model
     '''
 
-    def __init__(self, is_verbose=True):
+    def __init__(self, embedding_dim=100, is_verbose=True):
         #self.trainset = pd.read_csv("data/raw/train_set.csv")
         #self.testset = pd.read_csv("data/raw/test_set.csv")
         self.cv = CountVectorizer(ngram_range=(0, 2))
@@ -45,7 +45,7 @@ class My_Model(object):
         self.is_verbose = 1 if is_verbose is True else 0
         self.maxfeats = None
         self.maxlen = 40
-        self.embedding_dim = 100
+        self.embedding_dim = embedding_dim
 
     def build_pipe(self):
 
@@ -57,9 +57,6 @@ class My_Model(object):
             ('transform', LabelTransformer()),
             ('binarize', MyMultiLabelBinarizer())])
 
-        self.target_pipe = Pipeline([
-            ('mlb', self.mlb),
-            ('split', MultiTaskSplitter())])
 
     def build_net(self,class_weights):
         print("Building FastText Model")
