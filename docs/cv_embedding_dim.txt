@@ -1,0 +1,141 @@
+Embedding Dimension: 50
+
+Hamming Loss:                 0.071
+
+f1 scores 
+ -----------
+Agreement/disagreement:       0.570        13
+Certainty:                    0.750        29
+Contrariety:                  0.806       109
+Hypotheticality:              0.692        48
+Necessity:                    0.705        56
+Prediction:                   0.831        88
+Source of knowledge:          0.681        95
+Tact/rudeness:                0.339        24
+Uncertainty:                  0.856        83
+Volition:                     0.521        13
+
+Micro-f1 score:               0.755
+Macro-f1 score:               0.675
+
+Accuracy                      0.445
+
+
+Embedding Dimension: 100
+
+Hamming Loss:                 0.063
+
+f1 scores 
+ -----------
+Agreement/disagreement:       0.743        13
+Certainty:                    0.829        29
+Contrariety:                  0.806       109
+Hypotheticality:              0.741        48
+Necessity:                    0.740        56
+Prediction:                   0.847        88
+Source of knowledge:          0.713        95
+Tact/rudeness:                0.683        24
+Uncertainty:                  0.871        83
+Volition:                     0.706        13
+
+Micro-f1 score:               0.790
+Macro-f1 score:               0.768
+
+Accuracy                      0.512
+
+
+Embedding Dimension: 150
+
+Hamming Loss:                 0.062
+
+f1 scores 
+ -----------
+Agreement/disagreement:       0.804        13
+Certainty:                    0.832        29
+Contrariety:                  0.809       109
+Hypotheticality:              0.742        48
+Necessity:                    0.748        56
+Prediction:                   0.840        88
+Source of knowledge:          0.720        95
+Tact/rudeness:                0.738        24
+Uncertainty:                  0.876        83
+Volition:                     0.731        13
+
+Micro-f1 score:               0.796
+Macro-f1 score:               0.784
+
+Accuracy                      0.536
+
+
+Embedding Dimension: 200
+
+Hamming Loss:                 0.061
+
+f1 scores 
+ -----------
+Agreement/disagreement:       0.818        13
+Certainty:                    0.836        29
+Contrariety:                  0.806       109
+Hypotheticality:              0.757        48
+Necessity:                    0.752        56
+Prediction:                   0.842        88
+Source of knowledge:          0.727        95
+Tact/rudeness:                0.749        24
+Uncertainty:                  0.874        83
+Volition:                     0.765        13
+
+Micro-f1 score:               0.800
+Macro-f1 score:               0.793
+
+Accuracy                      0.542
+
+
+Embedding Dimension: 250
+
+Hamming Loss:                 0.062
+
+f1 scores 
+ -----------
+Agreement/disagreement:       0.818        13
+Certainty:                    0.836        29
+Contrariety:                  0.808       109
+Hypotheticality:              0.748        48
+Necessity:                    0.749        56
+Prediction:                   0.838        88
+Source of knowledge:          0.726        95
+Tact/rudeness:                0.779        24
+Uncertainty:                  0.870        83
+Volition:                     0.765        13
+
+Micro-f1 score:               0.798
+Macro-f1 score:               0.794
+
+Accuracy                      0.541
+
+
+Embedding Dimension: 300
+
+Hamming Loss:                 0.061
+
+f1 scores 
+ -----------
+Agreement/disagreement:       0.818        13
+Certainty:                    0.848        29
+Contrariety:                  0.810       109
+Hypotheticality:              0.751        48
+Necessity:                    0.752        56
+Prediction:                   0.840        88
+Source of knowledge:          0.734        95
+Tact/rudeness:                0.779        24
+Uncertainty:                  0.870        83
+Volition:                     0.765        13
+
+Micro-f1 score:               0.802
+Macro-f1 score:               0.797
+
+Accuracy                      0.549
+
+real	14m25.160s
+user	29m30.449s
+sys	8m25.960s
+

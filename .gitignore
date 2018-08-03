@@ -82,3 +82,9 @@ notebooks/
 # External Data Files
 data/interim
 data/external
+
+# Others
+docs/.~lock.Scoresheet.ods#
+gitconfig
+tasks.odt
+

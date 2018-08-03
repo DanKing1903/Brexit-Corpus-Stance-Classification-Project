@@ -4,9 +4,10 @@ from src.data.dataset import Dataset
 from src.evaluation.score import report_scores, report_multiclass_scores, report_mean_scores, report_mean_multiclass_scores
 import random
 import sys
+import pickle
 import argparse
 
-def run_model(model_type, in_notebook=False, is_verbose=True):
+def run_model(model_type, in_notebook=False, is_verbose=True, return_model=False):
 
     if model_type == 'LR':
         print("\nPredicting Speaker Stance - Multi Label Logistic Regression Baseline Model ")
@@ -51,6 +52,8 @@ def run_model(model_type, in_notebook=False, is_verbose=True):
     model.train(data.train_set())
 
     y, y_pred = model.test(data.test_set())
+    if return_model is True:
+        return model, y, y_pred
     return y, y_pred
 
     #gold_labels_test = data.test_set()['gold_label']
@@ -60,6 +63,7 @@ def run_model(model_type, in_notebook=False, is_verbose=True):
 
 parser = argparse.ArgumentParser(description='Run a model for Stance Classification')
 parser.add_argument('model_type', type=str, help='Select Model type')
+parser.add_argument('-s', '--save_model', action='store_true', help='Save model on completion')
 parser.add_argument('-r', '--repeats', action='store_true', help='Select if repeats are required')
 args = parser.parse_args()
 
@@ -83,6 +87,10 @@ if __name__ == '__main__':
 
 
     else:
+        if args.save_model is True:
+            # this options is to be completed
+            raise ValueError('Save model option is not yet completed')
+            
         random.seed(42)
         y, y_pred = run_model(args.model_type)
         print("\nResults on Test Data")
