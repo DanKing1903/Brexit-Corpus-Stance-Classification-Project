@@ -21,7 +21,7 @@ class WordTokenizer(BaseEstimator, TransformerMixin):
     def fit(self, X, *_):
         i = 1
         for sent in X:
-            tokens = self.TK.tokenize(sent)
+            tokens = self.TK.tokenize(sent, lowercase=True)
             for t in tokens:
                 if self.strip_punctuation:
                     if not self.punct.match(t):
@@ -40,6 +40,7 @@ class WordTokenizer(BaseEstimator, TransformerMixin):
 
 
 
+
     def transform(self, X, *_):
         """
         returns sequence of form [1,2,3,4]
@@ -47,7 +48,7 @@ class WordTokenizer(BaseEstimator, TransformerMixin):
         sequences = []
         for sent in X:
             seq = []
-            tokens = self.TK.tokenize(sent)
+            tokens = self.TK.tokenize(sent, lowercase=True)
             for t in tokens:
                 if self.strip_punctuation:
                     if not self.punct.match(t):
