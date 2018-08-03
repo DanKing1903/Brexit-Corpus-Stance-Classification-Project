@@ -10,15 +10,59 @@ import re
 
 
 class WordTokenizer(BaseEstimator, TransformerMixin):
-    def __init__(self):
-        self.TK = Tokenizer()
+    def __init__(self, char_level=False, strip_punctuation=False, ngram_range=(1,1)):
+        self.TK = NISTTokenizer()
+        self.word_index = dict()
+        self.index_word = dict()
+        self.strip_punctuation = strip_punctuation
+        self.punct = re.compile('^[^a-zA-Z0-9_]$')
+
 
     def fit(self, X, *_):
-        self.TK.fit_on_texts(X)
+        i = 1
+        for sent in X:
+            tokens = self.TK.tokenize(sent)
+            for t in tokens:
+                if self.strip_punctuation:
+                    if not self.punct.match(t):
+                        if t not in self.word_index:
+                            self.word_index[t] = i
+                            self.index_word[i] = t
+                            i += 1
+
+                else:
+                    if t not in self.word_index:
+                        self.word_index[t] = i
+                        self.index_word[i] = t
+                        i += 1
+
         return self
 
+
+
     def transform(self, X, *_):
-        return self.TK.texts_to_sequences(X)
+        """
+        returns sequence of form [1,2,3,4]
+        """
+        sequences = []
+        for sent in X:
+            seq = []
+            tokens = self.TK.tokenize(sent)
+            for t in tokens:
+                if self.strip_punctuation:
+                    if not self.punct.match(t):
+                        if t in self.word_index:
+                            seq.append(self.word_index[t])
+
+                else:
+                    if t in self.word_index:
+                        seq.append(self.word_index[t])
+
+            sequences.append(seq)
+
+
+
+        return sequences
 
 class Selector(BaseEstimator, TransformerMixin):
     """
