@@ -1,4 +1,5 @@
-from src.models import baseline, MultiTaskNN, MultiLayerPercep, FastText, FastTextMultiTask, multiclassbaseline, FastTextMultiClass
+from src.models import baseline, MultiTaskNN, MultiLayerPercep, FastText, FastTextMultiTask, multiclassbaseline, FastTextMultiClass, FastTextAuxTask
+
 from src.data.dataset import Dataset
 from src.data.dataset import Dataset
 from src.evaluation.score import report_scores, report_multiclass_scores, report_mean_scores, report_mean_multiclass_scores
@@ -36,6 +37,10 @@ def run_model(model_type, in_notebook=False, is_verbose=True, return_model=False
     elif model_type == 'FastTextMT':
         print("\nPredicting Speaker Stance - FastText Multi Task Model ")
         model = FastTextMultiTask.My_Model(is_verbose=is_verbose)
+
+    elif model_type == 'FastTextAux':
+        print("\nPredicting Speaker Stance - FastText Aux Task Model ")
+        model = FastTextAuxTask.My_Model(is_verbose=is_verbose)
 
     else:
         raise ValueError('Unknown Model Type: {} not supported option'.format(model_type))
@@ -90,7 +95,7 @@ if __name__ == '__main__':
         if args.save_model is True:
             # this options is to be completed
             raise ValueError('Save model option is not yet completed')
-            
+
         random.seed(42)
         y, y_pred = run_model(args.model_type)
         print("\nResults on Test Data")

@@ -1,5 +1,7 @@
 from sklearn.base import BaseEstimator, TransformerMixin
+from sklearn.feature_extraction.text import VectorizerMixin
 from sklearn.preprocessing import MultiLabelBinarizer
+from sklearn.feature_extraction.text import CountVectorizer
 from keras.preprocessing.text import Tokenizer
 from collections import defaultdict, Counter
 from nltk.tokenize.nist import NISTTokenizer
@@ -8,8 +10,7 @@ import numpy as np
 import re
 
 
-
-class WordTokenizer(BaseEstimator, TransformerMixin):
+class WordTokenizer2(BaseEstimator, TransformerMixin):
     def __init__(self, char_level=False, strip_punctuation=False, ngram_range=(1,1)):
         self.TK = NISTTokenizer()
         self.word_index = dict()
@@ -39,12 +40,10 @@ class WordTokenizer(BaseEstimator, TransformerMixin):
         return self
 
 
-
-
     def transform(self, X, *_):
-        """
-        returns sequence of form [1,2,3,4]
-        """
+
+        #returns sequence of form [1,2,3,4]
+
         sequences = []
         for sent in X:
             seq = []
@@ -61,9 +60,39 @@ class WordTokenizer(BaseEstimator, TransformerMixin):
 
             sequences.append(seq)
 
-
-
         return sequences
+
+
+class WordTokenizer(BaseEstimator, TransformerMixin):
+    def __init__(self):
+        self.TK = Tokenizer()
+
+
+    def fit(self, X, *_):
+        self.TK.fit_on_texts(X)
+        self.word_index = self.TK.word_index
+        return self
+
+    def transform(self, X, *_):
+        return self.TK.texts_to_sequences(X)
+
+#class AddNGrams(BaseEstimator, TransformerMixin):
+    #def __init__(self, ngram_range=)
+
+
+class MyCountVectorizer(BaseEstimator, TransformerMixin):
+    def __init__(self, ngram_range):
+        self.CV = CountVectorizer(ngram_range=ngram_range)
+
+    def fit(self, X, *_):
+        self.CV.fit(X)
+
+    def transform(self, X, *_):
+        wd_2_idx = self.CV.vocabulary_
+
+
+
+
 
 class Selector(BaseEstimator, TransformerMixin):
     """
@@ -183,3 +212,150 @@ class HapaxLegomera(BaseEstimator, TransformerMixin):
                         features['hapax_dislegomera'] += 1
             result.append(features)
         return result
+
+
+
+
+class MyWordSequencer(BaseEstimator, VectorizerMixin):
+
+    def __init__(self, input='content', encoding='utf-8',
+                 decode_error='strict', strip_accents=None,
+                 lowercase=True, preprocessor=None, tokenizer=None,
+                 stop_words=None, token_pattern=r"(?u)\b\w\w+\b",
+                 ngram_range=(1, 1), analyzer='word',
+                 max_df=1.0, min_df=1, max_features=None,
+                 vocabulary=None, binary=False, dtype=np.int64):
+        self.input = input
+        self.encoding = encoding
+        self.decode_error = decode_error
+        self.strip_accents = strip_accents
+        self.preprocessor = preprocessor
+        self.tokenizer = tokenizer
+        self.analyzer = analyzer
+        self.lowercase = lowercase
+        self.token_pattern = token_pattern
+        self.stop_words = stop_words
+        self.max_df = max_df
+        self.min_df = min_df
+        if max_df < 0 or min_df < 0:
+            raise ValueError("negative value for max_df or min_df")
+        self.max_features = max_features
+        if max_features is not None:
+            if (not isinstance(max_features, numbers.Integral) or
+                    max_features <= 0):
+                raise ValueError(
+                    "max_features=%r, neither a positive integer nor None"
+                    % max_features)
+        self.ngram_range = ngram_range
+        self.vocabulary = vocabulary
+        self.binary = binary
+        self.dtype = dtype
+
+    def _count_vocab(self, raw_documents, fixed_vocab):
+        """Create sparse feature matrix, and vocabulary where fixed_vocab=False
+        """
+        if fixed_vocab:
+            vocabulary = self.vocabulary_
+        else:
+            # Add a new value when a new vocabulary item is seen
+            vocabulary = defaultdict()
+            vocabulary.default_factory = lambda: 1 + vocabulary.__len__()
+
+        analyze = self.build_analyzer()
+
+        X = []
+        for doc in raw_documents:
+            feature_list = []
+            for feature in analyze(doc):
+                try:
+                    feature_idx = vocabulary[feature]
+                    feature_list.append(feature_idx)
+
+                except KeyError:
+                    # Ignore out-of-vocabulary items for fixed_vocab=True
+                    continue
+            X.append(feature_list)
+
+
+
+        if not fixed_vocab:
+            # disable defaultdict behaviour
+            vocabulary = dict(vocabulary)
+            if not vocabulary:
+                raise ValueError("empty vocabulary; perhaps the documents only"
+                                 " contain stop words")
+
+
+        return vocabulary, X
+
+    def fit(self, raw_documents, y=None):
+        """Learn a vocabulary dictionary of all tokens in the raw documents.
+
+        Parameters
+        ----------
+        raw_documents : iterable
+            An iterable which yields either str, unicode or file objects.
+
+        Returns
+        -------
+        self
+        """
+        self.fit_transform(raw_documents)
+        return self
+
+    def fit_transform(self, raw_documents, y=None):
+        """Learn the vocabulary dictionary and return term-document matrix.
+
+        This is equivalent to fit followed by transform, but more efficiently
+        implemented.
+
+        Parameters
+        ----------
+        raw_documents : iterable
+            An iterable which yields either str, unicode or file objects.
+
+        Returns
+        -------
+        X : array, [n_samples, n_features]
+            Document-term matrix.
+        """
+        # We intentionally don't call the transform method to make
+        # fit_transform overridable without unwanted side effects in
+        # TfidfVectorizer.
+
+
+        self._validate_vocabulary()
+
+        vocabulary, X = self._count_vocab(raw_documents,
+                                          self.fixed_vocabulary_)
+
+        self.vocabulary_ = vocabulary
+
+        return X
+
+    def transform(self, raw_documents):
+        """Transform documents to document-term matrix.
+
+        Extract token counts out of raw text documents using the vocabulary
+        fitted with fit or the one provided to the constructor.
+
+        Parameters
+        ----------
+        raw_documents : iterable
+            An iterable which yields either str, unicode or file objects.
+
+        Returns
+        -------
+        X : sparse matrix, [n_samples, n_features]
+            Document-term matrix.
+        """
+
+        if not hasattr(self, 'vocabulary_'):
+            self._validate_vocabulary()
+
+        self._check_vocabulary()
+
+        # use the same matrix-building strategy as fit_transform
+        _, X = self._count_vocab(raw_documents, fixed_vocab=True)
+
+        return X

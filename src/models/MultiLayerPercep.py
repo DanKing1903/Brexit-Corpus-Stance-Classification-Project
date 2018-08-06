@@ -93,9 +93,9 @@ class Model(object):
         #this will be the neural net
         model = Sequential()
         #input layer
-        model.add(Dense(25, activation="relu", input_dim=input_dim))
+        model.add(Dense(1024, activation="relu", input_dim=input_dim))
         model.add(Dropout(0.2))
-        model.add(Dense(25, activation="relu"))
+        model.add(Dense(1024, activation="relu"))
         model.add(Dropout(0.2))
         model.add(Dense(10, activation="sigmoid"))
         print(model.summary())

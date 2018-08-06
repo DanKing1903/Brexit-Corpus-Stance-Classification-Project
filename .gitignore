@@ -83,8 +83,19 @@ notebooks/
 data/interim
 data/external
 
+# Latex files
+reports/*.aux
+reports/*.bbl
+reports/*.blg
+reports/*.out
+reports/*.pdf
+reports/*.synctex.gz
+reports/*.toc
+
 # Others
 docs/.~lock.Scoresheet.ods#
 gitconfig
 tasks.odt
+*sublime-workspace
+*sublime-project
 

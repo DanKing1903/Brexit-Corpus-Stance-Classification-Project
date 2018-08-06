@@ -4,12 +4,14 @@ from keras import optimizers
 from keras.preprocessing import sequence
 from keras.layers import Input, Dense, Dropout, Embedding, GlobalAveragePooling1D
 from keras.models import Sequential, Model
+from keras.utils import np_utils
+
 
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.pipeline import Pipeline, FeatureUnion
 
-from src.features.feature_transformers import WordTokenizer, Selector
-from src.features.target_transformers import MyMultiLabelBinarizer, MultiTaskSplitter, LabelTransformer
+from src.features.feature_transformers import WordTokenizer, Selector, MyWordSequencer
+from src.features.target_transformers import MyMultiLabelBinarizer, MultiTaskSplitter, LabelTransformer, MultiLabelJoiner, MyLabelEncoder
 from src.utils.metrics import Metrics
 
 from keras import backend as K
@@ -27,14 +29,14 @@ class My_Model(object):
         self.build_pipe()
         self.is_verbose = 1 if is_verbose is True else 0
         self.maxfeats = None
-        self.maxlen = 40
+        self.maxlen = None
         self.embedding_dim = 100
 
     def build_pipe(self):
 
         self.feature_pipe = Pipeline([
             ('select', Selector(key='Utterance')),
-            ('tokenise', WordTokenizer())])
+            ('sequence', MyWordSequencer())])
 
         self.mlb = Pipeline([
             ('transform', LabelTransformer()),
@@ -44,10 +46,10 @@ class My_Model(object):
             ('mlb', self.mlb),
             ('split', MultiTaskSplitter())])
 
-        self.auxilliary pipe =  Pipeline([
+        self.auxilliary_pipe = Pipeline([
             ('lt', LabelTransformer()),
             ('MLJ', MultiLabelJoiner()),
-            ('MLB', MyLabelEncoder())])
+            ('MLE', MyLabelEncoder())])
 
     def build_net(self):
         print("Building FastText Model")
@@ -56,11 +58,12 @@ class My_Model(object):
         input_layer = Input(shape=(self.maxlen,))
         embeds = Embedding(self.maxfeats, self.embedding_dim, input_length=self.maxlen)(input_layer)
         globav = GlobalAveragePooling1D()(embeds)
+        globav = Dropout(0.1)(globav)
         output_layers = [Dense(1, activation="sigmoid")(globav) for i in range(10)]
+        output_layers.append(Dense(self.aux_output_size, activation="softmax")(globav))
         model = Model(inputs=input_layer, outputs=output_layers)
         print(model.summary())
         #stochastic gradient descent optimizer
-        sgd = optimizers.SGD(lr=0.001, decay = 1e-6, momentum=0.5)
 
         model.compile(
             optimizer='adam',
@@ -75,11 +78,19 @@ class My_Model(object):
         # get word sequences
         X = self.feature_pipe.fit_transform(trainset)
         #pad sequences
+        longest_seq = max(X, key=len)
+        self.maxlen = len(longest_seq)
         X = sequence.pad_sequences(X, maxlen=self.maxlen)
         #get targets
         y = self.target_pipe.fit_transform(trainset)
+        # get auxiliary y
+        y_aux = self.auxilliary_pipe.fit_transform(trainset)
+        y_aux = np_utils.to_categorical(y_aux)
+        y.append(y_aux)
         #get vocab size from tokeniser
-        self.maxfeats = len(self.feature_pipe.named_steps['tokenise'].TK.word_index)+1
+        self.maxfeats = len(self.feature_pipe.named_steps['sequence'].vocabulary_)+1
+        self.aux_output_size = len(list(self.auxilliary_pipe.named_steps['MLE'].classes))
+
         print("vocab size {}, sequence length {}".format(self.maxfeats, self.maxlen))
         self.model = self.build_net()
         self.model.fit(X, y, epochs=500, batch_size=50, verbose=self.is_verbose)
@@ -88,8 +99,11 @@ class My_Model(object):
         X = self.feature_pipe.transform(testset)
         X = sequence.pad_sequences(X, maxlen=self.maxlen)
         y = self.mlb.transform(testset)
+
+
         print(y.shape)
-        y_pred_raw = self.model.predict(X)
+        y_pred_raw = self.model.predict(X)[:-1]
+        print(len(y_pred_raw))
         y_pred = np.column_stack(y_pred_raw)  # join the raw outputs into format for sklearn scoring
         print(y_pred.shape)
         threshold = 0.5

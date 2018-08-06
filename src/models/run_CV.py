@@ -69,7 +69,7 @@ if __name__ == '__main__':
 
     #y = df[['Stance category', 'second stance category', 'third', 'fourth', 'fifth']]
 
-    embeddings = [50, 100, 150, 200, 250, 300]
+    embeddings = [100]
     cv_scores = []
     for embedding_dim in embeddings:
         start = timer()
