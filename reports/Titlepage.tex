@@ -1,5 +1,5 @@
 \documentclass[a4paper,12pt,titlepage,openright]{report}
-\usepackage[paper=a4paper,bindingoffset=0.37cm, margin=1in]{geometry}% http://ctan.org/pkg/geometry
+\usepackage[paper=a4paper,bindingoffset=0.37cm, textheight=10in, width=6in]{geometry}% http://ctan.org/pkg/geometry
 \usepackage{amsmath}
 
 \usepackage{amssymb}
@@ -7,26 +7,38 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{booktabs}
-\usepackage {fancybox} % Use this package.
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\newcommand\HRule{\rule{\textwidth}{1pt}}
+
 \renewcommand{\baselinestretch}{1.5}
 \begin{document}
 
 \begin{titlepage}
+	
+	\begin{tikzpicture}[remember picture, overlay]
+	\draw[line width = 1pt] ($(current page.north west) + (2.37cm,-1.8cm)$) rectangle ($(current page.south east) + (-2.0cm,1.8cm)$);
+	\end{tikzpicture}
+	
+	\begin{tikzpicture}[remember picture, overlay]
+	\draw[line width = 1pt] ($(current page.north west) + (2.67cm,-2.1cm)$) rectangle ($(current page.south east) + (-2.3cm,2.1cm)$);
+	\end{tikzpicture}
+	
+	\pagestyle{empty}
 	\centering
-	\thisfancypage{%
-	\setlength{\fboxsep}{10pt}\doublebox}{}
-	\vspace*{1cm}
+	\vspace*{0cm}
 	{\scshape\LARGE The University of Sheffield \par}
 	\large Department of Computer Science \par
 	\vspace{1cm}
 	{\scshape\Large Masters Dissertation\par}
 	\vspace{1.5cm}
-	{\huge\bfseries Speaker Stance Annotation in Political Writing Using Deep Learning Methods\par}
+	
+	{\huge\bfseries Stance Detection in Political Writing Using Deep Learning Methods\par}
 	\vspace{2cm}
 	{\Large\itshape Daniel King\par}
 	\vfill
-	supervised by\par
-	Dr. Andreas \textsc{Vlachos}
+	Supervised by\par
+	Dr. Andreas Vlachos
 
 \vfill
 \parbox{12cm}{\centering\large{A report submitted in fulfilment of the requirements for the degree of MSc in Data Analytics}}

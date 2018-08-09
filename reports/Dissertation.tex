@@ -1,9 +1,9 @@
-\documentclass[a4paper,11pt,titlepage,openright]{report}
+\documentclass[a4paper,12pt,titlepage,openright]{report}
 \usepackage[ paper=a4paper,margin=1in]{geometry}% http://ctan.org/pkg/geometry
 \usepackage{amsmath}
 
 \usepackage{amssymb}
-\usepackage{natbib}	
+\usepackage[numbers]{natbib}	
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{booktabs}
@@ -13,10 +13,16 @@
 \usepackage{graphicx}	
 \usepackage{subfiles}
 \usepackage{parskip}
+\usepackage{titleps}
+\usepackage{csquotes}
 \setlength{\parindent}{15pt}
+\setlength{\bibsep}{-0.5pt}
 
-\graphicspath{ {../figures/} }
-\renewcommand{\baselinestretch}{1.25}
+\graphicspath{{../figures/}}
+
+\renewcommand{\baselinestretch}{1.3}
+
+
 
 
 \titlespacing{\chapter}{0pt}{50pt}{<after-sep>}
@@ -28,15 +34,17 @@
 All sentences or passages quoted in this report from other people's work have been specifically acknowledged by clear cross-referencing to author, work and page(s). Any illustrations that are not the work of the author of this report have been used with the explicit permission of the originator and are specifically acknowledged. I understand that failure to do this amounts to plagiarism and will be considered grounds for failure in this project and the degree examination as a whole.
 
 \chapter*{Acknowledgments}
+I would like to acknowledge and give thanks to the States of Jersey Department of Education for their financial support of awarding me the Jersey Bursary, which has enabled me to undertake my postgraduate studies. 
 \tableofcontents
 \cleardoublepage\pagenumbering{arabic}
 \subfile{Chapter_1.tex}
-\subfile{Chapter_2.tex}
+\subfile{Chapter_2.tex} 
 \subfile{Chapter_3.tex}
 \subfile{Chapter_4.tex}
 \subfile{Chapter_5.tex}
 \subfile{Chapter_6.tex}
 
-
+\bibliographystyle{IEEEtran}
+\bibliography{My_references}
 
 \end{document}
