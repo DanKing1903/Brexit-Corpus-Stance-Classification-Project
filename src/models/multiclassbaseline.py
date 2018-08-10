@@ -52,14 +52,12 @@ class Model(object):
 
     def test(self, testset):
         X = self.pipe.transform(testset)
-        y = self.label_pipe.fit_transform(testset)
+        y = self.label_pipe.transform(testset)
         y_pred = self.model.predict(X)
         #self.print_scores(y, y_pred)
         return y, y_pred
 
-    def run_model(self):
-        self.train()
-        self.test()
+
 
     def distribution(self, which):
         if which == 'test':

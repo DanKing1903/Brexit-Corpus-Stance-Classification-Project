@@ -5,6 +5,7 @@ This module contains the class(es) and functions to read the datasets.
 """
 import csv
 import pandas as pd
+from pathlib import Path
 
 
 
@@ -24,13 +25,11 @@ class Dataset(object):
 
         # TODO: Maybe the paths should be passed as parameters or read from a configuration file.
         # TODO: At some point may need dev set
-        if in_notebook is True:
-            self._trainset_path = "../data/raw/train_set.csv"
-            self._testset_path = "../data/raw/test_set.csv"
+        project_dir = Path(__file__).resolve().parents[2]
 
-        else:
-            self._trainset_path = "data/raw/train_set.csv"
-            self._testset_path = "data/raw/test_set.csv"
+
+        self._trainset_path = str(project_dir) + r"/data/raw/train_set.csv"
+        self._testset_path = str(project_dir) + r"/data/raw/test_set.csv"
 
         self._trainset = None
         self._testset = None

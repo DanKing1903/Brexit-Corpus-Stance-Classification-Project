@@ -196,10 +196,11 @@ class HapaxLegomera(BaseEstimator, TransformerMixin):
         return word_counts
 
     def fit(self, X, *_):
+        self.word_counts = self.compile_counts(X)
         return self
 
     def transform(self, X, *_):
-        word_counts = self.compile_counts(X)
+        word_counts = self.word_counts
         result = []
         for sent in X:
             features = defaultdict(int)

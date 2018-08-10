@@ -1,7 +1,8 @@
 \documentclass[Dissertation.tex]{subfiles}
 \begin{document}
 \chapter{Literature Review}
-This chapter contains a review of previously written academic literature in topics related to the project aims and objectives. The chapter begins with a brief definition of speaker stance within a linguistic context, 
+This chapter contains a review of previously written academic literature in topics related to the project aims and objectives. The chapter begins with an exploration of the meaning of stance both in everyday language and in academia to introduce the concept to readers with no formal education in linguistics.  Following this, topics in machine learning are examined provide context for both section \ref{stanceDetection}, which reviews existing research related to stance detection, and section \ref{designAndBuild}, which describes the models and experiments used in this project. Finally, the chapter concludes with a review of the Brexit Blog Corpus \cite{simakiAnnotatingSpeakerStance2017}, which acts as the principle dataset for this project.
+ 
 \section{Speaker Stance in Linguistics}
 To begin with, the notion of speaker stance must be conceptualised and explored to broadly inform the remainder of this project. There exists a wealth of contemporary linguistic research pertaining to stance. A number of textbooks and monographs have been published explicitly devoted to stance and stancetaking
 \cite{hunstonEvaluationTextAuthorial2000}, \cite{englebretsonStancetakingDiscourseSubjectivity2007},\cite{karkkainenEpistemicStanceEnglish2003}, 
@@ -10,7 +11,9 @@ To begin with, the notion of speaker stance must be conceptualised and explored 
 conferences have been hosted to bring together researchers in the field
 %
 %
-and  many journal articles from different subfields in linguistics have converged upon the topic [CITATION NEEDED]. This heterogeneous body of research demonstrates a marked interest in developing understanding of stance, however it also demonstrates that stance is a broad and nuanced topic, with no universally agreed upon definition in academia. It is there useful to examine the colloquial usage of the term \textit{stance} in natural language, since this can offer insight into the ways in which its meaning has been appropriated by the linguistic research community \cite{englebretsonStancetakingDiscourseSubjectivity2007}. This approach is known as a usage-based perspective of language, which asserts that language form and meaning can be best understood by examining language use, as opposed to understanding language through rule based systems \cite{barlowUsagebasedModelsLanguage2000}. 
+and  many journal articles from different subfields in linguistics have converged upon the topic [CITATION NEEDED]. This heterogeneous body of research demonstrates a marked interest in developing understanding of stance, however it also demonstrates that stance is a broad and nuanced topic, with no universally agreed upon definition in academia. This section closely follows the work of Englebretson \cite{englebretsonStancetakingDiscourseSubjectivity2007} in order to present an overview of linguistic perspectives on stance.
+
+To begin with, it is useful to examine the colloquial usage of the term \textit{stance} in natural language, since this can offer insight into the ways in which its meaning has been appropriated by the linguistic research community \cite{englebretsonStancetakingDiscourseSubjectivity2007}. This approach is known as a usage-based perspective of language, which asserts that language form and meaning can be best understood by examining language use, as opposed to understanding language through rule based systems \cite{barlowUsagebasedModelsLanguage2000}. 
 
 Englebreston \cite{englebretsonStancetakingDiscourseSubjectivity2007} presents a corpus based quantitative and qualitative analysis of the usage of the term stance in colloquial language. The analysis identifies five key principles that describe stance, which we will examine in detail in this section. Consider the following sentences, inspired by entries examined in the corpus analysis of \cite{englebretsonStancetakingDiscourseSubjectivity2007}:
 
@@ -36,21 +39,42 @@ The five key principles identified by Englebretson \cite{englebretsonStancetakin
 	\item Stance is consequential. In (A) the fighter may find it harder to attack his opponent due to his defensive stance, while in (B) the subject has been labelled by his peers for his stance, and (C) explicitly states a consequence of the Church's stance on abortion.
 \end{enumerate}
 
+Engelbretson \cite{englebretsonStancetakingDiscourseSubjectivity2007} further justifies these five principles by quantitative analysis of the corpora. A key observation is that the term \textit{stance} is a relatively rare lexeme generally that appears far more frequently in written text than in spoken language. This suggests that \textit{stance} is a term that appears mostly in specialized contexts. These contexts are demonstrated by examining the adjective collocates of \textit{stance} \cite{englebretsonStancetakingDiscourseSubjectivity2007}. The five most common adjectives thereby are \textit{political, aggressive, moral, upright} and \textit{tough}. These five adjectives broadly speaking support the aforementioned five principles. For example, \textit{political} and \textit{moral} exemplify stance as a personal attitude or social value, while \textit{upright} demonstrates the physicality of stance. Finally, \textit{tough} and \textit{aggressive} can be interpreted in all three contexts. CONTINUE OR RAP UP
+
+%%Consider extending quantitative justifications
+
+Having considered qualitative and quantitative perspectives on the usage of stance we can see that the term has many contexts and definitions.  It is therefore consistent that the appropriation into academic contexts of stance comes in many forms, with different researchers invoking varying practical definitions of speaker stance.
+
+Critical to understanding such definitions of stance are \textit{subjectivity} and \textit{evaluation}. Subjectivity is the aspect of language that allows interlocutors (speakers)  to express themselves and describe their own point of view, for example using the pronouns \textit{I} and \textit{Me} \cite{matthewsSubjectivity2014}. Evaluation is the expression of subjective sentiment concerning an entity or proposition, such as expressing an attitude or opinion \cite{hunstonEvaluationTextAuthorial2000}. These two concepts are relied upon heavily by Biber and Finegan \cite{biberStylesStanceEnglish1989}, which defines stance as:
+
+\begin{displayquote} `` The lexical and grammatical expression of attitudes, feelings, judgments, or commitment concerning the propositional content of a message ''
+\end{displayquote}
+
+
+Furthermore, Biber and Finegan \cite{biberStylesStanceEnglish1989} identifies twelve groups of stance markers (such as certainty verbs or predictive modals) based on semantic and grammatical criteria. Using cluster analysis of corpora using these stance markers, they identify six separate styles of stance, such as ‘Emphatic Expression of Affect’ and ‘Expository Expression of Doubt’. 
+
+In a similar fashion Simaki \cite{simakiAnnotatingSpeakerStance2017} (which is explored further in \ref{BBC} and \ref{Data}) introduces a frame work for labelling the stance of an utterance according to ten notional categories based on the definition of stance put forth by Du Bois \cite{duboisStanceTriangle2007}:
+
+\begin{displayquote}
+	`` One of the most important things we do with words is to take a stance. Stance has the power to assign value to objects of interest, to position social actors with respect to those objects, to calibrate alignment between stance takes and to invoke systems of socio-cultural value. ''
+\end{displayquote}
 
 
 \section{Machine Learning}
+
 \section{Text Classification}
 \subsection{Multi-Class Classification}
-\subsection{Mutli-Label Classification}
+\subsection{Multi-Label Classification}
 \subsection{Multi-Task Classification}
 \section{Neural Networks}
 \subsection{Multi Layer Perceptron}
 \subsection{Dense Embeddings}
 \subsection{FastText}
-\section{Stance Detection}	
+\section{Stance Detection}\label{stanceDetection}
+	
 \subsection{Commonalities and Differences with Sentiment Analysis}
 \section{Previous Research in Stance Detection}
-\section{The Brexit Blog Corpus}
+\section{The Brexit Blog Corpus}\label{BBC}
 \subsection{Quantitative Linguistic Analysis}
 
 \end{document}

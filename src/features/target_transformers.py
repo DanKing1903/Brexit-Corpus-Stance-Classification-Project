@@ -6,7 +6,7 @@ import nltk
 import numpy as np
 import re
 import pickle
-
+from pathlib import Path
 
 class LabelTransformer(BaseEstimator, TransformerMixin):
     """
@@ -100,7 +100,10 @@ class MyLabelEncoder(BaseEstimator, TransformerMixin):
         self.classes = []
 
     def fit(self, y, *_):
-        with open('data/interim/label_encoding_classes', 'rb') as infile:
+        project_dir = Path(__file__).resolve().parents[2]
+        pickle_path = str(project_dir) + r'/data/interim/label_encoding_classes'
+
+        with open(pickle_path, 'rb') as infile:
             labels = pickle.load(infile)
         self.encoder.fit(labels)
         self.classes = self.encoder.classes_
@@ -110,6 +113,9 @@ class MyLabelEncoder(BaseEstimator, TransformerMixin):
         yt = self.encoder.transform(y)
         return yt
 
+    def inverse_transform(self, yt, *_):
+        y = self.encoder.inverse_transform(yt)
+        return y
 
 class MyLabelBinarizer(BaseEstimator, TransformerMixin):
     def __init__(self):
