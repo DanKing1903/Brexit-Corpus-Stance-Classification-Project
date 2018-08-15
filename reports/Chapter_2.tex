@@ -1,7 +1,7 @@
 \documentclass[Dissertation.tex]{subfiles}
 \begin{document}
-\chapter{Literature Review}
-This chapter contains a review of previously written academic literature in topics related to the project aims and objectives. The chapter begins with an exploration of the meaning of stance both in everyday language and in academia to introduce the concept to readers with no formal education in linguistics.  Following this, topics in machine learning are examined provide context for both section \ref{stanceDetection}, which reviews existing research related to stance detection, and section \ref{designAndBuild}, which describes the models and experiments used in this project. Finally, the chapter concludes with a review of the Brexit Blog Corpus \cite{simakiAnnotatingSpeakerStance2017}, which acts as the principle dataset for this project.
+\chapter{Literature Review and Preliminary Reading}
+This chapter contains a review of previously written academic literature in topics related to the project aims and objectives. The chapter begins with an exploration of the meaning of stance both in everyday language and in academia to introduce the concept to readers with no formal education in linguistics.  Following this, topics in machine learning are examined provide context for both section \ref{stanceDetection}, which reviews existing research related to stance detection, and section \ref{designAndBuild}, which describes the models and experiments used in this project. Finally, the chapter concludes with a review of the Brexit Blog Corpus by Simaki et al. \cite{simakiAnnotatingSpeakerStance2017}, which is the principle dataset for this project.
  
 \section{Speaker Stance in Linguistics}
 To begin with, the notion of speaker stance must be conceptualised and explored to broadly inform the remainder of this project. There exists a wealth of contemporary linguistic research pertaining to stance. A number of textbooks and monographs have been published explicitly devoted to stance and stancetaking
@@ -15,7 +15,16 @@ and  many journal articles from different subfields in linguistics have converge
 
 To begin with, it is useful to examine the colloquial usage of the term \textit{stance} in natural language, since this can offer insight into the ways in which its meaning has been appropriated by the linguistic research community \cite{englebretsonStancetakingDiscourseSubjectivity2007}. This approach is known as a usage-based perspective of language, which asserts that language form and meaning can be best understood by examining language use, as opposed to understanding language through rule based systems \cite{barlowUsagebasedModelsLanguage2000}. 
 
-Englebreston \cite{englebretsonStancetakingDiscourseSubjectivity2007} presents a corpus based quantitative and qualitative analysis of the usage of the term stance in colloquial language. The analysis identifies five key principles that describe stance, which we will examine in detail in this section. Consider the following sentences, inspired by entries examined in the corpus analysis of \cite{englebretsonStancetakingDiscourseSubjectivity2007}:
+The Oxford Dictionary of English  \cite{StanceOxfordReference} defines the noun stance to mean:
+
+\begin{displayquote}
+	\begin{enumerate}
+		\item the way in which someone stands, especially when deliberately adopted.
+		\item the attitude of a person or organization towards something; a standpoint.
+	\end{enumerate}
+\end{displayquote}
+
+This definition provides a useful starting point. Note that stance is defined as referring either to a physical orientation or a subjective outlook - this is the foundation of most linguistic characterizations of stance. Investigating in more detail the properties of the term and the contexts in which it appears further assists the construction of academic definitions of speaker stance. Englebreston \cite{englebretsonStancetakingDiscourseSubjectivity2007} presents a corpus based quantitative and qualitative analysis of the usage of the term stance in colloquial language. The analysis identifies five key principles that describe stance, which we will examine in detail in this section. Consider the following sentences, inspired by entries examined in the corpus analysis \cite{englebretsonStancetakingDiscourseSubjectivity2007}:
 
 
 \begin{enumerate}
@@ -51,20 +60,112 @@ Critical to understanding such definitions of stance are \textit{subjectivity} a
 \end{displayquote}
 
 
-Furthermore, Biber and Finegan \cite{biberStylesStanceEnglish1989} identifies twelve groups of stance markers (such as certainty verbs or predictive modals) based on semantic and grammatical criteria. Using cluster analysis of corpora using these stance markers, they identify six separate styles of stance, such as ‘Emphatic Expression of Affect’ and ‘Expository Expression of Doubt’. 
+Furthermore, Biber and Finegan \cite{biberStylesStanceEnglish1989} identifies twelve groups of stance markers (such as certainty verbs or predictive modals) based on semantic and grammatical criteria. Using cluster analysis of corpora using these stance markers, they identify six separate styles of stance, such as ‘Emphatic Expression of Affect’ and ‘Expository Expression of Doubt’ \cite{biberStylesStanceEnglish1989}. 
 
-In a similar fashion Simaki \cite{simakiAnnotatingSpeakerStance2017} (which is explored further in \ref{BBC} and \ref{Data}) introduces a frame work for labelling the stance of an utterance according to ten notional categories based on the definition of stance put forth by Du Bois \cite{duboisStanceTriangle2007}:
+In a similar fashion Simaki et al. \cite{simakiAnnotatingSpeakerStance2017} (which this project is base upon and is explored further in \ref{BBC}) introduces a frame work for labelling the stance of an utterance according to ten notional categories based on the definition of stance put forth by Du Bois \cite{duboisStanceTriangle2007}:
 
 \begin{displayquote}
 	`` One of the most important things we do with words is to take a stance. Stance has the power to assign value to objects of interest, to position social actors with respect to those objects, to calibrate alignment between stance takes and to invoke systems of socio-cultural value. ''
 \end{displayquote}
 
+DuBois' \cite{duboisStanceTriangle2007} definition highlights the importance of stancetaking. This is supported by Stubbs  which argues that subjective attitudes and viewpoints are encoded in all forms of language \cite{stubbsMatterProlongedField1986}. Furthermore, Stubbs suggests such is the prevalence of stancetaking that researching and describing markers thereof ``should be  a  central
+topic for linguistics'' \cite{stubbsMatterProlongedField1986}.
 
+To summarise, there are great many ways to consider the notion of speaker stance from a linguistic point of view. Considering the usage and meanings of stance in natural language provides insight into how academic use of the term has stemmed from the colloquial definition \cite{barlowUsagebasedModelsLanguage2000}. Qualitative and Quantitative analysis of corpora allows the formalisation of five key principles of stance which help to understand academic definitions of speaker stance \cite{englebretsonStancetakingDiscourseSubjectivity2007}. In turn, the study of speaker stance in its varying forms introduces frameworks to formalise the classification of speaker stance categories and styles \cite{biberStylesStanceEnglish1989}, \cite{simakiAnnotatingSpeakerStance2017}. The framework for stance labelling by Simaki et al. \cite{simakiAnnotatingSpeakerStance2017} provides ten categories that will be explored in further detail in section \ref{BBC}. The framework is introduced concurrently with a dataset for exploring the task of stance detection and classification \cite{simakiAnnotatingSpeakerStance2017}. This task and the dataset provided form the central theme of this project: developing machine learning models for detecting speaker stance in the Brexit Blog Corpus \cite{simakiAnnotatingSpeakerStance2017}.
 \section{Machine Learning}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=10cm]{ML_hierachy.pdf}
+	\caption{Hierarchy of Machine Learning methods}
+	\label{mlHierachy}
+\end{figure}
+
+Before delving into methods for stance detection it is helpful to briefly review the topic of machine learning. Broadly speaking, this the process of computationally inferring a solution to a problem using past experience \cite{alpaydinIntroductionMachineLearning2014}. We take some prior knowledge (a\textbf{dataset}), extract relevant information (the \textbf{features}) and define a programmatic goal to be achieved (the \textbf{objective function}). We then iteratively train a program to identify patterns in the data (by \textbf{optimization} of the objective function), leading to a\textbf{ model }of the dataset. The model can be used to make predictions in future data, or to provide descriptions of existing data\cite{alpaydinIntroductionMachineLearning2014}. There are many forms of machine learning (figure \ref{mlHierachy}), but we can group them by the amount of `supervision' they receive in training \cite{geronHandsonMachineLearning2017}. All models in this project were achieved using supervised learning methods, so this review concentrates on supervised learning and considers other categories such as unsupervised, semi-supervised and reinforcement learning out of scope.
+
+\subsection{Supervised Learning}
+In the domain of supervised learning, each instance within our dataset includes the desired output (the \textbf{target variable}) \cite{geronHandsonMachineLearning2017}. In formal notation, for supervised learning we require that a dataset $ \mathcal{D}$ of size $N$ is specified by $ \mathcal{D} = \{(\mathbf{x}_i, y_i) | i = 1:N\}$, where $ \mathbf{x}_i \in \mathcal{X} $ represents an instance in the input space $ \mathcal{X} $ and $ y_i \in \mathcal{Y}$ is the associated target variable in the target space $ \mathcal{Y} $. We seek to learn a classifier $ \gamma $ that maps inputs to outputs:
+$$ \gamma: \mathcal{X}\rightarrow\mathcal{Y}$$ 
+
+The learning process is `supervised' during training by evaluating the quality of model output against an exact solution: correct predictions are rewarded and incorrect predictions are penalised via an optimization process such as stochastic gradient descent \cite{mendelsonAdvancedLecturesMachine2003}. Supervised learning includes both numeric prediction (regression), where the target variable is continuous, and classification, where the target variable is categorical \cite{wittenDataMiningPractical2011}. Since this project concerns a text classification task, this review is focussed on classification, with other kinds of supervised learning considered out of scope. 
+
 \section{Text Classification}
-\subsection{Multi-Class Classification}
+
+
+\begin{figure}
+	\hspace*{1.75cm}
+	\centering
+	\includegraphics[width=11cm]{Spam_classifier.pdf}
+	\caption{Simple spam classifier flowchart}
+	\label{spamClassifier}
+\end{figure}
+Text Classification is a supervised learning, classification task in which we seek to assign a label, class or category to a word, sentence, text or document \cite{jurafskySpeechLanguageProcessing}. It has much importance in the fields of Information Retrieval and other areas of Natural Language Processing  as highlighted ing Manning, Raghavan and Sch\"{u}tze \cite{manningIntroductionInformationRetrieval2009}.
+An example of text classification is flagging unwanted spam emails \cite{geronHandsonMachineLearning2017}. The dataset might consist of a collection of emails, with each instance entailing the textual contents of an email, associated metadata and a label of `spam` or `not-spam' \cite{geronHandsonMachineLearning2017}. The objective would be to learn a model that can accurately classify new incoming emails accordingly as `spam' or `not-spam'(see figure \ref{spamClassifier}). 
+
+\subsection{Formal Definition}
+In text classification we are given a document $ d \in \mathcal{X}$ where $ \mathcal{X} $ is the input document space and an output space that is a set of disjoint classes $ \mathbb{C} = \{c_1,c_2,\dots c_j\}$ \cite{manningIntroductionInformationRetrieval2009}. The document space is generally some form of high dimensional feature space, while the classes are usually pre-defined natural language labels such as `spam' and `not-spam' as in figure~\ref{spamClassifier}\cite{manningIntroductionInformationRetrieval2009}. We have a dataset $\mathcal{D}$ of labelled instances $(d,c) \in \mathcal{X}\times \mathbb{C}$ and we seek to learn a classification function $ \gamma $ that maps inputs to classes \cite{manningIntroductionInformationRetrieval2009}:
+
+$$
+\gamma: \mathcal{X}\rightarrow \mathbb{C}
+$$
+
+We denote the \textit{learning method} as $ \Gamma $ such that $ \Gamma(\mathcal{D})= \gamma $ \cite{manningIntroductionInformationRetrieval2009}. The learning method applied to the dataset returns the classifier.  If $ |\mathbb{C}| = 2 $, then the classifier is performing \textit{binary classification}, which is a special case of the more general domain of \textit{multi-class classification}, where $ |\mathbb{C}| > 2 $ \cite{manningIntroductionInformationRetrieval2009}.
+
+\subsection{Vector Space Model and Feature Functions}
+
+
+\begin{table}[]
+	\caption{Simple Bag-of-Words example using term frequency weighting}
+	\label{bagOfWords}
+	\centering
+	\begin{tabular}{@{}lllllllll@{}}
+		\toprule
+		& and                    & cat                    & eggs                   & green                  & ham                    & hat                    & in                     & the                    \\ \midrule  \cline{2-9} 
+		\multicolumn{1}{l|}{`the cat in the hat'} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{2} \\ \cline{2-9} 
+		\multicolumn{1}{l|}{`green eggs and ham'} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c|}{0} \\  \cline{2-9} 
+		&                        &                        &                        &                        &                        &                        &                        &                        \\ \bottomrule
+	\end{tabular}
+
+\end{table}
+
+In text classification we face the problem of how best to represent the input data, since machine learning models generally require natural numbers as inputs. A common method for this in information retrieval is the vector space model as proposed by Salton, Wong and Yang \cite{saltonVectorSpaceModel1975}. In their vector space model a document in a collection $ D_i $ is represented by a $ t $ dimensional vector of term weights: $$ D_i = (d_{i1},\ d_{i2},\ \dots,\ d_{ij})  $$ where $ t $ is the magnitude of the vocabulary present in the document collection and $ d_{ij} $ is the weight value for the $ j^{th} $ term in the $ i^{th} $ document \cite{saltonVectorSpaceModel1975}.
+The order of words is not considered, only the presence and the frequency. This is known as the Bag-of-Words model (see Table \ref{bagOfWords}) \cite{jurafskySpeechLanguageProcessing}. The term weight value is determined by a weighting scheme. Common weighting schemes are binary, term-frequency and tf-idf.
+
+In binary term weighting each term weight $ d_{ij} $ is a binary indicator taking the value of either 0 or 1 to indicate the presence of the $ j^{th} $ term. Term frequency is ignored. This is analogous to One-Hot-Encoding in which categorical variables such as gender are converted to real numbers as a vector of binary indicators, with one indicator per variable category \cite{geronHandsonMachineLearning2017}.
+
+In term-frequency weighting each term weight is determined as $d_{ij} = tf_{ij}$ where $tf_{ij}$ is the frequency of the $ j^{th}$ term in the $i^{th}$ document. However, this introduces a large bias towards frequent terms such as \{\textit{the, I, you}\} which often encode little to no semantic information \cite{manningIntroductionInformationRetrieval2009}.
+
+Tf-idf avoids this bias by weighting each term frequency by the \textit{inverse document frequency} which is defined by Manning et al. \cite{manningIntroductionInformationRetrieval2009} as:
+
+$$idf_j = log \frac{N}{df_j} $$
+
+Where $ N $ is the number of documents in the collection and $ df_j $ is the number of documents that contain the $ j^{th} $ term. Hence, we can see that the tf-idf weight of common terms will be attenuated by a low idf, and conversely rare terms (which encode greater semantic information) will have their weights boosted by a high idf \cite{manningIntroductionInformationRetrieval2009}.
+
+Here by examining the vector space model we have conveniently introduced the concept of a feature function that produces a feature vector. Often denoted by $ \phi() $ or $ \phi(\mathbf{x}) $,  with careful selection and tuning the feature selection process can help to increase the discriminating power of our classifier \cite{bishopPatternRecognitionMachine2006}. Bishop \cite{bishopPatternRecognitionMachine2006} highlights that we can take advantage of domain specific knowledge to develop effective feature functions. For example in text classification we might wish to use a feature function that concatenates the Bag-of-Words representation with other semantic or syntactic features under the intuition that such extra information might increase classifier performance. 
+
 \subsection{Multi-Label Classification}
+In the previous sections we have considered \textit{single-label classification}, in which we assume  that for each instance there is only one correct label from the set of classes $ \mathbb{C} $. However, there are many situations in which this assumption does not hold, and we wish to assign to each instance a set of labels, $ \mathbf{y} = \{y_1,\ y_2,\  \dots, \ y_k\} \subseteq \mathbb{C}\} $ \cite{tsoumakasMiningMultilabelData2009}. This is known as \textit{multi-label classification}. For example, if we consider a hypothetical film genre classifier, we might want to label a film both as 'Action' and 'Thriller' or 'Romantic' and 'Comedy'. The Brexit Blog Corpus \cite{simakiAnnotatingSpeakerStance2017} provides a multi-label dataset, so it is important for the purpose of this project to review material concerning multi-label classification.
+
+%\subsubsection{Problem Transformation Methods}
+There exist a number of methods to transform multi-label datasets into forms that allow the application of traditional single-label classifying algorithms. Sorrower \cite{sorowerLiteratureSurveyAlgorithms2018} provides a useful review of such methods, some of which we will outline below. Certain methods such as \textit{select-max}, \textit{select-min} and \textit{select-random} extract only a single label from each instance, while the \textit{ignore} method ignores all instance with more than one label \cite{sorowerLiteratureSurveyAlgorithms2018}. However, such methods do not provide fidelity with respect to the original dataset, and so are not considered further in this review. 
+
+Of particular interest to this review are the \textit{Label Powerset} and \textit{Binary Relevance} methods. To illustrate these methods, consider the following small data set, where four instances each belong to at least one class from the set $\mathbb{C} = \{c_1, \ c_2, \ c_3, \ c_4\}$:
+
+\begin{table}[]
+	\centering
+	\caption{Simple multi-label dataset}	
+		\begin{tabular}{@{}cc@{}}
+
+		\toprule
+		Instance & Labels \\ \midrule
+		1	&	$ \{c_2,c_3\} $        \\
+		2	&	$ \{c_1\} $        \\
+		3	&	$ \{c_1,c_2,c_3\} $        \\
+		4	&	$ \{c_2, c_4\} $        \\ \bottomrule
+	\end{tabular}
+	
+\end{table}
+
 \subsection{Multi-Task Classification}
 \section{Neural Networks}
 \subsection{Multi Layer Perceptron}
