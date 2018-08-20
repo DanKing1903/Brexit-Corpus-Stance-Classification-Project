@@ -1,5 +1,31 @@
 \documentclass[Dissertation.tex]{subfiles}
 \begin{document}
-\chapter{Requirements and Analysis}
+\chapter{Dataset and Problem Statement}
 \section{Dataset} \label{Data}
+
+The dataset comprises 1,674??? utterances extracted from political blog posts related to the United Kingdom 2016 EU membership referendum \cite{simakiAnnotatingSpeakerStance2017}. The manual annotation procedure in \cite{simakiAnnotatingSpeakerStance2017} is described as follows: two annotators from linguistics backgrounds were each asked to annotate each utterance with up to five of the ten notional stance categories. The annotators were also asked to repeat the process, in order that there be two sets of annotations from each annotator, allowing inter-annotator and intra-annotator agreement scores to be calculated
+
+Below in Table \ref{tab:stanceExamples} are brief definitions of each stance category together with example sentences that characterise each category. Each example contains stance characterising elements of varying lengths. For example, the phrase \textit{I would be grateful} expresses Politeness, but the word \textit{must} exclusively demonstrates Necessity. It is important to note that the categories are not mutually exclusive
+{\renewcommand{\arraystretch}{2.5}
+	\centering
+	\begin{table}[]
+		
+		\begin{tabularx}{\textwidth}{>{\raggedright}p{3cm} >{\raggedright}p{5.5cm} X}
+			\toprule
+			Stance Category        & Description                                            & Examples                                                                                                                                      \\ \midrule
+			Agreement/ Disagreement &Utterance aligns with or against an opinion &\itshape That is the wrong approach. \par I believe this a good idea.\\
+			Certainty              &Utterance shows conviction or confidence in statement& \itshape It is absolutely clear. \par Without a doubt this is possible.                                          \\
+			Contrariety            & Utterance shows compromise or comparison               & \itshape Some think this is good, but others disagree.\par We have come far,  but there is still much to be done\\ 
+			Hypotheticality        & Utterance describes consequences of a premise          &\itshape If that happened, it would be a disaster.\par I would be happy if he won.                              \\
+			Necessity              & Utterance expresses an obligation or a request         & \itshape You must do it.\par I have to be there.                                                                \\
+			Prediction             & Utterance shows speculation                            &\itshape The match should be an easy win.\par I think the journey will go by quickly.                           \\
+			Source of Knowledge    & Utterance refers to the origin of opinion or statement & \itshape James told me he is moving house.\par The film was rated highly in the newspaper.                      \\
+			Tact/Rudeness          & Utterance is either  polite or abrasive           & \itshape I would be grateful if you do this.\par I couldn’t give a damn how you feel.                           \\
+			Uncertainty            & Utterance admits doubt                                 & \itshape To be honest I am not sure.\par I can’t guarantee I can make it.                                       \\ \bottomrule
+		\end{tabularx}
+		\caption{Stance categories, descriptions and examples}
+		\label{tab:stanceExamples}
+\end{table}}
+
+
 \end{document}

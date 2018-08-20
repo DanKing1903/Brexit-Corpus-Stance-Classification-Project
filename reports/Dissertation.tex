@@ -13,15 +13,20 @@
 \usepackage{graphicx}	
 \usepackage{subfiles}
 \usepackage{parskip}
+\usepackage{tabularx}
+\usepackage{multirow}
 \usepackage{titleps}
 \usepackage{csquotes}
 \usepackage{subcaption}
 \usepackage[skip=0.5\baselineskip]{caption}
+
 \setlength{\bibsep}{-0.5pt}
 
 \graphicspath{{../figures/}}
 
-\renewcommand{\baselinestretch}{1.3}
+\usepackage[onehalfspacing]{setspace}
+\AtBeginEnvironment{verse}{\singlespacing}
+\AtBeginEnvironment{tabular}{\singlespacing}
 
 
 
