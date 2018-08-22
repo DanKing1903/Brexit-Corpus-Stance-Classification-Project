@@ -69,16 +69,16 @@ class MyMultiLabelBinarizer(TransformerMixin):
     def __init__(self, *args, **kwargs):
 
         self.classes = [
-            'volition',
-            'prediction',
-            'tact/rudeness',
-            'necessity',
-            'hypotheticality',
-            'certainty',
             'agreement/disagreement',
+            'certainty',
             'contrariety',
+            'hypotheticality',
+            'necessity',
+            'prediction',
             'source of knowledge',
-            'uncertainty']
+            'tact/rudeness',
+            'uncertainty',
+            'volition']
 
         self.encoder = MultiLabelBinarizer(classes=self.classes, *args, **kwargs)
 

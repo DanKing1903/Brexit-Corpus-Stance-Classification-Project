@@ -11,16 +11,17 @@ def report_scores(y, y_pred):
     accuracy = accuracy_score(y, y_pred)
 
     classes = [
-        'volition',
-        'prediction',
-        'tact/rudeness',
-        'necessity',
-        'hypotheticality',
-        'certainty',
         'agreement/disagreement',
+        'certainty',
         'contrariety',
+        'hypotheticality',
+        'necessity',
+        'prediction',
         'source of knowledge',
-        'uncertainty']
+        'tact/rudeness',
+        'uncertainty',
+        'volition']
+
 
     scores = zip(classes, f1, np.add.reduce(y))
     score_str = '\n{:25s}{:>10.3f}\n'.format('Hamming Loss:', hamm)
@@ -76,16 +77,17 @@ def report_mean_scores(y_accum,):
     accuracy = np.mean(accuracy_accum)
 
     classes = [
-        'volition',
-        'prediction',
-        'tact/rudeness',
-        'necessity',
-        'hypotheticality',
-        'certainty',
         'agreement/disagreement',
+        'certainty',
         'contrariety',
+        'hypotheticality',
+        'necessity',
+        'prediction',
         'source of knowledge',
-        'uncertainty']
+        'tact/rudeness',
+        'uncertainty',
+        'volition']
+
 
     scores = zip(classes, f1, np.add.reduce(y))
     score_str = '\n{:25s}{:>10.3f}\n'.format('Hamming Loss:', hamm)

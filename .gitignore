@@ -98,4 +98,4 @@ gitconfig
 tasks.odt
 *sublime-workspace
 *sublime-project
-
+*~lock*

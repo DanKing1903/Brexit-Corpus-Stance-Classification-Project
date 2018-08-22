@@ -344,11 +344,7 @@ Neural networks are structured in layers of neurons, the connectivity between an
 	\caption{FastText embedding architecture for $ d $-dimensional embedding and sentence length $ N $}
 \end{figure}
 \subsection{Anchors}
-\section{Stance Detection}\label{stanceDetection}
 
-
-	
-\subsection{Commonalities and Differences with Sentiment Analysis}
 \section{Previous Research in Stance Detection} \label{sec:priorWork}
 In recent years there has been a wealth of research in the related fields of sentiment analysis and opinion mining, coinciding with an explosion of opinionated user generated online content \cite{liuSentimentAnalysisOpinion}. Like sentiment analysis and opinion mining, stance detection inherently concerns opinionated content and as such datasets presented for the task usually focus on online debate, micro-blogging and journalism. However, stance detection remains a fairly novel niche within natural language processing and so the variety of public datasets used is limited, with the two most common being the annotated twitter datasets presented for the shared tasks of The Fake News Challenge \cite{FakeNewsChallenge} and SemEval Task 6: Detecting Stance in Tweets \cite{TaskDetectingStance} (hereafter, SemEval). Stance detecton is frequently presented in context of second task. The Fake News Challenge suggests stance detection as a preliminary step in fake news identification, while Ferreira and Vlachos consider stance detection as part of a wider set of natural language processing tasks used for fact-checking \cite{ferreiraEmergentNovelDataset2016} and Mohammad et al.\ \cite{mohammadStanceSentimentTweets2016} explores the relationship between sentiment analysis and stance detection. Finally, Respall and Derczynski \cite{respallStanceDetectionCatalan} focusses on stance detection and author gender identification.
 
@@ -388,23 +384,51 @@ Need to find paper from Fake News Challenge
 Simaki et al.\ \cite{simakiAnnotatingSpeakerStance2017} introduces The Brexit Blog Corpus, a novel dataset annotated for speaker stance. The work is undertaken in the field of corpus linguistics and linguistic theory, and therefore uses a much richer operational definition of stance (as outlined in section \ref{sec:speakerStanceLing}) compared to work published in machine learning journals. Simaki et al.\ \cite{simakiAnnotatingSpeakerStance2017} acknowledges this, justifying that their approach offers much more context sensitivity than traditional simple lexically driven approaches. In section \ref{sec:priorWork} it is noted that most work considers stance detection as a single-label, tertiary classification task, however \cite{simakiAnnotatingSpeakerStance2017} introduces a labelling scheme comprising ten stance categories as per Table \ref{tab:stanceCats}. The dataset presents stance annotation as a multi-label classification problem, in contrast to previous work which only considers single-label classification schemes. 
 
 {\renewcommand{\arraystretch}{1.5}
+	
 	\begin{table}[h]
-	\centering
-	\begin{tabular}{|l|l|}
-		\hline
-		Agreement/Disagreement & Certainty       \\ \hline
-		Contrariety            & Hypotheticality \\ \hline
-		Neccessity             & Prediction      \\ \hline
-		Source of Knowledge    & Tact/Rudeness   \\ \hline
-		Uncertainty            & Volition        \\ \hline
-	\end{tabular}
-	\caption{The 10 stance categories used in the Brexit Blog corpus \cite{simakiAnnotatingSpeakerStance2017}}
-	\label{tab:stanceCats}
+			\caption{Stance categories used in annotation of the Brexit Blog corpus \cite{simakiAnnotatingSpeakerStance2017}}
+		\label{tab:stanceCats}
+		\small\scshape 
+		\centering
+		\begin{tabular}{|l|l|}
+			\hline
+			Agreement/Disagreement & Certainty       \\ \hline
+			Contrariety            & Hypotheticality \\ \hline
+			Neccessity             & Prediction      \\ \hline
+			Source of Knowledge    & Tact/Rudeness   \\ \hline
+			Uncertainty            & Volition        \\ \hline
+		\end{tabular}
+
 \end{table}}
 
 This broader interpretation of \textit{stance} offers significant novelty and potential for natural language procession applications, however it also presents a much more complex problem space. At the time of writing, there exist no publications that apply stance classification methods to the Brexit Blog Corpus, and it is therefore an aim of this project to provide a preliminary baseline for subsequent stance detection research into the Brexit Blog Corpus.
 
 \subsection{Quantitative Linguistic Analysis}
-Simaki et al.\ \cite{simakiEvaluatingStanceannotatedSentences2018} examines a subset of The Brexit Blog Corpus for the purpose of formal quantitative analysis of linguistic characteristics. The subset comprises six out of the ten categories, and for each category normalised frequency values are obtained of 29 linguistic features such spaces, upper case letters etc. Simaki et al.\cite{simakiEvaluatingStanceannotatedSentences2018} then uses one-way Analysis of Variance (ANOVA) to establish which features exhibit significant differences in frequency between categories. discriminating linguistic features. The process identified 19 significant features for differentiating between the six stance categories.
+Simaki et al.\ \cite{simakiEvaluatingStanceannotatedSentences2018} examines a subset of The Brexit Blog Corpus for the purpose of formal quantitative analysis of linguistic characteristics. The subset comprises six out of the ten categories, and for each category mean frequency values are obtained for 29 linguistic features such spaces, upper case letters etc. Simaki et al.\cite{simakiEvaluatingStanceannotatedSentences2018} then uses one-way Analysis of Variance (ANOVA) to determine if there are significant differences between group means for each feature. The null hypothesis ($ H_0 $) was rejected if two or more means were significantly different at a 5\% significance level, corresponding to a critical F-value of $ F_{crit} =2.220 $. This test establishes which features exhibit significant differences in frequency between categories and could therefore prove useful in discriminating between stance categories. The process identified 19 significant features, and ranked by F-valye the top ten are shown in Table below \cite{simakiDetectionStanceRelatedCharacteristics2018}:
+
+\begin{table}[h]
+	\centering
+	\begin{minipage}{0.6\textwidth}
+		\renewcommand*\footnoterule{}
+		
+		
+	\caption{Top 10 features by F-value}
+	\begin{tabularx}{\linewidth}{X c}
+		\toprule
+		Linguistic Feature 			&	F-value\\ \midrule
+		Average word length			&	20.44\\
+		Conjunction Frequency		& 	15.61\\
+		Average sentence length (words)	& 10.60\\
+		Comma frequency				&	9.42\\
+		Full stop frequency			&	7.67\\
+		Hapax legomena\footnote{A word which appears in a corpus only once} & 6.75\\
+		Different words				&	6.63\\
+		Average sentence length (characters) & 5.65\\
+		Punctuation 				&	5.47\\
+		Hapax dislegomena\footnote{A word which appears in a corpus only twice} & 5.50\\
+		\bottomrule
+	\end{tabularx}
+	\end{minipage}
+\end{table}
 
 \end{document}
