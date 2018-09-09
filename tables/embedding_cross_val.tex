@@ -1,0 +1,19 @@
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+% \usepackage{multirow}
+
+\begin{tabular}{@{}lllllll@{}}
+\toprule
+                             & Embedding length & 100   & 175   & 250   & 325   & 400    \\ \midrule
+\multirow{3}{*}{Multi-class} & F1-Macro         & 0.540  & 0.668 & 0.724 & 0.744 & 0.754  \\
+                             & EMR              & 0.555 & 0.61  & 0.637 & 0.643 & 0.644  \\
+                             & run time (s)     & 272   & 448   & 575   & 694   & 876    \\ \cmidrule(l){2-7} 
+\multirow{4}{*}{Multi-label} & F1-Micro         & 0.796 & 0.796 & 0.797 & 0.789 & 0.796  \\
+                             & F1-Macro         & 0.793 & 0.794 & 0.796 & 0.795 & 0.794  \\
+                             & EMR              & 0.549 & 0.552 & 0.555 & 0.552 & 0.551  \\
+                             & run time (s)     & 160   & 289   & 421   & 526   & 661    \\ \cmidrule(l){2-7} 
+\multirow{4}{*}{Multi-task}  & F1-Micro         & 0.797 & 0.797 & 0.794 & 0.796 & 0.797  \\
+							 & F1-Macro         & 0.793 & 0.795 & 0.793 & 0.795 & 0.793 \\
+                             & EMR              & 0.549 & 0.551 & 0.546 & 0.551 & 0.549  \\
+                             & run time (s)     & 276   & 457   & 662   & 790   & 936    \\ \cmidrule(l){2-7} 
+\end{tabular}

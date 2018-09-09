@@ -4,11 +4,58 @@
 \section{Introduction}
 In this chapter the performance of the models developed is evaluated and compared. The chapter begins with a description of the hyper-parameter tuning process employed for the final FastText models, before the results for each model are presented. Finally, the chapter concludes with an quantitative analysis of model performance and qualitative review of predictions using the anchoring method described in section ??.
 
-\section{Hyper-Parameter Tuning}
+\section{Hyper-Parameter Tuning} \label{sec:hypParams}
+When developing machine learning models we learn parameters (weights) which are optimized by the learning algorithm. However, there are also hyper-parameters that control the behaviour of the learning algorithm. An important part of machine learning therefore is optimizing hyper-parameters. This is usually accomplished with cross validation. In this project a 'greedy' strategy is employed - once a parameter is tuned, this parameter value is fixed when subsequently tuning other parameters, and no grid search is performed.
+
+\subsection{Optimizer}
+ADAM
+
+\subsection{Embedding Length}
+For the FastText classifier described in section \ref{sec:fastTextMethod} several lengths were tested for the embedding vector. Increasing the embedding length provides a larger parameter space to learn, which should provide greater performance, however this comes at a trade off with run time. In table \ref{tab:embedTuning} below are the results of 5 fold cross validation for different embedding lengths. We can see that with the exception of multi-class EMR performance gains from embedding lengths of 100 to 400 are marginal (in some cases even negative) but increase run time significantly. This is likely due to the limited training dataset size resulting in longer embeddings lengths to over fit. For this reason an embedding length of 100 is selected.
+
+\begin{table}
+	\caption{5 Fold cross validated scores for tuning embedding length }
+	\label{tab:embedTuning}
+	\centering
+	\subfile{../tables/embedding_cross_val.tex}
+\end{table}
+
+\subsection{Epochs}
+When training neural networks, several passes through the training are usually required. Each pass is known as an 'epoch', and it is important to use an appropriate number of epochs. Too few and a model will not learn enough, too many and a model will over fit training data. Table \ref{tab:crossValEpoch} shows 5 fold cross validated test results by epoch length for each fastText classifier. We can see that for the fastText multi-label classifier peak performance is reached at 250 epochs, and for multi-task peak performance is reached between 200 and 350 epochs. However, for multi-class peak performance is not achieved until 400 epochs. Note in that as per table \ref{tab:trainParams} the fastText multi-class classifier has significantly more trainable parameters than other classifiers, which possibly explains why peak performance is not reached until after further training relatively. To ensure equivalent comparison, and to avoid unfairly penalising any classifier hereafter we fix the number of epochs to the mid point of the peak performance range observed: $ \frac{200+400}{2}=300 $ epochs.
+\begin{table}
+	\caption{5 fold cross validated F1 and EMR scores for tuning epoch hyper-parameter}
+	\label{tab:crossValEpoch}
+	\centering
+	\subfile{../tables/epochs.tex}
+\end{table}
+
 
 \section{Results}
+In this section we review the final results of the project after following the methodology described in Chapter \ref{chap:method} and using the hyper-parameter values found in Section \ref{sec:hypParams}. The results are shown in table ??
+
+
 
 \section{Analysis}
+
+\begin{table}[]
+	\caption{ Number of trainable parameters for MLP and FastText models }
+	\label{tab:trainParams}
+	\centering
+		\begin{tabular}{lllc}
+			\toprule
+			Model    & Domain      & Structure & Trainable Parameters \\ \midrule
+			\multirow{3}{*}{MLP}      & Multi-class &           & 483,337               \\
+			& Multi-label &           & 467,035               \\
+			& Multi-task  &           & 467,035               \\
+			\cmidrule{2-4}
+			\multirow{3}{*}{FastText} & Multi-class &           & 515,537               \\
+			& Multi-label &           & 452,210               \\
+			& Multi-task  &           & 457,110 \\ \bottomrule              
+		\end{tabular}
+	
+\end{table}
+
+\subsection{Anchors}
 
 
 \end{document}

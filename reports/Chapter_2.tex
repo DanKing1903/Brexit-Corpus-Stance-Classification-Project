@@ -315,7 +315,7 @@ Where $ N $ is the number of documents in the collection and $ df_j $ is the num
 
 Here by examining the vector space model we have conveniently introduced the concept of a feature function that produces a feature vector. Often denoted by $ \phi() $ or $ \phi(\mathbf{x}) $,  with careful selection and tuning the feature selection process can help to increase the discriminating power of our classifier \cite{bishopPatternRecognitionMachine2006}. Bishop \cite{bishopPatternRecognitionMachine2006} highlights that we can take advantage of domain specific knowledge to develop effective feature functions. For example in text classification we might wish to use a feature function that concatenates the Bag-of-Words representation with other semantic or syntactic features under the intuition that such extra information might increase classifier performance. 
 
-\subsection{Vector Semantics and Word Embeddings}
+\subsection{Vector Semantics and Word Embeddings}\label{sec:vecSeman}
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=4in]{word_embeddings.pdf}
@@ -403,10 +403,32 @@ Neural networks are structured in layers of neurons, the connectivity between an
 
 
 \subsection{FastText}
-\begin{figure}
+
+
+FastText is an architecture for text classification and learning word embeddings (as briefly mentioned in section \ref{sec:vecSeman}) first proposed by Joulin et al. \cite{joulinBagTricksEfficient2016}. FastText is known to be simple and efficient, generally scoring on par with complex deep learning models while being orders of magnitude faster to train and test. Linear classifiers (such as logistic regression or SVMs) are known to be fast and efficient baselines when used with bag-of-words representation for sentence classification. However, in such classifiers parameters are not shared between features or classes, which can inhibit generalizability and scalability \cite{joulinBagTricksEfficient2016}. FastText offers a solution to this problem using rank constraint and word embeddings. Figure \ref{fig:fastTextArch} shows the fastText classifier. Words are mapped to a dense embedding representation, and then the word representations are averaged into a text representation, which in turn is passed into a linear classifier \cite{joulinBagTricksEfficient2016}. The word embeddings learned during this process may be reused. 
+
+\begin{figure}[h]
+	\centering
 	\includegraphics[width=5in]{fastText.pdf}
 	\caption{FastText embedding architecture for $ d $-dimensional embedding and sentence length $ N $}
+	\label{fig:fastTextArch}
 \end{figure}
-\subsection{Anchors}
 
+\section{Anchors}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=4in]{Anchors.pdf}
+	\caption{Simple example of anchors and perturbation distribution}
+	\label{fig:Anchors}
+\end{figure}
+While advanced neural network models such as RNNs and LSTMs can offer high accuracy in complex tasks, a particular drawback is that their sophistication results in a black-box effect. Ribeiro et al.\ \cite{ribeiroAnchorsHighPrecision} highlights that interpretability is an important quality in machine learning. Defining \textit{human precision} as the fraction of instances where a human could confidently and correctly predict what the model will predict, they argue that for a model to be truly interpretable, human precision must be high \cite{ribeiroAnchorsHighPrecision}. Riberio et al.\ thus introduce a novel model agnostic method for interpreting the behaviour of complex black box models using explanations known as \textit{anchors}. Given a black-box model $ f: X \rightarrow Y $, the system uses a `perturbation distribution' $ D_x $ for instance $ x$ to examine how the model prediction $ f(x) $ changes locally under perturbation. In the context of text classification, the perturbation involves substituting tokens for random words with same POS tag and probability proportional to their similarity in embedding space \cite{ribeiroAnchorsHighPrecision}. An `anchor' is a rule (set of feature predicates) that is a sufficient condition for $ f(x) $ with a high probability across the conditional perturbation distribution, i.e. it is highly probable that $f(z)=f(x)  $ for a random sample $ z $ from $ D_x(z|A) $. Formally, a rule $ A $ is an anchor if:
+\[ \mathbb{E}_{D(z|A)}(\delta_{f(z),f(x)}) \geq \tau, A(x)=1 \]
+
+Where $ \tau $ is a precision parameter and: \[  \delta_{f(z),f(x)} =\begin{cases}
+1 & \text{if}\ f(z)=f(x)\\
+0 &  \text{otherwise}
+\end{cases} 	\]
+
+Figure \ref{fig:Anchors} shows a simple example of an anchor that might be found in the case of sentence sentiment analysis for product reviews. In this example $ x = \text{`\textit{The phone is not bad}'} $ and an anchor $ A=\{\textit{`not', `bad'}\} $ is identified. We see a subset of the perturbation distribution $ D_x $ and a subset of the conditional perturbation distribution $ D_x(\cdot|A) $. In practice, identifying all perturbations and anchors is computationally infeasible, and so Ribeiro et al. adopt a beam search algorithm to find anchors \cite{ribeiroAnchorsHighPrecision}.
 \end{document}

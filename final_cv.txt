@@ -1,0 +1,133 @@
+Using TensorFlow backend.
+Namespace(domain='all', file_path=None, model_type='all', save_model=False)
+['logistic_regression', 'fast_text', 'mlp']
+['logistic_regression', 'fast_text', 'mlp']
+Fold  1
+multi-class
+Loading Data
+Training Model
+Fold  2
+multi-class
+Loading Data
+Training Model
+Fold  3
+multi-class
+Loading Data
+Training Model
+Fold  4
+multi-class
+Loading Data
+Training Model
+Fold  5
+multi-class
+Loading Data
+Training Model
+time elapsed: 23.061617222992936
+
+
+Epochs: 1
+/home/dan/.local/lib/python3.6/site-packages/sklearn/metrics/classification.py:1135: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/home/dan/.local/lib/python3.6/site-packages/sklearn/metrics/classification.py:1137: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 in labels with no true samples.
+  'recall', 'true', average, warn_for)
+
+Hamming Loss:                 0.355
+
+
+Micro-f1 score:               0.645
+Macro-f1 score:               0.783
+
+Accuracy                      0.645
+['LR', 'Multi-class', 1, 0.7831130492189871, 0.6450491027271443, 0.6450491027271443]
+Fold  1
+multi-label
+Loading Data
+Training Model
+Fold  2
+multi-label
+Loading Data
+Training Model
+Fold  3
+multi-label
+Loading Data
+Training Model
+Fold  4
+multi-label
+Loading Data
+Training Model
+Fold  5
+multi-label
+Loading Data
+Training Model
+time elapsed: 13.184627578986692
+
+
+Epochs: 1
+
+Hamming Loss:                 0.060
+
+f1 scores 
+ -----------
+Agreement/disagreement:       0.792        13
+Certainty:                    0.841        29
+Contrariety:                  0.823       109
+Hypotheticality:              0.796        48
+Necessity:                    0.757        56
+Prediction:                   0.839        88
+Source of knowledge:          0.756        95
+Tact/rudeness:                0.779        24
+Uncertainty:                  0.859        83
+Volition:                     0.791        13
+
+Micro-f1 score:               0.810
+Macro-f1 score:               0.803
+
+Accuracy                      0.578
+['LR', 'Multi-label', 1, 0.8033894662811203, 0.8103901272045435, 0.5784619188921859]
+Fold  1
+multi-class
+multi-class
+Loading Data
+Training Model
+vocab size 4537, sequence length 43
+Building FastText Model
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+input_1 (InputLayer)         (None, 43)                0         
+_________________________________________________________________
+embedding_1 (Embedding)      (None, 43, 100)           453700    
+_________________________________________________________________
+global_average_pooling1d_1 ( (None, 100)               0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 637)               64337     
+=================================================================
+Total params: 518,037
+Trainable params: 518,037
+Non-trainable params: 0
+_________________________________________________________________
+None
+2018-09-09 10:46:37.187322: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+Fold  2
+multi-class
+multi-class
+Loading Data
+Training Model
+vocab size 4561, sequence length 45
+Building FastText Model
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+input_2 (InputLayer)         (None, 45)                0         
+_________________________________________________________________
+embedding_2 (Embedding)      (None, 45, 100)           456100    
+_________________________________________________________________
+global_average_pooling1d_2 ( (None, 100)               0         
+_________________________________________________________________
+dense_2 (Dense)              (None, 637)               64337     
+=================================================================
+Total params: 520,437
+Trainable params: 520,437
+Non-trainable params: 0
+_________________________________________________________________
+None

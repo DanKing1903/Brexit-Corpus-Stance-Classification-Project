@@ -1,0 +1,81 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage[ paper=a4paper,margin=1in]{geometry}% http://ctan.org/pkg/geometry
+\usepackage{amsmath}
+
+\usepackage{amssymb}
+\usepackage[numbers]{natbib}	
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+\usepackage{pdfpages}
+\usepackage{titlesec}
+\usepackage[utf8]{inputenc}
+\usepackage{subfiles}
+\usepackage{parskip}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{titleps}
+\usepackage{csquotes}
+\usepackage{subcaption}
+\usepackage{mathtools}
+\usepackage[skip=0.5\baselineskip]{caption}
+
+\setlength{\bibsep}{-0.5pt}
+
+\graphicspath{{../figures/}}
+
+\usepackage[onehalfspacing]{setspace}
+
+\begin{document}
+
+{\renewcommand{\arraystretch}{2.5}
+	\centering
+	\begin{table}[]
+		\caption{Stance categories, descriptions and examples}
+		\label{tab:stanceExamples}
+		
+		\begin{tabularx}{\textwidth}{>{\raggedright}p{3cm} >{\raggedright}p{5.5cm} X}
+			\toprule
+			Stance Category        & Description                                            & Examples                                                                                                                                      \\ \midrule
+			\small\scshape Agreement/ Disagreement &Utterance aligns with or against an opinion &\itshape That is the wrong approach. \par I believe this a good idea.\\
+			\small\scshape Certainty              &Utterance shows conviction or confidence in statement& \itshape It is absolutely clear. \par Without a doubt this is possible.                                          \\
+			\small\scshape Contrariety            & Utterance shows compromise or comparison               & \itshape Some think this is good, but others disagree.\par We have come far,  but there is still much to be done\\ 
+			\small\scshape Hypotheticality        & Utterance describes consequences of a premise          &\itshape If that happened, it would be a disaster.\par I would be happy if he won.                              \\
+			\small\scshape Necessity              & Utterance expresses an obligation or a request         & \itshape You must do it.\par I have to be there.                                                                \\
+			\small\scshape Prediction             & Utterance shows speculation                            &\itshape The match should be an easy win.\par I think the journey will go by quickly.                           \\
+			\small\scshape Source of Knowledge    & Utterance refers to the origin of opinion or statement & \itshape James told me he is moving house.\par The film was rated highly in the newspaper.                      \\
+			\small\scshape Tact/Rudeness          & Utterance is either  polite or abrasive           & \itshape I would be grateful if you do this.\par I couldn't give a damn how you feel.                           \\
+			\small\scshape Uncertainty            & Utterance admits doubt                                 & \itshape To be honest I am not sure.\par I can't guarantee I can make it.                                       \\ 
+			\small\scshape Volition & Utterance  expresses desire or preference &  \itshape We wanted him to go to college. \par I wish you could visit us.\\
+			\bottomrule
+		\end{tabularx}
+		
+\end{table}}
+
+{\renewcommand{\arraystretch}{1.5}
+	\centering
+	\begin{table}[]
+		\caption{Dataset Extracts
+			\label{tab:dataExtracts}}
+		\begin{tabularx}{\textwidth}{>{\raggedright}X >{\raggedright \arraybackslash}p{5cm}}
+			\toprule
+			Utterance 											& Stance Categories \\ \midrule
+			\itshape It might help us to solve some of the intractable problems in the world and start to move forward. &\small\scshape Uncertainty \\
+			\itshape Under the Fixed-term Parliaments Act 2011, elections now take place every five years, unless an early election is triggered. &\small\scshape  Hypotheticality, Source of Knowledge \\
+			\itshape Of course, this is far from the dominant narrative we hear in the media. & \small\scshape Agreement/Disagreement \\
+			\itshape They?ll trade alright, but any post brexit EU trade agreement will have a stiff price attached as Norway will testify. &\small\scshape  Contrariety, Prediction\\
+			\itshape Yes, we want worker protection, but we don't need to go over the top as the EU does. & \small\scshape Necessity, Contrariety, Volition\\
+			\itshape I'm glad that you stated your position so clearly in your last post. &\small\scshape  Tact/Rudeness
+			\\\bottomrule
+			
+		\end{tabularx}
+		
+\end{table}}
+
+\end{document}
