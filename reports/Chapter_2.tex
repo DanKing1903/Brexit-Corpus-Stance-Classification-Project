@@ -153,9 +153,15 @@ In the previous sections we have considered \textit{single-label classification}
 %\subsubsection{Problem Transformation Methods}
 There exist a number of methods to transform multi-label datasets into forms that allow the application of traditional single-label classifying algorithms. Sorrower \cite{sorowerLiteratureSurveyAlgorithms2018} provides a useful review of such methods, some of which we will outline below. Certain methods such as \textit{select-max}, \textit{select-min} and \textit{select-random} extract only a single-label from each instance, while the \textit{ignore} method ignores all instances with more than one label \cite{sorowerLiteratureSurveyAlgorithms2018}. However, such methods do not provide fidelity with respect to the original dataset, and so are not considered further in this review. 
 
-Of particular interest to this review are the \textit{label power set} and \textit{binary relevance} methods \cite{sorowerLiteratureSurveyAlgorithms2018}. To illustrate these methods Sorower \cite{sorowerLiteratureSurveyAlgorithms2018} considers a small data set, where four instances each belong to at least one class from the set $\mathbb{C} = \{c_1, \ c_2, \ c_3, \ c_4\}$ (see Table \ref{miniData}, part (a)).  In the label power set transformation each unique set of labels in the data is considered a single class in the transformed data \cite{sorowerLiteratureSurveyAlgorithms2018}. Thus, the problem can now be solved by a single-label classifier.
+Of particular interest to this review are the \textit{copy}, \textit{label power set}, \textit{binary relevance} and \textit{ranking by pairwise comparison} methods \cite{sorowerLiteratureSurveyAlgorithms2018}. To illustrate these methods Sorower \cite{sorowerLiteratureSurveyAlgorithms2018} considers a small data set, where four instances each belong to at least one class from the set $\mathbb{C} = \{c_1, \ c_2, \ c_3, \ c_4\}$ (see Table \ref{miniData}, part (a)).
 
-In the binary relevance method, $ k $ copies of the original dataset are created, where $ k = |\mathbb{C}| $. Each dataset is associated with one label $c_i \in \mathbb{C}$ with instances belonging to $ c_i $ labelled positively and all others labelled negatively (see Table \ref{miniData} part (c)). The target variable for each data set is therefore a binary variable, hence separate binary classifiers may be trained on each dataset and the results aggregated to provide the multi-label output \cite{sorowerLiteratureSurveyAlgorithms2018}.	
+ In the copy transformation each instance $ (x_i, \mathbf{y}_i) $ is replaced with $ |\mathbf{y}_i| $ instances $ (x_i, c_j) $ for $ c_j \in \mathbf{y}_i $ (see Table \ref{miniData} part (b)) \cite{sorowerLiteratureSurveyAlgorithms2018}. The problem can now be attempted using a single-label multi-class classifier.
+
+In the label power set transformation each unique set of labels in the data is considered a single class in the transformed data (see Table \ref{miniData} part (c)) \cite{sorowerLiteratureSurveyAlgorithms2018}. Thus, the problem can now be solved by a single-label multi-class classifier.
+
+In the binary relevance method, $ k $ copies of the original dataset are created, where $ k = |\mathbb{C}| $. Each dataset is associated with one label $c_i \in \mathbb{C}$ with instances belonging to $ c_i $ labelled positively and all others labelled negatively (see Table \ref{miniData} part (d)). The target variable for each data set is therefore a binary variable, hence separate binary classifiers may be trained on each dataset and the results aggregated to provide the multi-label output \cite{sorowerLiteratureSurveyAlgorithms2018}.
+
+Finally, in the ranking by pairwise comparison (RPC) method	the dataset is transformed into $\bigl( \begin{smallmatrix}k\\2\end{smallmatrix}\bigr)$  binary datasets. Each dataset corresponds to two labels, and retains the instances annotated as belonging to one of the labels but not both (see Table \ref{miniData} part (e) \cite{sorowerLiteratureSurveyAlgorithms2018}. Binary classifiers can be trained on each new dataset, and the votes from each aggregated to create a full multi-label classification.
 
  
 		
@@ -164,7 +170,7 @@ In the binary relevance method, $ k $ copies of the original dataset are created
 
 	\caption{Sample dataset in multi-label and label power set formats}
 	\label{miniData}
-	\begin{subfigure}{0.25\linewidth}
+	\begin{subfigure}[t]{0.25\linewidth}
 		\centering
 		\subcaption{Original format}
 		\begin{tabular*}{1\linewidth}{@{}cc@{}}
@@ -178,7 +184,25 @@ In the binary relevance method, $ k $ copies of the original dataset are created
 		\end{tabular*}
 	\end{subfigure}
 	\qquad
-	\begin{subfigure}{0.25\linewidth}
+	\begin{subfigure}[t]{0.25\linewidth}
+		\centering
+		\subcaption{Copy format}
+		\begin{tabular*}{1\linewidth}{@{}cc@{}}
+			
+			\toprule
+			Instance & Label \\ \midrule
+			1a	&	$ c_2$      \\
+			1b  &	$ c_3 $     \\
+			2	&	$ c_1 $     \\
+			3a	&	$ c_1$		\\
+			3b	&	$ c_2$		\\
+			3c	&	$ c_3$      \\
+			4a	&	$ c_2$		\\
+			4b 	&	$ c_4 $     \\ \bottomrule
+		\end{tabular*}
+	\end{subfigure}
+\qquad
+	\begin{subfigure}[t]{0.25\linewidth}
 		\centering
 		\subcaption{Label power set }
 		\begin{tabular*}{1\linewidth}{@{}cc@{}}
@@ -192,7 +216,7 @@ In the binary relevance method, $ k $ copies of the original dataset are created
 		\end{tabular*}
 	\end{subfigure}
 
-\vspace{3ex}
+\vspace{3.5em}
 
 	\begin{subfigure}{1\linewidth}
 		\centering
@@ -246,6 +270,76 @@ In the binary relevance method, $ k $ copies of the original dataset are created
 			\end{subfigure}
 		\end{subfigure}
 
+\vspace{3.5em}
+	\begin{subfigure}{1\linewidth}
+	\centering
+	\subcaption{Ranking by pairwise comparison format}			
+	\begin{subfigure}[t]{0.2\linewidth}
+		\subcaption*{$ c_1, c_2 $}
+		\begin{tabular*}{1\linewidth}{@{}cc@{}}
+			\toprule
+			Instance & Label \\ \midrule
+			1	&	$ c_{\neg1,2} $ 	       \\
+			2	&	$ c_{1,\neg2} $        \\
+			4	&   $ c_{\neg1,2} $	    \\ \bottomrule
+		\end{tabular*}
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.2\linewidth}
+		\subcaption*{$ c_1,c_2 $}
+		\begin{tabular*}{1\linewidth}{@{}cc@{}}
+			\toprule
+			Instance & Label \\ \midrule
+			1	&	$ c_{\neg1,3} $ 	       \\
+			2	&	$ c_{1,\neg3} $        \\ \bottomrule
+
+		\end{tabular*}
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.2\linewidth}
+		\subcaption*{$c_1, c_4$}
+		\begin{tabular*}{1\linewidth}{@{}cc@{}}
+			\toprule
+			Instance & Label \\ \midrule
+			2	&	$ c_{1,\neg4} $        \\
+			3	&	$ c_{1,\neg4} $        \\
+			4	&   $ c_{\neg1,4} $	    \\ \bottomrule
+		\end{tabular*}
+	\end{subfigure}
+
+	\vspace{1em}	
+	\begin{subfigure}[t]{0.2\linewidth}
+		\subcaption*{$ c_2, c_3$}
+		\begin{tabular*}{1\linewidth}{@{}cc@{}}
+			\toprule
+			Instance & Label \\ \midrule
+			4	&   $ c_{2,\neg3} $	    \\ \bottomrule
+		\end{tabular*}
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.2\linewidth}
+		\subcaption*{$ c_2,c_4 $}
+		\begin{tabular*}{1\linewidth}{@{}cc@{}}
+			\toprule
+			Instance & Label \\ \midrule
+			1	&	$ c_{2,\neg4} $        \\
+			3	&	$ c_{2,\neg4} $        \\
+			\bottomrule
+		\end{tabular*}
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{0.2\linewidth}
+		\subcaption*{$c_3,c_4$}
+		\begin{tabular*}{1\linewidth}{@{}cc@{}}
+			\toprule
+			Instance & Label \\ \midrule
+			1	&	$ c_{3,\neg4} $        \\
+			3	&	$ c_{3,\neg4} $        \\
+			4	&	$ c_{\neg3,4} $ \\
+			\bottomrule
+		\end{tabular*}
+	\end{subfigure}	
+\end{subfigure}
 	
 	
 \end{table}
@@ -335,14 +429,14 @@ Where $ \tau $ is a precision parameter and: \[  \delta_{f(z),f(x)} =\begin{case
 
 Figure \ref{fig:Anchors} shows a simple example of an anchor that might be found in the case of sentence sentiment analysis for product reviews. In this example $ x = \text{`\textit{The phone is not bad}'} $ and an anchor $ A=\{\textit{`not', `bad'}\} $ is identified. We see a subset of the perturbation distribution $ D_x $ and a subset of the conditional perturbation distribution $ D_x(\cdot|A) $. In practice, identifying all perturbations and anchors is computationally infeasible, and so Ribeiro et al. adopt a beam search algorithm to find anchors \cite{ribeiroAnchorsHighPrecision}.
 \section{Speaker Stance in Linguistics}\label{sec:speakerStanceLing}
-To begin with, the notion of speaker stance must be conceptualised and explored to broadly inform the remainder of this project. There exists a wealth of contemporary linguistic research pertaining to stance. A number of textbooks and monographs have been published explicitly devoted to stance and stancetaking
+Before examining the stance detection literature, the notion of speaker stance must be conceptualised and explored to broadly inform the remainder of this project. There exists a wealth of contemporary linguistic research pertaining to stance. A number of textbooks and monographs have been published explicitly devoted to stance and stancetaking
 \cite{hunstonEvaluationTextAuthorial2000}, \cite{englebretsonStancetakingDiscourseSubjectivity2007}, \cite{karkkainenEpistemicStanceEnglish2003}, 
 %
 % consider revising below
 conferences have been hosted to bring together researchers in the field
 %
 %
-and  many journal articles from different subfields in linguistics have converged upon the topic \cite{biberStylesStanceEnglish1989}, \cite{wangCorpusbasedStudyStancetaking2018}, \cite{myersImpersonalYouStancetaking2012}.. This heterogeneous body of research demonstrates a marked interest in developing understanding of stance, however it also demonstrates that stance is a broad and nuanced topic, with no universally agreed upon definition in academia. This section closely follows the work of Englebretson \cite{englebretsonStancetakingDiscourseSubjectivity2007} in order to present an overview of linguistic perspectives on stance.
+and  many journal articles from different subfields in linguistics have converged upon the topic \cite{biberStylesStanceEnglish1989}, \cite{wangCorpusbasedStudyStancetaking2018}, \cite{myersImpersonalYouStancetaking2012}. This heterogeneous body of research demonstrates a marked interest in developing understanding of stance, however it also demonstrates that stance is a broad and nuanced topic, with no universally agreed upon definition in academia. This section closely follows the work of Englebretson \cite{englebretsonStancetakingDiscourseSubjectivity2007} in order to present an overview of linguistic perspectives on stance.
 
 To begin with, it is useful to examine the colloquial usage of the term \textit{stance} in natural language, since this can offer insight into the ways in which its meaning has been appropriated by the linguistic research community \cite{englebretsonStancetakingDiscourseSubjectivity2007}. This approach is known as a usage-based perspective of language, which asserts that language form and meaning can be best understood by examining language use, as opposed to understanding language through rule based systems \cite{barlowUsagebasedModelsLanguage2000}. 
 
@@ -407,42 +501,64 @@ topic for linguistics'' \cite{stubbsMatterProlongedField1986}.
 To summarise, there are great many ways to consider the notion of speaker stance from a linguistic point of view. Considering the usage and meanings of stance in natural language provides insight into how academic use of the term has stemmed from the colloquial definition \cite{barlowUsagebasedModelsLanguage2000}. Qualitative and Quantitative analysis of corpora allows the formalisation of five key principles of stance which help to understand academic definitions of speaker stance \cite{englebretsonStancetakingDiscourseSubjectivity2007}. In turn, the study of speaker stance in its varying forms introduces frameworks to formalise the classification of speaker stance categories and styles \cite{biberStylesStanceEnglish1989}, \cite{simakiAnnotatingSpeakerStance2017}. The framework for stance labelling by Simaki et al.\ \cite{simakiAnnotatingSpeakerStance2017} provides ten categories that will be explored in further detail in section \ref{BBC}. The framework is introduced concurrently with a dataset for exploring the task of stance detection and classification \cite{simakiAnnotatingSpeakerStance2017}. This task and the dataset provided form the central theme of this project: developing machine learning models for detecting speaker stance in the Brexit Blog Corpus \cite{simakiAnnotatingSpeakerStance2017}.
 
 \section{Previous Research in Stance Detection} \label{sec:priorWork}
-In recent years there has been a wealth of research in the related fields of sentiment analysis and opinion mining, coinciding with an explosion of opinionated user generated online content \cite{liuSentimentAnalysisOpinion}. Like sentiment analysis and opinion mining, stance detection inherently concerns opinionated content and as such datasets presented for the task usually focus on online debate, micro-blogging and journalism. However, stance detection remains a fairly novel niche within natural language processing and so the variety of public datasets used is limited, with the two most common being the annotated twitter datasets presented for the shared tasks of The Fake News Challenge \cite{FakeNewsChallenge} and SemEval Task 6: Detecting Stance in Tweets \cite{TaskDetectingStance} (hereafter, SemEval). Stance detection is often grouped with other natural language processing tasks. For example, the Fake News Challenge suggests stance detection as a preliminary step in fake news identification, while Ferreira and Vlachos consider stance detection as part of a wider set of natural language processing tasks used for fact-checking \cite{ferreiraEmergentNovelDataset2016} and Mohammad et al.\ \cite{mohammadStanceSentimentTweets2016} explores the relationship between sentiment analysis and stance detection. The Fake News Challenge \cite{FakeNewsChallenge} also uses newswire data but distinguishes between neutral content topically related to the target and unrelated content with the classes \{\textit{for, against, discusses, unrelated}\}. Finally, Respall and Derczynski \cite{respallStanceDetectionCatalan} focusses on stance detection and author gender identification.
+In recent years there has been a growing interest in stance detection. In this section we will review some of the prior research in the field. Within the literature there are many similarities between papers in terms of the data used and the approaches taken to stance detection. There are also significant differences among papers, so it is important to compare and contrast approaches to ensure the remainder of this project is well informed.
 
-Previous work tends to consider English language Twitter data and use tertiary classification with the labels \{\textit{Favour, Against, Neither}\} as in \cite{TaskDetectingStance,mohammadStanceSentimentTweets2016,mohammadSemEval2016TaskDetecting2016,augensteinStanceDetectionBidirectional2016,deyTwitterStanceDetection2017,deyTopicalStanceDetection2018}. T Swami \cite{swamiEnglishHindiCodeMixedCorpus2018} uses the tertiary classification labels on a dataset of code-mixed\footnote{The mixing of two or more languages in speech or text by multilingual interlocutors} Hindi-English tweets. Du et al.\  \cite{duStanceClassificationTargetspecific} again uses tertiary classification, however they demonstrate the language independence of their approach by using an English twitter dataset and a Chinese Weibo\footnote{Chinese micro-blogging platform similar to Twitter} dataset.  Respall and Derczynski \cite{respallStanceDetectionCatalan} use a dataset consisting of Spanish and Catalan tweets annotated again in the tertiary labelling scheme. Ferriera and Vlachos \cite{ferreiraEmergentNovelDataset2016} present Emergent, a novel dataset that consists of 2,595 English news article headlines labelled according to the stance they take with respect to 300 target claims under a tertiary classification scheme of \{\textit{For, Against, Observing}\}.
+\subsection{Context and Related Tasks}
+Stance detection is often grouped with other natural language processing tasks. For example, the Fake News Challenge suggests stance detection as a preliminary step in fake news identification, while Ferreira and Vlachos consider stance detection as part of a wider set of natural language processing tasks used for fact-checking \cite{ferreiraEmergentNovelDataset2016}. Similarly, Respall and Derczynski \cite{respallStanceDetectionCatalan} considers stance detection together with author gender identification.
 
-In terms of the approaches taken to stance detection, the literature is split between feature engineering approaches and neural, representation learning approaches. Below these methods are outlined to provide context for this project in terms of what the current state of the art includes.
+\subsection{Datasets and Topics}
+ Stance detection inherently concerns opinionated content and as such datasets presented for the task usually focus on online debate, micro-blogging and journalism. While this kind of content is very prevalent online, manual annotation is burdensome. Additionally, stance detection remains a fairly novel niche within natural language processing and so the variety of public datasets is limited. Two shared tasks form most the commonly used datasets. Firstly, the annotated newswire data from The Fake News Challenge (FNC), of which a retrospective summary is provided by Hanselowski et al.\ \cite{hanselowskiRetrospectiveAnalysisFake2018} and secondly the annotated twitter data from SemEval Task 6: Detecting Stance in Tweets (hereafter, SemEval), as summarised by Mohammad et al.\ \cite{mohammadSemEval2016TaskDetecting2016}. Another common approach is to create a task specific dataset by scraping twitter data and annotate it using hashtag data as indicators of stance \cite{swamiEnglishHindiCodeMixedCorpus2018}.  Ferriera and Vlachos \cite{ferreiraEmergentNovelDataset2016} present Emergent, a novel dataset of news article headlines labelled according to the stance they take with respect to a collection of target claims. There also exist several older datasets created from online debate forums such as Somasundaran and Wiebe \cite{somasundaranRecognizingStancesIdeological2010}, and Hasan and Ng \cite{hasanExtraLinguisticConstraintsStance} Going back further still. Finally, Simaki et al.\ \cite{simakiEvaluatingStanceannotatedSentences2018} undertakes stance classification using the Brexit Blog Corpus, 
+ 
+\subsection{Languages}
+Given that stance detection almost invariably uses datasets created from online content, and given that English is the most common language online \cite{TopTenInternet} previous work mostly focusses on detecting stance in English language text \cite{ferreiraEmergentNovelDataset2016,hanselowskiRetrospectiveAnalysisFake2018,mohammadSemEval2016TaskDetecting2016,somasundaranRecognizingStancesIdeological2010,hasanExtraLinguisticConstraintsStance,augensteinStanceDetectionBidirectional2016,sobhaniStanceDetectionAnalysis}. However, work in other languages has been published. For example, Swami et. al \cite{swamiEnglishHindiCodeMixedCorpus2018} uses dataset of code-mixed\footnote{The mixing of two or more languages in speech or text by multilingual interlocutors} Hindi-English tweets. Du et al.\  \cite{duStanceClassificationTargetspecific} demonstrate a language independent approach evaluated with both an English twitter dataset and a Chinese Weibo\footnote{Chinese micro-blogging platform similar to Twitter} dataset. Finally, Respall and Derczynski \cite{respallStanceDetectionCatalan} use a dataset consisting of Spanish and Catalan tweets annotated again in the tertiary labelling scheme.
 
-.......................................
+ 
+\subsection{Classification Framework}
+With the exception of the Brexit Blog Corpus, the literature overwhelmingly shows stance detection as a single label classification scheme \cite{ferreiraEmergentNovelDataset2016,respallStanceDetectionCatalan,hanselowskiRetrospectiveAnalysisFake2018,mohammadSemEval2016TaskDetecting2016,swamiEnglishHindiCodeMixedCorpus2018,somasundaranRecognizingStancesIdeological2010,hasanExtraLinguisticConstraintsStance,duStanceClassificationTargetspecific,augensteinStanceDetectionBidirectional2016,sobhaniStanceDetectionAnalysis}. Most work considers a three class output space (\textit{in favour}, \textit{neutral}, and \textit{against})\cite{ferreiraEmergentNovelDataset2016,respallStanceDetectionCatalan,mohammadSemEval2016TaskDetecting2016,swamiEnglishHindiCodeMixedCorpus2018,somasundaranRecognizingStancesIdeological2010,hasanExtraLinguisticConstraintsStance,duStanceClassificationTargetspecific,augensteinStanceDetectionBidirectional2016,sobhaniStanceDetectionAnalysis}, with Ferreira and Vlachos using the three classes \textit{in favour}, \textit{observing} and \textit{against} \cite{ferreiraEmergentNovelDataset2016}. The Fake News Challenge introduces a fourth class, using \textit{Agree}, \textit{Discuss}, \textit{Disagree} and \textit{Unrelated}. In contrast, The Brexit Blog Corpus a multi-label framework whereby instances may be labelled with up to five labels from a set of ten stance categories \cite{simakiAnnotatingSpeakerStance2017}. This allows the labelling for each instance to be much more informative and expressive, however it also creates a much more complex output space and represents a much more challenging task for stance detection.
+\subsection{Methods and Results}
 
-Mohammad et al.\ \cite{mohammadStanceSentimentTweets2016} is a seminal work in the stance detection literature. \cite{mohammadStanceSentimentTweets2016} introduces twitter the dataset used in SemEval \cite{TaskDetectingStance}, consisting of tweet
+\begin{table}[]
+	\caption{Previous stance detection work ranked by \f{Macro} score}
+	\label{tab:reviewResults}
+	\begin{tabularx}{\textwidth}{p{5cm}Xp{2.5cm}p{1cm}}
+		\toprule
+		Author/Team          & Classifier                               & Dataset             & \f{Macro}  \\ \midrule
+		Du et al. \cite{duStanceClassificationTargetspecific}            & TAN                                      & Weibo               & 72.88                            \\
+		Ferreira and Vlachos \cite{ferreiraEmergentNovelDataset2016} & Logistic Regression                      & Emergent            & 72.32                            \\
+		Dey et al.\cite{deyTwitterStanceDetection2017}           & 2 Phase SVM                              & SemEval A      & 69.53                            \\
+		Dey et al. \cite{deyTopicalStanceDetection2018}           & 2 Phase attention LSTM                   & SemEval A      & 68.84                            \\
+		Du et al. \cite{duStanceClassificationTargetspecific}            & TAN                                      & SemEval A      & 68.79                            \\
+		MITRE \cite{zarrellaMITRESemEval2016Task2016}                & Stacked RNNs                             & SemEval A      & 67.82                            \\
+		Athene \cite{hanselowskiRetrospectiveAnalysisFake2018}               & MLP                                      & FC & 60.40                            \\
+		UCLMR \cite{riedelSimpleToughtobeatBaseline2017}                & MLP                                      & FNC & 58.30                            \\
+		Talos \cite{largentTalosTargetsDisinformation}                & CNN, GBT ensemble                        & FNC & 58.20                            \\
+		Augenstein et al. \cite{augensteinStanceDetectionBidirectional2016}    & BiCond LSTM & SemEval B      & 58.03                            \\
+		pkudblab \cite{weiPkudblabSemEval2016Task2016}           & Rule augmented CNN                       & SemEval B      & 56.28                            \\ \bottomrule
+	\end{tabularx}
+\end{table}
 
-.....................................
+In terms of the approaches taken to stance detection, the literature is split between feature engineering approaches and neural, representation learning approaches. Below these methods are outlined to provide context for this project in terms of what the current state of the art includes. The results of the papers reviewed are summarised in Table \ref{tab:reviewResults}.
 
-Mohammad et al.\ \cite{mohammadSemEval2016TaskDetecting2016} provides a retrospective summary of SemEval \cite{TaskDetectingStance} . Within SemEval \cite{TaskDetectingStance} were two subtasks, task A and task B. Task A tested stance detection on tweets associated with five target topics: athiesm, climate change, feminism, Hillary Clinton and abortion with in  a supervised learning framework. The highest ranking submission at the time of publication, MITRE, developed a semi-supervised approach that stacks two RNNs, achieving an overall macro averaged F-score of 67.82. However, this did not beat the n-gram Support Vector Machine (SVM) Baseline created by the task organisers. Task B tested stance in tweets towards Donald Trump, however the training data provided was unlabelled for stance. The winning system at time of publication, pkudblab, used a weakly supervised approach that used a rule based annotation of the unlabelled training data to augmented a deep convolutional network, achieving an overall macro averaged F-score of 56.28.
+Mohammad et al.\ \cite{mohammadSemEval2016TaskDetecting2016} provides a retrospective summary of SemEval \cite{TaskDetectingStance} . Within SemEval \cite{TaskDetectingStance} were two subtasks, task A and task B. The highest ranking submission for task A,\textit{ MITRE}, developed a semi-supervised approach stacking two RNNs, achieving an overall macro averaged F-score of 67.82 \cite{mohammadSemEval2016TaskDetecting2016}, \cite{zarrellaMITRESemEval2016Task2016}. However, this did not beat the n-gram Support Vector Machine (SVM) Baseline created by the task organisers. The winning system for task B, \textit{pkudblab}, used a weakly supervised approach that used a rule based annotation of the unlabelled training data to augmented a deep convolutional network, achieving an overall macro averaged F-score of 56.28 \cite{mohammadSemEval2016TaskDetecting2016}, \cite{weiPkudblabSemEval2016Task2016}.
 
-Augenstein et al.\ \cite{augensteinStanceDetectionBidirectional2016} publishes a post-hoc method for SemEval task B \cite{TaskDetectingStance}, developing a method known as bi-directional conditional encoding. Encoding refers to generating separate representations of tweets and target topics using two LSTMs \cite{augensteinStanceDetectionBidirectional2016}\cite{hochreiterLongShorttermMemory1997}. Conditional encoding improves upon this by initializing the tweet LSTM with the state of the target LSTM, thereby generating a target dependent representation of each tweet \cite{augensteinStanceDetectionBidirectional2016}. Finally, Bi-directional means that the conditional encoding process is performed reading the text both left to right and right to left to enhance the representation and improve performance \cite{augensteinStanceDetectionBidirectional2016}. The approach results in a macro averaged F-score of 49.01 when using the unlabelled training data, and 58.03 when using a weakly supervised approach similar to that of the winning SemEval submission, pkudblab.
+Augenstein et al.\ \cite{augensteinStanceDetectionBidirectional2016} publishes a post-hoc method for SemEval task B \cite{TaskDetectingStance}, developing a method known as bi-directional conditional encoding. Encoding refers to generating separate representations of tweets and target topics using two LSTMs \cite{augensteinStanceDetectionBidirectional2016}\cite{hochreiterLongShorttermMemory1997}. Conditional encoding improves upon this by initializing the tweet LSTM with the state of the target LSTM, thereby generating a target dependent representation of each tweet \cite{augensteinStanceDetectionBidirectional2016}. Finally, Bi-directional means that the conditional encoding process is performed reading the text both left to right and right to left to enhance the representation and improve performance \cite{augensteinStanceDetectionBidirectional2016}. The system results in a macro averaged F-score 58.03 and uses a weakly supervised approach.
 
+Dey et al.\ \cite{deyTwitterStanceDetection2017} provides another post-hoc approach to SemEval, but for task A. The method uses feature engineering and a two phase SVM classifier. The first phase seperates neutral tweets from non-neutral using WordNet \cite{WordNetLexicalDatabase} features and a subjectivity-polarity score from the MPQA subjectivity lexicon \cite{SubjectivityLexiconMPQA}. The second phase then differentiates between Favour and Against tweets using MPQA and SentiWordNet \cite{SentiWordNet} features, character and word n-grams, frame semantics and boolean indicators for the presence of target words in tweets. This approach nets a macro averaged F-score of 69.53, and thus represents the current state of the art with respect to SemEval task A.
 
-Dey et al.\ \cite{deyTwitterStanceDetection2017} provides another post-hoc approach to SemEval, but for task A. The method uses feature engineering and a two phase SVM classifier. The first phase seperates neutral tweets from non-neutral using WordNet \cite{WordNetLexicalDatabase} features and a subjectivity-polarity score from the MPQA subjectivity lexicon \cite{SubjectivityLexiconMPQA} (MPQA). The second phase then differentiates between Favour and Against tweets using MPQA and SentiWordNet \cite{SentiWordNet} features, character and word n-grams, frame semantics and boolean indicators for the presence of target words in tweets. This approach nets a macro averaged F-score of 69.53, and thus represents the current state of the art with respect to SemEval task A.
-
-Du et al.\ \cite{duStanceClassificationTargetspecific} introduces a novel application of neural attention networks for the purpose of stance detection. In the neural attention network an attention signal is learned. The signal is multiplied with instance features effectively highlighting critical elements of text in relation to a target topic and masking unimportant elements. This mechanism is incorporated into a bi-directional RNN that achieves a macro averaged F-score of 68.79 on SemEval task A, and 72.88 on a Chinese dataset.
+Du et al.\ \cite{duStanceClassificationTargetspecific} introduces the \textit{Target-specific Attention Neural Net-
+work (TAN)}, a novel application of neural attention networks for the purpose of stance detection. In the neural attention network an attention signal is learned. The signal is multiplied with instance features effectively highlighting critical elements of text in relation to a target topic and masking unimportant elements. This mechanism is incorporated into a bi-directional RNN that achieves a macro averaged F-score of 68.79 on SemEval task A, and 72.88 on a Chinese dataset.
 
 Dey et al.\ return to the SemEval problem in \cite{deyTopicalStanceDetection2018}, this time publishing a two phase LSTM method that incorporates the attention mechanism of \cite{duStanceClassificationTargetspecific}. This method achieves a macro averaged F-score of 68.84 on SemEval, currently representing the state of the art for this task.
 
+The work of Ferriera and Vlachos \cite{ferreiraEmergentNovelDataset2016} on the Emergent datasets uses a logistic regression classifier and a feature space combining simple headline linguistic features such as Bag-of-words and punctuation with headline-claim features such as alignment, entailment and cosine similarity, achieving a test set accuracy of 73\%. The precision and recall figures published in Ferreira and Vlachos correspond to a macro averaged F-score of 72.31
 
-The work of Ferriera and Vlachos \cite{ferreiraEmergentNovelDataset2016} on the Emergent datasets uses a logistic regression classifier and a feature space combining simple headline linguistic features such as Bag-of-words and punctuation with headline-claim features such as alignment, entailment and cosine similarity, achieving a test set accuracy of 73\%.
+Hanselowski et al. \cite{hanselowskiRetrospectiveAnalysisFake2018} provides a retrospective analysis of the Fake News Challenge. The review considers the three most highly ranking submissions from the shared task \textit{Athene},\textit{Talos},  and \textit{UCLMR}. Athene submitted a multi-layer perceptron with six hidden layers and using engineered features, resulting in an \f{Macro} score of 60.4 \cite{hanselowskiRetrospectiveAnalysisFake2018}. UCLMR also uses a multi-layer perceptron, however with only a single hidden layer and using Tf-idf vectors as features \cite{riedelSimpleToughtobeatBaseline2017}, \cite{hanselowskiRetrospectiveAnalysisFake2018}.Their approach netted a \f{Macro} score of 58.3. Finally, Talos used a weighted average ensemble model of a deep convolutional model and gradient boosted tree model, achieving an \f{Macro} of 58.2 \cite{largentTalosTargetsDisinformation}, \cite{hanselowskiRetrospectiveAnalysisFake2018}. 
 
+To summarise, while different datasets are used across the systems discussed, they are largely similar tasks and so comparison between classifiers is still of use. Several conclusions can be reached from the comparison of these methods and their results. Many approaches to stance detection use complex neural networks that take advantage of recurrent structures and use representation learning or pre-trained word embeddings  \cite{augensteinStanceDetectionBidirectional2016,duStanceClassificationTargetspecific, deyTopicalStanceDetection2018,zarrellaMITRESemEval2016Task2016,largentTalosTargetsDisinformation,weiPkudblabSemEval2016Task2016}.  The performance of these models is generally high, often being the state of the art for the problem at hand. Secondly, though complex recurrent models are popular, they cans still be outperformed by more conventional methods when combined with careful feature engineering. For instance, the logistic regression classifier implemented by Ferreira and Vlachos achieves the second highest \f{Macro} score of the systems surveyed, and the third highest score is posted by the 2 phase SVM of Dey et. al \cite{deyTwitterStanceDetection2017}. Similarly, multi-layer perceptrons are also utilised in the literature, and when the architecture is carefully designed they perform  strongly. These observations provide context as to the state of the art in stance detection, but also act as a starting point for the design of this project. In particular, this project aims investigate achieving state of the art performance with efficient, compact learning methods and as such the observation that complex recurrent networks can be outperformed by carefully tuned linear methods is especially pertinent.
 
-......................
+\section{The Brexit Blog Corpus}\label{BBC}
 
-Need to find paper from Fake News Challenge
-
-......................
-BBC\section{The Brexit Blog Corpus}\label{BBC}
-
-
-Simaki et al.\ \cite{simakiAnnotatingSpeakerStance2017} introduced The Brexit Blog Corpus, a novel dataset annotated for speaker stance. The work is undertaken in the field of corpus linguistics and linguistic theory, and therefore uses a much richer operational definition of stance (as outlined in section \ref{sec:speakerStanceLing}) compared to work published in machine learning journals. Simaki et al.\ \cite{simakiAnnotatingSpeakerStance2017} acknowledges this, justifying that their approach offers much more context sensitivity than traditional simple lexically driven approaches. In section \ref{sec:priorWork} it is noted that most work considers stance detection as a single-label, tertiary classification task, however \cite{simakiAnnotatingSpeakerStance2017} introduces a labelling scheme comprising ten stance categories as per Table \ref{tab:stanceCats}. The dataset presents stance annotation as a multi-label classification problem, in contrast to previous work which only considers single-label classification schemes. 
+Having explored definitions of speaker stance and reviewed the current state of stance detection, the remainder of the literature review focusses on the principle resource for this project. Simaki et al.\ \cite{simakiAnnotatingSpeakerStance2017} introduced The Brexit Blog Corpus, a novel dataset annotated for speaker stance. The work is undertaken in the field of corpus linguistics and linguistic theory, and therefore uses a much richer operational definition of stance (as outlined in section \ref{sec:speakerStanceLing}) compared to work published in machine learning journals. Simaki et al.\ \cite{simakiAnnotatingSpeakerStance2017} acknowledges this, justifying that their approach offers much more context sensitivity than traditional simple lexically driven approaches. In section \ref{sec:priorWork} it is noted that most work considers stance detection as a single-label, tertiary classification task, however \cite{simakiAnnotatingSpeakerStance2017} introduces a labelling scheme comprising ten stance categories as per Table \ref{tab:stanceCats}. The dataset presents stance annotation as a multi-label classification problem, in contrast to previous work which only considers single-label classification schemes. 
 
 {\renewcommand{\arraystretch}{1.5}
 	
@@ -462,10 +578,64 @@ Simaki et al.\ \cite{simakiAnnotatingSpeakerStance2017} introduced The Brexit Bl
 		
 \end{table}}
 
-This broader interpretation of \textit{stance} offers significant novelty and potential for natural language procession applications, however it also presents a much more complex problem space. At the time of writing, there exist no publications that apply stance classification methods to the Brexit Blog Corpus, and it is therefore an aim of this project to provide a preliminary baseline for subsequent stance detection research into the Brexit Blog Corpus.
+This broader interpretation of \textit{stance} offers significant novelty and potential for natural language procession applications, however it also presents a much more complex problem space. At the time of writing, there is only a single paper published using the Brexit Blog Corpus for stance detection, by Simaki et al. \cite{simakiStanceClassificationTexts2017}. This serves as a preliminary baseline for the project, and therefore an aim of this project to build on the work of Simaki et al., develop more accurate classifiers and further research into stance classification using the Brexit Blog Corpus.
 
 \subsection{Quantitative Linguistic Analysis}\label{sec:quantAnalysis}
-Simaki et al.\ \cite{simakiEvaluatingStanceannotatedSentences2018} examines a subset of The Brexit Blog Corpus for the purpose of formal quantitative analysis of linguistic characteristics. The subset comprises six out of the ten categories, and for each category mean frequency values are obtained for 29 linguistic features such spaces, upper case letters etc. Simaki et al.\cite{simakiEvaluatingStanceannotatedSentences2018} then uses one-way Analysis of Variance (ANOVA) to determine if there are significant differences between group means for each feature. The null hypothesis ($ H_0 $) was rejected if two or more means were significantly different at a 5\% significance level, corresponding to a critical F-value of $ F_{crit} =2.220 $. This test establishes which features exhibit significant differences in frequency between categories and could therefore prove useful in discriminating between stance categories. 
+Simaki et al.\ \cite{simakiEvaluatingStanceannotatedSentences2018} examines a subset of the Brexit Blog Corpus for the purpose of formal quantitative analysis of linguistic characteristics. The subset comprises six out of the ten categories, and for each category mean frequency values are obtained for 29 linguistic features such spaces, upper case letters etc. Simaki et al.\cite{simakiEvaluatingStanceannotatedSentences2018} then uses one-way Analysis of Variance (ANOVA) to determine if there are significant differences between group means for each feature. The null hypothesis ($ H_0 $) was rejected if two or more means were significantly different at a 5\% significance level, corresponding to a critical F-value of $ F_{crit} =2.220 $. This test establishes which features exhibit significant differences in frequency between categories and could therefore prove useful in discriminating between stance categories. The results of this analysis are reviewed in further detail in Section \ref{sec:featEngin}
 
+\subsection{Stance Detection Using The Brexit Blog Corpus}
+Simaki et al. \cite{simakiStanceClassificationTexts2017} presents the first implementation for classifying stance based on the cognitive functional framework of ten notional speaker stance categories set out in Simaki et al. \cite{simakiAnnotatingSpeakerStance2017}. A key aim of the study was to determine whether the stance categories set out in their framework can be automatically identified baseline classifiers and features. The approach notes the imbalance within the Brexit Blog Corpus, opting to use a subset the data that excludes the four rarest categories \lab{agreement/disagreement, certainty, tact/rudeness},  and \lab{volition}. Two approaches are considered in the paper, using label transformations as outlined in  Section \ref{sec:multiLabel} and Table \ref{miniData}. Firstly, using a copy transformation and training multi-class classifiers and secondly, by using the RPC transformation and training a classifier on each of the fifteen stance category pair datasets. 
+
+Both models use simple baseline features. In particular, the features were either syntactic (POS tags etc.) or lexical (character frequency, word length etc.)
+
+In the copy transform implementation a ten different classifier types were evaluated, achieving test accuracies between 20.95\% and 30.00\%. The classifiers included logistic regression and a multi-layer perceptron, the test results for which are show in Table \ref{tab:simakiMLPLR}. The logistic regression classifier performed best out of the ten classifiers tested, and therefore the categorical \f{1} scores for logistic regression were also recorded. These are shown in table \ref{tab:simakiCateg}. Overall the copy transform method did not produce satisfactory results, and so this provides strong justification for further work such as this project.
+
+
+\begin{table}
+	\centering
+	\caption{Results for multi-layer perceptron and logistic regression classifiers in Simaki et al. \cite{simakiStanceClassificationTexts2017}}
+	\label{tab:simakiMLPLR}
+	\begin{tabular}{lr}
+		\toprule
+		Classifier 	& 	Accuracy\\ \midrule
+		MLP			&	20.95\%\\
+		Logistic regression & 30.00\% \\ \bottomrule
+		
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\caption{Categorical \f{1} scores for logistic regression classifier in Simaki et al. \cite{simakiStanceClassificationTexts2017}}
+	\label{tab:simakiCateg}
+	\begin{tabular}{lr}
+		\toprule
+		Stance category		& \f{1} \\ \midrule
+		\lab{Contrariety}	& 0.389 \\
+		\lab{Hypotheticality} & 0.135 \\
+		\lab{Necessity}		& 0.241 \\
+		\lab{Prediction} 	& 0.274 \\
+		\lab{Source of Knowledge} & 0.363 \\
+		\lab{Uncertainty} 	& 0.049 \\ \bottomrule
+	\end{tabular}
+\end{table}
+
+
+The RPC implementation delivered improved results. Table \ref{tab:simakiRPC} shows the results achieved. This implementation faired significantly better than the copy transform approach, achieving a peak test accuracy of 71.17\% for the \lab{Contrariety}-\lab{Necessity} pair. In this format the higher scores correlate with greater differentiability and lower co-occurrence between stance categories, and vice versa.
+
+To summarise, Simaki et al.\ \cite{simakiStanceClassificationTexts2017} puts forth a first attempt at stance classification using the Brexit Blog Corpus. The work employs several of the transformations described in Section \ref{sec:multiLabel}, showing that this is a common strategy for handling multi-label data. The results are mixed, with the copy transform implementation delivering poor results, and the RPC implementation showing improved results. It is therefore the intention of this project to improve upon the work presented in Simaki et al.\ \cite{simakiStanceClassificationTexts2017}.
+
+\begin{table}
+	\centering
+	\caption{Test accuracy results for RPC implementation of Simaki et al. \cite{simakiStanceClassificationTexts2017}}
+	\label{tab:simakiRPC}
+	\subfile{../tables/simakiRPC.tex}
+	
+\end{table}
+
+\begin{comment}
+\section{Conclusion}
+To summarise, this section has reviewed relevant material that has either informed the direction of this projection or serves as necessary background reading for the topics investigated in this project. Relevant area
+\end{comment}
 
 \end{document}

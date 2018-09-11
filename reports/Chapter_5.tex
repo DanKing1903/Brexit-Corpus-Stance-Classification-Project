@@ -8,7 +8,7 @@ In this chapter the performance of the models developed is evaluated and compare
 When developing machine learning models we learn parameters (weights) which are optimized by the learning algorithm. However, there are also hyper-parameters that control the behaviour of the learning algorithm. An important part of machine learning therefore is optimizing hyper-parameters. This is usually accomplished with cross validation. In this project a 'greedy' strategy is employed - once a parameter is tuned, this parameter value is fixed when subsequently tuning other parameters, and no grid search is performed.
 
 \subsection{Optimizer}
-TBC
+The MLP and fastText classifiers were both optimised in all configurations using the built in ADAM optimiser in Keras \cite{kingmaAdamMethodStochastic2014}.
 
 \subsection{Embedding Length}
 For the FastText classifier described in section \ref{sec:fastTextMethod} several lengths were tested for the embedding vector. Increasing the embedding length provides a larger parameter space to learn, which should provide greater performance, however this comes at a trade off with run time. In table \ref{tab:embedTuning} are the results of 5 fold cross validation for different embedding lengths. Initially each fold is trained for 100 epochs, though this hyper-parameter will be tuned further in Section \ref{sec:epochs}. As expected, there is a marked correlation between embedding length and evaluation score. This is due to the larger parameter space allowing more complex relationships to be learned by the model. However, this performance gain comes at a computational cost - using embedding lengths of 400 is drastically slower than 100 when measuring cross validation run time - roughly four times slower. The four fold increase will drastically slow further parameter tuning exercises. For this reason, the remainder of this project uses embedding lengths of 100, and using greater embedding lengths will be left to future work.
@@ -50,7 +50,7 @@ In this section we review the final results of the project after following the m
 
 \subsection{Logistic Regression}
 The results of the logistic regression classifiers are shown in Table \ref{tab:LR1} and Table \ref{tab:LR2}.
-In the multi-label implementation categorical \f{1} scores of between 0.741 and 0.828 are observed. \lab{Contrariety} is the highest scoring category, and \lab{Neccessity} the lowest. Referring back to Figure \ref{fig:labelBarChart} \lab{Contrariety} is the most common category in the dataset, so the high score of the classifier in labelling utterances as such is not unusual. However, \lab{Necessity} ranks in the middle as the 5\textsuperscript{th} most common category, suggesting there may be other reasons besides sample size influencing the lower performance. Scores of 0.774, 0.775 and 0.492 are observed for \f{Macro}, \f{Micro} and EMR respectively. 
+In the multi-label implementation categorical \f{1} scores of between 0.741 and 0.828 are observed. \lab{Contrariety} is the highest scoring category, and \lab{Neccessity} the lowest. Referring back to Figure \ref{fig:labelBarChart} \lab{Contrariety} is the most common category in the dataset, so the high score of the classifier in labelling utterances as such is not unusual. However, \lab{Necessity} ranks in the middle as the 5\textsuperscript{th} most common category, suggesting there may be other reasons besides sample size influencing the lower performance. All categorical \f{1} Scores significantly exceed those recorded by Simaki et al. \cite{simakiStanceClassificationTexts2017}. Scores of 0.774, 0.775 and 0.492 are observed for \f{Macro}, \f{Micro} and EMR respectively. 
 
 Examining the results of the multi-class logistic regression (see Figure \ref{tab:LR2}) we see scores of 0.783 and 0.645 for \f{Macro} and EMR. Notably both of these scores are higher than the multi-label implementation. This suggests that for linear classifiers such as logistic regression higher performance in multi-label problems can be achieved using multi-label to multi-class transformations such as the power set transformation used here. This is likely because in the multi-class implementation the classifier can only predict classes observed in training. 
 
@@ -60,19 +60,19 @@ Overall both classifiers perform remarkably well. Logistic regression is known t
 	\caption{5 fold cross validated categorical \f{1} scores for logisitic regression classifier}
 	\label{tab:LR1}
 	\centering
-	\begin{tabular}{@{}lc@{}}
+	\begin{tabular}{@{}lcc@{}}
 		\toprule
-		Stance Category         & Multi-label \\ \midrule
-		\lab{Agreement/Disagreement} & 0.790       \\
-		\lab{Certainty}              & 0.775       \\
-		\lab{Contrariety}            & \bfseries 0.828       \\
-		\lab{Hypotheticality}        & 0.770       \\
-		\lab{Necessity}              & 0.748       \\
-		\lab{Prediction}             & 0.756       \\
-		\lab{Source of knowledge}    & 0.760       \\
-		\lab{Tact/Rudeness}          & 0.779       \\
-		\lab{Uncertainty}            & 0.741       \\
-		\lab{Volition}               & 0.791       \\ \bottomrule
+		Stance Category         & Multi-label & Simaki et al. \\ \midrule
+		\lab{Agreement/Disagreement} & 0.790 &  -    \\
+		\lab{Certainty}              & 0.775  &  -   \\
+		\lab{Contrariety}            & \bfseries 0.828       & 0.389\\
+		\lab{Hypotheticality}        & 0.770 & 0.135       \\
+		\lab{Necessity}              & 0.748 &    0.241  \\
+		\lab{Prediction}             & 0.756  &    0.274 \\
+		\lab{Source of knowledge}    & 0.760   &  0.363  \\
+		\lab{Tact/Rudeness}          & 0.779    &  - \\
+		\lab{Uncertainty}            & 0.741     & 0.049 \\
+		\lab{Volition}               & 0.791      &  - \\ \bottomrule
 	\end{tabular}
 
 \end{table}
@@ -90,24 +90,24 @@ Overall both classifiers perform remarkably well. Logistic regression is known t
 	\end{tabular}
 \end{table}
 \subsection{Multi Layer Perceptron}
-In Table \ref{tab:MLP1} and Table \ref{tab:MLP2} are the results for the MLP classifiers. Both multi-label and multi-task classifiers exhibit high variance, with categorical \f{1} scores ranging from 0.388 to 0.728 in the multi-label case and from 0.308 to 0.685 in the multi-task case. For both cases \lab{Uncertainty} is the highest scoring category, and across categories there appears to be a correlation with training set size. The multi-class implementation is seen to outperform multi-label and multi task versions in \f{Macro} and EMR with scores of 0.729 and 0.564 respectively. However, the multi-label classifier has the highest \f{Micro} score of 0.617. No MLP classifier is able to beat the logistic regression baselines, and as such further work is necessary to improve the MLP implementations.
+In Table \ref{tab:MLP1} and Table \ref{tab:MLP2} are the results for the MLP classifiers. Both multi-label and multi-task classifiers exhibit high variance, with categorical \f{1} scores ranging from 0.388 to 0.728 in the multi-label case and from 0.308 to 0.685 in the multi-task case. For both cases \lab{Uncertainty} is the highest scoring category, and across categories there appears to be a correlation with training set size. The multi-class implementation is seen to outperform multi-label and multi task versions in \f{Macro} and EMR with scores of 0.729 and 0.564 respectively. However, the multi-label classifier has the highest \f{Micro} score of 0.617. No MLP classifier is able to beat the logistic regression baselines, and as such further work is necessary to improve the MLP implementations. Despite this, both the multi-class and multi-task MLP classifiers again outperform Simaki et al. \cite{simakiStanceClassificationTexts2017}, further validating the stategy employed in this project.
 \begin{table}[]
 		\caption{Within category 5 fold cross validated \f{1} scores for MLP classifier}
 		\label{tab:MLP1}
 		\centering
-	\begin{tabular}{@{}lll@{}}
+	\begin{tabular}{@{}lllc@{}}
 		\toprule
-		Stance Category         & Multi-label & Multi-task \\ \midrule
-		\lab{Agreement/Disagreement}	& 0.388       & 0.347      \\
-		\lab{Certainty}	  			& 0.518       & 0.491      \\
-		\lab{Contrariety}	            & 0.612        & 0.603      \\
-		\lab{Hypotheticality}			& 0.523       & 0.491      \\
-		\lab{Necessity}				& 0.579       & 0.499     \\
-		\lab{Prediction}				& 0.686       & 0.665      \\
-		\lab{Source of knowledge}		& 0.620       & 0.624      \\
-		\lab{Tact/Rudeness}			& 0.456       & 0.345      \\
-		\lab{Uncertainty}				& \bfseries 0.728       & 0.685      \\
-		\lab{Volition} 				& 0.501       & 0.308      \\ \bottomrule
+		Stance Category         & Multi-label & Multi-task & Simaki et al.\\ \midrule
+		\lab{Agreement/Disagreement}	& 0.388       & 0.347      &- \\
+		\lab{Certainty}	  			& 0.518       & 0.491      & - \\
+		\lab{Contrariety}	            & 0.612        & 0.603      & 0.389\\
+		\lab{Hypotheticality}			& 0.523       & 0.491      &  0.135\\
+		\lab{Necessity}				& 0.579       & 0.499     & 0.241\\
+		\lab{Prediction}				& 0.686       & 0.665      & 0.274\\
+		\lab{Source of knowledge}		& 0.620       & 0.624      & 0.363\\
+		\lab{Tact/Rudeness}			& 0.456       & 0.345      & - \\
+		\lab{Uncertainty}				& \bfseries 0.728       & 0.685 & 0.049    \\
+		\lab{Volition} 				& 0.501       & 0.308     & -  \\ \bottomrule
 	\end{tabular}
 \end{table}
 \begin{table}[]
@@ -123,24 +123,24 @@ In Table \ref{tab:MLP1} and Table \ref{tab:MLP2} are the results for the MLP cla
 	\end{tabular}
 \end{table}
 \subsection{FastText}
-Table \ref{tab:FT1} and Tabel \ref{tab:FT2} show the final results for fastText classifiers. Within the categorical \f{1} scores \lab{Uncertainty} scores highest at 0.873 and 0.870 for the multi-label and multi-task classifiers respectively. \lab{Source of Knowledge} scores lowest at 0.735 in multi-label mode and 0.731 in multi-task mode. There is a notable uniformity between the scores of the multi-label and multi-task classifiers, which could suggest that the multi-task implementation is not learning any extra information compared to the multi-label. It is likely that the multi-task approach requires further tuning or architectural changes. Similarly the multi-label and multi-task classifiers have identical scores when measuring \f{Macro} and \f{Micro}, 0.799 and 0.801 respectively. These are the highest achieved by any classifier in the project. The low difference between \f{Macro} and \f{Micro} scores shows that the classifiers are performing almost equally between frequent and rarer categories. This suggests that both approaches are good ones, and are approaching the optimal solution to the problem. However in EMR score both implementations lag behind the multi-class fastText classifier , which achieves 0.650. Again, this is the highest EMR achieved by any classifier in the project.
+Table \ref{tab:FT1} and Tabel \ref{tab:FT2} show the final results for fastText classifiers. Within the categorical \f{1} scores \lab{Uncertainty} scores highest at 0.873 and 0.870 for the multi-label and multi-task classifiers respectively. \lab{Source of Knowledge} scores lowest at 0.735 in multi-label mode and 0.731 in multi-task mode. There is a notable uniformity between the scores of the multi-label and multi-task classifiers, which could suggest that the multi-task implementation is not learning any extra information compared to the multi-label. It is likely that the multi-task approach requires further tuning or architectural changes. Similarly the multi-label and multi-task classifiers have identical scores when measuring \f{Macro} and \f{Micro}, 0.799 and 0.801 respectively. These are the highest achieved by any classifier in the project. The low difference between \f{Macro} and \f{Micro} scores shows that the classifiers are performing almost equally between frequent and rarer categories. This suggests that both approaches are good ones, and are approaching the optimal solution to the problem. However in EMR score both implementations lag behind the multi-class fastText classifier , which achieves 0.650. Again, this is the highest EMR achieved by any classifier in the project. Further success is seen when comparing the multi-label and multi-task implementations to the results published by Simaki et al. \cite{simakiStanceClassificationTexts2017} - the fastText classifier significantly outperforms in every measure.
 \begin{table}[]
 	\centering
 			\caption{Within category 5 fold cross validated \f{1} scores for fastText classifier}
 			\label{tab:FT1}
-	\begin{tabular}{@{}lll@{}}
+	\begin{tabular}{@{}lllc@{}}
 		\toprule
-		Stance Category         & Multi-label & Multi-task \\ \midrule
-		\lab{Agreement/Disagreement} & 0.819       & 0.819      \\
-		\lab{Certainty}              & 0.848       & 0.852      \\
-		\lab{Contrariety}            & 0.798         & 0.797      \\
-		\lab{Hypotheticality}        & 0.755       & 0.760      \\
-		\lab{Necessity}              & 0.750        & 0.749      \\
-		\lab{Prediction}             & 0.838       & 0.846      \\
-		\lab{Source of knowledge}    & 0.735       & 0.731      \\
-		\lab{Tact/Rudeness}          & 0.801       & 0.801      \\
-		\lab{Uncertainty}            & 0.873       & 0.870      \\
-		\lab{Volition}               & 0.777       & 0.765      \\ \bottomrule
+		Stance Category         & Multi-label & Multi-task & Simaki et al.\\ \midrule
+		\lab{Agreement/Disagreement} & 0.819       & 0.819  &    -\\
+		\lab{Certainty}              & 0.848       & 0.852   &   -\\
+		\lab{Contrariety}            & 0.798         & 0.797  &   0.389 \\
+		\lab{Hypotheticality}        & 0.755       & 0.760  &    0.135\\
+		\lab{Necessity}              & 0.750        & 0.749 &     0.241\\
+		\lab{Prediction}             & 0.838       & 0.846  &    0.274\\
+		\lab{Source of knowledge}    & 0.735       & 0.731  &    0.363\\
+		\lab{Tact/Rudeness}          & 0.801       & 0.801  &    -\\
+		\lab{Uncertainty}            & 0.873       & 0.870  &    0.049\\
+		\lab{Volition}               & 0.777       & 0.765  &    -\\ \bottomrule
 	\end{tabular}
 \end{table}
 
@@ -164,7 +164,8 @@ Table \ref{tab:FT1} and Tabel \ref{tab:FT2} show the final results for fastText 
 	\centering
 	\subfile{../tables/all_results.tex}
 \end{table}
-Table \ref{tab:FinalResults} compares \f{Macro}, \f{Micro} and EMR for all implementations of the three classifier types. Overall, the results of each classifier compare well to previous work in the literature. Between architectures the multi-layer perceptron shows the most need for improvement, producing the lowest scores of the three architectures.  Logistic regression provides an excellent baseline, and indeed the multi-class implementation scores the second highest exact match ratio (EMR) while the multi-label implementation scores the second highest \f{Macro} and \f{Micro} scores. However, the fastText classifiers show the most promise and is the best architecture across all measures. Notably, the fastText classifiers show very little variance between stance categories, showing how using representation learning (word embeddings) instead of feature engineering helps to better capture semantic similarity between instances and somewhat uncouple the correlation between category frequency in the training set and classifier categorical \f{1} score.
+Table \ref{tab:FinalResults} compares \f{Macro}, \f{Micro} and EMR for all implementations of the three classifier types. Overall, the results of each classifier compare well to previous work in the literature. Between architectures the multi-layer perceptron shows the most need for improvement, producing the lowest scores of the three architectures.  Logistic regression provides an excellent baseline, and indeed the multi-class implementation scores the second highest exact match ratio (EMR) while the multi-label implementation scores the second highest \f{Macro} and \f{Micro} scores. However, the fastText classifiers show the most promise and is the best architecture across all measures. Notably, the fastText classifiers show very little variance between stance categories, showing how using representation learning (word embeddings) instead of feature engineering helps to better capture semantic similarity between instances and somewhat uncouple the correlation between category frequency in the training set and classifier categorical \f{1} score. Of significant importance is the observation that despite differences in performance between classifiers developed in this project, all implementations outperform the results shown in Simaki et al. \cite{simakiStanceClassificationTexts2017}. Their baseline results were mixed but successful overall, the results of this project further improve on their research. 
+
 
 
 
