@@ -54,7 +54,6 @@ Each example contains stance characterising elements of varying lengths. For exa
 	\end{tabularx}
 
 \end{table}}
-\section{Problem Statment}
 
 \section{Exploratory Data Analysis} \label{sec:EDA}
 Before developing an experimental methodology and building classifiers, exploratory data analysis was undertaken to visualise the dataset and investigate its statistical properties.
@@ -85,12 +84,12 @@ i
 \end{array} \bigg) = \sum_{k=1}^{k=5}\frac{10!}{k!(10-k)!} = 637 \]
 
 
-In fact, only 92 powerset labels are observed in the data, so there are only 92 stance category combinations in the Brexit Blog Corpus. Figure \ref{fig:polarBarChart} shows a polar bar chart for power set label frequency, with the ten most common highlighted. Notably, none of the ten most frequent have more than two stance categories. The limited number of combinations observed in the data and the prevalence of utterances annotated with two stance categories or fewer suggests that there are underlying relationships between labels that could be exploited in modelling.
+In fact, only 92 powerset labels are observed in the data, so there are only 92 stance category combinations in the Brexit Blog Corpus. Figure \ref{fig:polarBarChart} shows a log polar bar chart for power set label frequency, with the ten most common highlighted. Notably, none of the ten most frequent have more than two stance categories. The limited number of combinations observed in the data and the prevalence of utterances annotated with two stance categories or fewer suggests that there are underlying relationships between labels that could be exploited in modelling.
 \begin{figure}
 	\centering
 	
 	\includegraphics[width=7in]{label_powerset_polarplot.pdf}
-	\caption{Polar Bar Chart for Label}
+	\caption{Log polar bar chart for label powerset}
 	\label{fig:polarBarChart}
 \end{figure}
 
@@ -111,12 +110,7 @@ In Table \ref{tab:labelFreq} shows per-category co-occurence statistics, with th
 	
 \end{table}
 
-From Table \ref{tab:labelFreq} it can be see that \lab{Hypotheticality} exhibits the largest co-occurrence ratio at $ 0.43 $, suggesting that hypothetical constructs frequently include or appear together with stance markers for other categories. Interestingly, \lab{Uncertainty} shows the highest mean co-occurring labels despite having the lowest co-occurrence ratio. This suggests that though constructs of uncertainty rarely occur jo	intly with other categories, those which do are associated with a broad range of other categories. \lab{Volition} has the highest standard deviation of co-occurring labels. This could be explained by an underlying trend, however this may also be explained by small sample size since there are only $ 73 $ total occurrences of \lab{Volition} in the data.
-
-..................................................\\
-TODO: Consider including itterance examples that show correlations in below section\\
-..................................................\\
-
+From Table \ref{tab:labelFreq} it can be see that \lab{Hypotheticality} exhibits the largest co-occurrence ratio at $ 0.43 $, suggesting that hypothetical constructs frequently include or appear together with stance markers for other categories. Interestingly, \lab{Uncertainty} shows the highest mean co-occurring labels despite having the lowest co-occurrence ratio. This suggests that though constructs of uncertainty rarely occur jo	intly with other categories, those which do are associated with a broad range of other categories. \lab{Volition} has the highest standard deviation of co-occurring labels. This could be explained by an underlying trend, however this may also be explained by small sample size since there are only $ 73 $ total occurrences of \lab{Volition} in the data..
 
 Figure \ref{fig:labCoOc} shows a label co-occurrence heatmap of the dataset. While the co-occurences are somewhat skewed due to imbalances in the data, there are several notable features to the plot. \lab{Contrariety} stands out as most frequently co-occurring category,  and is particularly related to \lab{Source of Knowledge} and \lab{Uncertainty}.	 There are also several other clear correlations between category pairs, such as between \lab{Uncertainty} and \lab{Prediction}, and between \lab{Hypotheticality} and \lab{Uncertainty}.
 

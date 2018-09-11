@@ -1,0 +1,17 @@
+\begin{tabular}{llrrr}
+\toprule
+Model & Domain&  \f{Macro} &   \f{Micro} &    EMR \\
+
+\midrule
+\multirow{2}{*}{LR} & Multi-class &     0.743 &      0.645 &  0.645 \\
+         & Multi-label &     0.774 &      0.775 &  0.492 \\
+\cmidrule{2-5}
+\multirow{3}{*}{FastText} & Multi-class &     0.766 &      0.650 &  \bfseries 0.650 \\
+         & Multi-label &     \bfseries0.799 &      \bfseries 0.801 &  0.549 \\
+         & Multi-task  &     \bfseries0.799 &      \bfseries 0.801 &  0.548 \\
+\cmidrule{2-5}
+\multirow{3}{*}{MLP} & Multi-class &     0.742 &      0.579 &  0.579 \\
+         & Multi-label &     0.556 &      0.617 &  0.361 \\
+         & Multi-task  &     0.509 &      0.586 &  0.326 \\
+\bottomrule
+\end{tabular}

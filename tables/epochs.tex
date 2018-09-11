@@ -1,9 +1,9 @@
 \begin{tabular}{llrrrr}
 \toprule
-         &             &  Epochs &  F1 Macro &   F1 Micro &       EMR \\
-Model & Domain &         &           &            &           \\
+ \multicolumn{2}{r}{Domain}  &  Epochs &  \f{Macro} &   \f{Micro} &       EMR \\
+
 \midrule
-\multirow{27}{*}{FastText} & \multirow{9}{*}{Multi-class} &      10 &  0.003 &   0.101 &  0.101 \\
+ & \multirow{9}{*}{\rot{Multi-class}} &      10 &  0.003 &   0.101 &  0.101 \\
 &             &      50 &  0.010 &   0.121 &  0.121 \\
 &             &     100 &  0.061 &   0.254 &  0.254 \\
 &             &     150 &  0.299 &   0.423 &  0.423 \\
@@ -13,7 +13,7 @@ Model & Domain &         &           &            &           \\
 &             &     350 &  0.793 &   0.658 &  0.658 \\
 &             &     400 &  \bfseries 0.799 &   \bfseries 0.661& \bfseries 0.661 \\
 \cmidrule(lr){2-6}
- & \multirow{9}{*}{Multi-label} &      10 &  0.00 &   0.00 &  0.00 \\
+ & \multirow{9}{*}{\rot{Multi-label}} &      10 &  0.00 &   0.00 &  0.00 \\
          &             &      50 &  0.435 &   0.632 &  0.257 \\
          &             &     100 &  0.753 &   0.785 &  0.505 \\
          &             &     150 &  0.793 &   0.799 &  0.540 \\
@@ -23,7 +23,7 @@ Model & Domain &         &           &            &           \\
          &             &     350 &  0.798 &   0.799 &  0.544 \\
          &             &     400 &  0.796 &   0.797 &  0.543 \\
 \cmidrule(lr){2-6}
- & \multirow{9}{*}{Multi-task} & 10  & 0.00     & 0.00     & 0.00     \\
+ & \multirow{9}{*}{\rot{Multi-task}} & 10  & 0.00     & 0.00     & 0.00     \\
 &            & 50  & 0.452 & 0.645 & 0.267 \\
 &            & 100 & 0.756 & 0.786 & 0.512 \\
 &            & 150 & 0.790 & 0.797 & 0.536 \\

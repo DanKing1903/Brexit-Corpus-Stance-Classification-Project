@@ -1,4 +1,13 @@
 \documentclass[Dissertation.tex]{subfiles}
 \begin{document}
 \chapter{Conclusions and Future Work}
+\section{Summary}
+This project set out to investigate approaches to stance detection using the Brexit Blog Corpus, a novel dataset that annotates speaker stance according to a multi-label framework of 10 notional stance categories \cite{simakiAnnotatingSpeakerStance2017}. In doing so, the project also aimed to explore the relationships between multi-class, multi-label and multi-task learning algorithms. 
+
+Three primary models were developed: a logistic regression baseline with simple bag-of-words and count based features,  a multi-layer perceptron using the same features, and fastText classifier that learns word embeddings. Stance classification in the dataset was investigated in three contexts: in its original multi-label format, a multi-class transformation and a multi-task transformation. The baseline was implemented in multi-class and multi-label formats, while the multi-layer perceptron and fastText classifiers were both implemented in all three formats.
+
+Several key points were noted in analysis of results. The baseline performs very well, and indeed no other classifier was able to achieve higher scores in exact match ratio (EMR). The multi-layer perceptron however performs weakly, showing high variance in categorical \f{1} and low scores overall in \f{Macro}, \f{Micro} and EMR. The fastText classifier shows promising results, delivering performance close to state of the art using a simple and efficient architecture. Additionally, the model generates word embeddings that can be reused.  Across classifiers multi-label implementations delivered the highest \f{Macro} and \f{Micro} scores, while multi-class implementations acheived the greatest EMR scores. The takeaway from this is context dependent - if for a given multi-label task the most important criterion is predicting each individual category correctly then the results suggest a multi-label or multi-task approach is optimal. However if predicting the exact correct label set is of greater importance, then the results suggest using a multi-class transformation is a better strategy. To conclude, the project was a success, investigating all aims set out initially and achieving mixed, but mostly positive results from the classifiers developed. 
+
+\section{Future Work}
+While the project was successful, nonetheless there remain items to be researched in future work. TBC
 \end{document}
