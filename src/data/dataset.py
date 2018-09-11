@@ -63,4 +63,5 @@ class Dataset(object):
                           'nonnative_annots', 'native_complex', 'nonnative_complex', 'gold_label', 'gold_prob']"""
 
             dataset = pd.read_csv(file)
+            #dataset = dataset.drop_duplicates(subset='Utterance')
         return dataset

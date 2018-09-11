@@ -55,7 +55,7 @@ def report_multiclass_scores(y, y_pred):
     return score_str
 
 
-def report_mean_scores(y_accum,):
+def report_mean_scores(y_accum, print_result=True):
 
     hamm_accum = []
     f1_accum = []
@@ -76,33 +76,36 @@ def report_mean_scores(y_accum,):
     f1_micro = np.mean(f1_micro_accum)
     accuracy = np.mean(accuracy_accum)
 
-    classes = [
-        'agreement/disagreement',
-        'certainty',
-        'contrariety',
-        'hypotheticality',
-        'necessity',
-        'prediction',
-        'source of knowledge',
-        'tact/rudeness',
-        'uncertainty',
-        'volition']
+
+    if not print_result:
+        return f1_macro, f1_micro, accuracy
+    else:
+        classes = [
+            'agreement/disagreement',
+            'certainty',
+            'contrariety',
+            'hypotheticality',
+            'necessity',
+            'prediction',
+            'source of knowledge',
+            'tact/rudeness',
+            'uncertainty',
+            'volition']
 
 
-    scores = zip(classes, f1, np.add.reduce(y))
-    score_str = '\n{:25s}{:>10.3f}\n'.format('Hamming Loss:', hamm)
-    score_str += '\nf1 scores \n -----------'
-    for label, score, freq in sorted(scores, key=lambda s: s[0], reverse=False):
-        score_str += '\n{:25s}{:>10.3f}{:>10d}'.format(label.capitalize() + ':', score, freq)
-    score_str += '\n\n{:25s}{:10.3f}'.format('Micro-f1 score:', f1_micro)
-    score_str += ('\n{:25s}{:>10.3f}'.format('Macro-f1 score:', f1_macro))
+        scores = zip(classes, f1, np.add.reduce(y))
+        score_str = '\n{:25s}{:>10.3f}\n'.format('Hamming Loss:', hamm)
+        score_str += '\nf1 scores \n -----------'
+        for label, score, freq in sorted(scores, key=lambda s: s[0], reverse=False):
+            score_str += '\n{:25s}{:>10.3f}{:>10d}'.format(label.capitalize() + ':', score, freq)
+        score_str += '\n\n{:25s}{:10.3f}'.format('Micro-f1 score:', f1_micro)
+        score_str += ('\n{:25s}{:>10.3f}'.format('Macro-f1 score:', f1_macro))
 
 
-    score_str += '\n\n{:25s}{:10.3f}'.format('Accuracy', accuracy)
+        score_str += '\n\n{:25s}{:10.3f}'.format('Accuracy', accuracy)
+        return score_str
 
-    return score_str
-
-def report_mean_multiclass_scores(y_accum):
+def report_mean_multiclass_scores(y_accum, print_result=True):
 
     hamm_accum = []
     f1_macro_accum = []
@@ -120,11 +123,15 @@ def report_mean_multiclass_scores(y_accum):
     f1_micro = np.mean(f1_micro_accum)
     accuracy = np.mean(accuracy_accum)
 
-    score_str = '\n{:25s}{:>10.3f}\n'.format('Hamming Loss:', hamm)
-    score_str += '\n\n{:25s}{:10.3f}'.format('Micro-f1 score:', f1_micro)
-    score_str += ('\n{:25s}{:>10.3f}'.format('Macro-f1 score:', f1_macro))
+    if not print_result:
+        return [f1_macro, f1_micro, accuracy]
+
+    else:
+        score_str = '\n{:25s}{:>10.3f}\n'.format('Hamming Loss:', hamm)
+        score_str += '\n\n{:25s}{:10.3f}'.format('Micro-f1 score:', f1_micro)
+        score_str += ('\n{:25s}{:>10.3f}'.format('Macro-f1 score:', f1_macro))
 
 
-    score_str += '\n\n{:25s}{:10.3f}'.format('Accuracy', accuracy)
+        score_str += '\n\n{:25s}{:10.3f}'.format('Accuracy', accuracy)
 
-    return score_str
+        return score_str

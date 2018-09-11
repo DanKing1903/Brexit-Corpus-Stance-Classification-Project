@@ -9,7 +9,7 @@ import pandas as pd
 import argparse
 
 
-def run_model(model_type, trainset, testst, is_verbose=True,**kwargs):
+def run_model(model_type, trainset, testset, is_verbose=True,**kwargs):
     print('running model')
 
     if model_type == 'LR':

@@ -5,9 +5,36 @@ from sklearn.feature_extraction.text import CountVectorizer
 from keras.preprocessing.text import Tokenizer
 from collections import defaultdict, Counter
 from nltk.tokenize.nist import NISTTokenizer
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
 import nltk
 import numpy as np
 import re
+
+class Stops_Stems(BaseEstimator, TransformerMixin):
+    def init(self, stemming):
+        self.stemming = stemming
+
+    def fit(self, X, *_):
+        return self
+
+    def transform(self, X, *_):
+        stop_words = set(stopwords.words('english'))
+        if self.stemming:
+            ps = nltk.stemmer.PorterStemmer()
+        result = []
+        for sent in X:
+            word_tokens = word_tokenize(sent)
+            filtered_sent = [w for w in word_tokens if w not in stop_words]
+            if self.stemming:
+                stemmed_sent = [ps.stem(w) for w in filtered_sent]
+                result.append(stemmed_sent)
+            else:
+                result.append(filtered_sent)
+
+
+
+
 
 
 class WordTokenizer2(BaseEstimator, TransformerMixin):
@@ -196,11 +223,10 @@ class HapaxLegomera(BaseEstimator, TransformerMixin):
         return word_counts
 
     def fit(self, X, *_):
-        self.word_counts = self.compile_counts(X)
         return self
 
     def transform(self, X, *_):
-        word_counts = self.word_counts
+        word_counts = self.compile_counts(X)
         result = []
         for sent in X:
             features = defaultdict(int)
